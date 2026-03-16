@@ -10,87 +10,73 @@
     .mobile-menu { display:none; flex-direction:column; }
     .mobile-menu.open { display:flex !important; }
 
-    /* ══ HOME WRAP ══ */
+    .nav-brand { display:flex; align-items:center; gap:0.6rem; font-family:var(--display); font-size:0.9rem; font-weight:800; color:#fff; letter-spacing:0.04em; text-decoration:none; }
+    .nav-logo-img { height:32px; width:auto; object-fit:contain; display:block; }
+    .nav-brand-dot { width:8px; height:8px; background:var(--accent); border-radius:50%; animation:dotRipple 2s ease-out infinite; flex-shrink:0; }
+    @keyframes dotRipple { 0%{box-shadow:0 0 0 0 rgba(59,130,246,0.4)} 70%{box-shadow:0 0 0 8px rgba(59,130,246,0)} 100%{box-shadow:0 0 0 0 rgba(59,130,246,0)} }
+
+    .hero-main-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(2.8rem,7vw,6rem); line-height:1; color:#fff; letter-spacing:-0.02em; margin:0; text-shadow:0 0 80px rgba(59,130,246,0.25); }
+    .hero-main-title .sb-highlight { background:linear-gradient(135deg,#60a5fa,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .hero-tagline { font-family:var(--mono); font-size:clamp(0.7rem,2vw,1rem); letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-top:1rem; }
+    .hero-cta { display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; justify-content:center; }
+    .btn-hero-box { font-family:var(--sans); font-size:0.85rem; font-weight:600; padding:0.85rem 2.2rem; border-radius:8px; border:1.5px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.07); color:#fff; cursor:pointer; transition:all 0.25s; backdrop-filter:blur(8px); text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; }
+    .btn-hero-box:hover { background:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.6); transform:translateY(-2px); box-shadow:0 8px 25px rgba(0,0,0,0.3); }
+    .btn-hero-box.primary { border-color:rgba(59,130,246,0.5); background:rgba(59,130,246,0.12); }
+    .btn-hero-box.primary:hover { background:rgba(59,130,246,0.25); border-color:rgba(59,130,246,0.8); }
+
+    /* NEWS TICKER */
+    .news-ticker-wrap { background:rgba(6,8,15,0.97); border-top:1px solid var(--border); border-bottom:1px solid var(--border); overflow:hidden; position:relative; z-index:10; }
+    .news-ticker-inner { display:flex; align-items:stretch; }
+    .news-label { flex-shrink:0; background:var(--accent); color:#fff; font-family:var(--mono); font-size:0.6rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:0.7rem 1.2rem; display:flex; align-items:center; gap:0.4rem; white-space:nowrap; z-index:2; }
+    .news-label-dot { width:6px; height:6px; background:#fff; border-radius:50%; animation:blinkDot 1s infinite; }
+    @keyframes blinkDot { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .news-track-wrap { flex:1; overflow:hidden; position:relative; }
+    .news-track-wrap::before,.news-track-wrap::after { content:''; position:absolute; top:0; bottom:0; width:60px; z-index:2; pointer-events:none; }
+    .news-track-wrap::before { left:0; background:linear-gradient(to right,rgba(6,8,15,0.97),transparent); }
+    .news-track-wrap::after  { right:0; background:linear-gradient(to left,rgba(6,8,15,0.97),transparent); }
+    .news-track { display:flex; white-space:nowrap; animation:newsTicker 28s linear infinite; }
+    .news-track:hover { animation-play-state:paused; }
+    @keyframes newsTicker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    .news-item { display:inline-flex; align-items:center; gap:0.6rem; padding:0.65rem 2.5rem; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em; color:var(--text2); white-space:nowrap; cursor:default; transition:color 0.2s; }
+    .news-item:hover { color:#fff; }
+    .news-item .ni-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+    .news-sep { color:var(--accent); padding:0 1.5rem; font-size:0.8rem; }
+
+    /* ABOUT STATS ONLY */
     .home-wrap { max-width:1200px; margin:0 auto; text-align:center; }
     .home-wrap .section-label { justify-content:center; }
     .home-wrap .section-label::before { display:none; }
     .home-wrap .section-sub { margin:0 auto 1rem; }
 
-    /* ══ ABOUT CARDS — DESKTOP ══ */
-    .about-cards-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-      text-align: left;
-    }
+    .about-stat-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin-top:2.5rem; }
+    .about-stat { padding:1.8rem 1.2rem; background:var(--surface); border:1px solid var(--border); border-radius:14px; text-align:center; transition:all 0.35s cubic-bezier(.34,1.56,.64,1); position:relative; overflow:hidden; }
+    .about-stat::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 50% 50%,rgba(59,130,246,0.1),transparent 70%); opacity:0; transition:opacity 0.3s; }
+    .about-stat:hover::before { opacity:1; }
+    .about-stat:hover { transform:translateY(-6px); border-color:rgba(96,165,250,0.5); box-shadow:0 12px 35px rgba(59,130,246,0.15); }
+    .about-stat .num { font-family:var(--display); font-weight:800; font-size:2.5rem; color:var(--accent); display:block; line-height:1; }
+    .about-stat .lbl { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:0.4rem; display:block; }
+    .about-stat:hover .num { color:#60a5fa; }
 
-    /* ══ ABOUT STAT GRID ══ */
-    .about-stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    .about-stat {
-      padding: 1.2rem;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      transition: all 0.25s;
-    }
-    .about-stat:hover { border-color: var(--accent2); transform: translateY(-2px); }
-    .about-stat .num {
-      font-family: var(--display);
-      font-weight: 800;
-      font-size: 1.8rem;
-      color: var(--accent);
-      display: block;
-    }
-    .about-stat .lbl {
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 0.2rem;
-      display: block;
-    }
-
-    /* ══ ABOUT FOUNDED INFO ══ */
-    .about-founded {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--text2);
-      line-height: 2.2;
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-      word-break: break-word;
-    }
-    .about-founded span { color: var(--accent); }
-
-    /* ══ EXECOM FLIP CARDS ══ */
+    /* EXECOM */
     .execom-home-section { padding:5rem 2rem; background:var(--bg2); }
     .execom-home-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:3rem; }
     .epc-wrapper { animation:floatUp 3.5s ease-in-out infinite; }
-    .epc-wrapper:nth-child(2){animation-delay:.7s}
-    .epc-wrapper:nth-child(3){animation-delay:1.4s}
-    .epc-wrapper:nth-child(4){animation-delay:2.1s}
+    .epc-wrapper:nth-child(2){animation-delay:.7s} .epc-wrapper:nth-child(3){animation-delay:1.4s} .epc-wrapper:nth-child(4){animation-delay:2.1s}
     @keyframes floatUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    .epc-inner { position:relative; border-radius:18px; overflow:hidden; aspect-ratio:3/4; cursor:pointer; transform-style:preserve-3d; transition:transform .7s cubic-bezier(.34,1.2,.64,1),box-shadow .4s; border:1px solid var(--border); }
-    .epc-wrapper:hover .epc-inner { transform:rotateY(180deg); box-shadow:0 30px 80px rgba(59,130,246,.3); }
-    .epc-wrapper:hover { animation:none; }
-    .epc-front { position:absolute; inset:0; backface-visibility:hidden; background:linear-gradient(145deg,#0d1525,#1a2540); display:flex; flex-direction:column; }
-    .epc-photo { flex:1; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-    .epc-initial { font-family:var(--display); font-weight:800; font-size:4.5rem; color:rgba(255,255,255,.08); position:absolute; z-index:0; }
-    .epc-scan { position:absolute; top:-40%; left:0; right:0; height:40%; background:linear-gradient(to bottom,transparent,rgba(59,130,246,.06),transparent); animation:scanDown 3s ease-in-out infinite; z-index:2; }
+    .epc-inner{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;cursor:pointer;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.34,1.2,.64,1),box-shadow .4s;border:1px solid var(--border);}
+    .epc-wrapper:hover .epc-inner{transform:rotateY(180deg);box-shadow:0 30px 80px rgba(59,130,246,.3);}
+    .epc-wrapper:hover{animation:none;}
+    .epc-front{position:absolute;inset:0;backface-visibility:hidden;background:linear-gradient(145deg,#0d1525,#1a2540);display:flex;flex-direction:column;}
+    .epc-photo{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+    .epc-initial{font-family:var(--display);font-weight:800;font-size:4.5rem;color:rgba(255,255,255,.08);position:absolute;z-index:0;}
+    .epc-scan{position:absolute;top:-40%;left:0;right:0;height:40%;background:linear-gradient(to bottom,transparent,rgba(59,130,246,.06),transparent);animation:scanDown 3s ease-in-out infinite;z-index:2;}
     @keyframes scanDown{0%{top:-40%}100%{top:130%}}
-    .epc-front-info { padding:.9rem 1.1rem; background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.15)); position:relative; z-index:2; }
-    .epc-badge { font-family:var(--mono); font-size:.44rem; letter-spacing:.15em; color:rgba(255,255,255,.4); text-transform:uppercase; margin-bottom:.2rem; display:block; }
-    .epc-role { font-family:var(--mono); font-size:.55rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:.18rem; display:block; }
-    .epc-name { font-family:var(--display); font-weight:700; font-size:.9rem; color:#fff; display:block; }
-    .epc-dept { font-family:var(--mono); font-size:.48rem; color:rgba(255,255,255,.3); margin-top:.1rem; display:block; }
-    .epc-back { position:absolute; inset:0; backface-visibility:hidden; transform:rotateY(180deg); border-radius:18px; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1.5rem; text-align:center; }
+    .epc-front-info{padding:.9rem 1.1rem;background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.15));position:relative;z-index:2;}
+    .epc-badge{font-family:var(--mono);font-size:.44rem;letter-spacing:.15em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:.2rem;display:block;}
+    .epc-role{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.18rem;display:block;}
+    .epc-name{font-family:var(--display);font-weight:700;font-size:.9rem;color:#fff;display:block;}
+    .epc-dept{font-family:var(--mono);font-size:.48rem;color:rgba(255,255,255,.3);margin-top:.1rem;display:block;}
+    .epc-back{position:absolute;inset:0;backface-visibility:hidden;transform:rotateY(180deg);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center;}
     .epc-wrapper:nth-child(1) .epc-back{background:linear-gradient(145deg,#1a1200,#3d2800)}
     .epc-wrapper:nth-child(2) .epc-back{background:linear-gradient(145deg,#001233,#002060)}
     .epc-wrapper:nth-child(3) .epc-back{background:linear-gradient(145deg,#001818,#003030)}
@@ -110,7 +96,7 @@
     .btn-arrow{width:26px;height:26px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:transform .3s;}
     .btn-view-execom:hover .btn-arrow{transform:translateX(4px);}
 
-    /* ══ WHY JOIN ══ */
+    /* WHY JOIN */
     .why-section{padding:5rem 2rem;background:var(--bg);}
     .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;}
     .why-card{position:relative;padding:2.2rem 1.8rem;border-radius:16px;border:1px solid var(--border);background:var(--surface);cursor:pointer;overflow:hidden;text-align:center;transition:all .35s cubic-bezier(.34,1.56,.64,1);text-decoration:none;display:flex;flex-direction:column;align-items:center;}
@@ -121,83 +107,38 @@
     .why-arrow{margin-top:1.2rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.4rem;transition:gap .2s;}
     .why-card:hover .why-arrow{gap:.8rem;}
 
-    /* ══════════════════════════════════
-       MOBILE RESPONSIVE FIXES
-    ══════════════════════════════════ */
+    /* FOOTER CONTACT */
+    .footer-contact-row { display:flex; align-items:center; gap:0.6rem; font-size:0.78rem; color:var(--muted); margin-bottom:0.5rem; }
+    .footer-contact-row a { color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .footer-contact-row a:hover { color:var(--accent); }
+    .footer-contact-icon { font-size:0.9rem; flex-shrink:0; }
 
-    /* Tablet */
-    @media(max-width:1100px){
-      .execom-home-grid{grid-template-columns:repeat(2,1fr);}
-      .why-grid{grid-template-columns:1fr 1fr;}
-    }
-
-    /* Mobile landscape / small tablet */
+    /* MOBILE */
+    @media(max-width:1100px){ .execom-home-grid{grid-template-columns:repeat(2,1fr);} .why-grid{grid-template-columns:1fr 1fr;} .about-stat-grid{grid-template-columns:repeat(2,1fr);} }
     @media(max-width:768px){
-      /* About section — stack vertically */
-      .about-cards-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
-      }
-      /* Stat grid — 2x2 with proper sizing */
-      .about-stat-grid {
-        grid-template-columns: 1fr 1fr !important;
-        gap: 0.8rem !important;
-      }
-      .about-stat .num { font-size: 1.6rem !important; }
-      .about-stat { padding: 1rem !important; }
-      /* Founded text — readable */
-      .about-founded {
-        font-size: 0.75rem !important;
-        line-height: 2 !important;
-        word-break: break-word !important;
-      }
-      /* Execom grid — 2 cols on mobile */
-      .execom-home-grid { grid-template-columns:1fr 1fr !important; gap:.8rem !important; }
-      .execom-home-section { padding:3rem 1rem !important; }
-      .epc-name { font-size:.8rem !important; }
-      .epc-role { font-size:.5rem !important; }
-      /* Why join — single col */
-      .why-grid { grid-template-columns:1fr !important; }
-      .why-section { padding:3rem 1rem !important; }
-      /* Section padding */
-      .section { padding:3rem 1rem !important; }
-      /* Societies */
-      .societies-wrapper { grid-template-columns:repeat(2,1fr) !important; gap:0.8rem !important; }
-      .society-abbr-big { font-size:2rem !important; }
+      .about-stat-grid{grid-template-columns:1fr 1fr !important;gap:0.8rem !important;}
+      .about-stat .num{font-size:2rem !important;}
+      .execom-home-grid{grid-template-columns:1fr 1fr !important;gap:.8rem !important;}
+      .execom-home-section{padding:3rem 1rem !important;}
+      .why-grid{grid-template-columns:1fr !important;}
+      .why-section{padding:3rem 1rem !important;}
+      .section{padding:3rem 1rem !important;}
+      .societies-wrapper{grid-template-columns:repeat(2,1fr) !important;gap:0.8rem !important;}
+      .hero-main-title{font-size:clamp(2rem,8vw,3.5rem) !important;}
+      .hero-cta{flex-direction:column !important;align-items:center !important;}
+      .btn-hero-box{width:90% !important;max-width:260px !important;justify-content:center !important;}
+      .footer-top{grid-template-columns:1fr !important;gap:2rem !important;}
     }
-
-    /* Small phones */
-    @media(max-width:480px){
-      /* About stat nums */
-      .about-stat .num { font-size: 1.4rem !important; }
-      .about-stat .lbl { font-size: 0.52rem !important; }
-      /* Section titles */
-      .section-title { font-size: 1.6rem !important; }
-      .section-sub { font-size: 0.82rem !important; }
-      /* Hero */
-      .hero-cta { flex-direction:column !important; align-items:center !important; }
-      .btn-hero-primary,.btn-hero-outline { width:90% !important; max-width:280px !important; justify-content:center !important; }
-      /* Execom */
-      .epc-initial { font-size:3rem !important; }
-      .execom-home-grid { gap:0.6rem !important; }
-      /* Societies */
-      .societies-wrapper { grid-template-columns: 1fr 1fr !important; gap:0.6rem !important; }
-      .society-abbr-big { font-size:1.6rem !important; }
-      .society-full-name { font-size:0.44rem !important; }
-      /* Stats section */
-      .stats-grid { grid-template-columns:1fr !important; }
-      .stat-num { font-size:2.8rem !important; }
-      /* Why join cards */
-      .why-card { padding:1.5rem 1.2rem !important; }
-      /* Sections */
-      .section { padding:2.5rem 1rem !important; }
-    }
+    @media(max-width:480px){ .about-stat .num{font-size:1.8rem !important;} .section-title{font-size:1.6rem !important;} .society-abbr-big{font-size:1.6rem !important;} }
   </style>
 </head>
 <body>
 
 <nav id="navbar">
-  <div class="nav-brand"><div class="nav-brand-dot"></div>IEEE SB NCERC</div>
+  <a href="index.html" class="nav-brand">
+    <img src="./images/ieee-logo.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" class="nav-logo-img" alt="IEEE SB NCERC"/>
+    <span style="display:none;align-items:center;gap:0.6rem;"><div class="nav-brand-dot"></div>IEEE SB NCERC</span>
+  </a>
   <ul class="nav-links">
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="about.html">About Us</a></li>
@@ -223,208 +164,107 @@
     <div class="hero-badge" style="opacity:1;transform:none;">
       <div class="hero-badge-dot"></div>IEEE Student Branch // NCERC Thrissur
     </div>
-    <h1 style="opacity:1;transform:none;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.2rem,6vw,5.5rem);line-height:1.05;color:#fff;text-align:center;text-shadow:0 0 80px rgba(59,130,246,.2);margin:0;">
-      Advancing <span style="background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Technology</span><br>for Humanity
-    </h1>
-    <p class="hero-sub" style="opacity:1;transform:none;margin-top:1.2rem;">IEEE SB NCERC WELCOMES YOU</p>
-    <div class="hero-cta" style="opacity:1;transform:none;">
-      <a href="https://bit.ly/IEEEMEMBERSHIP2026" target="_blank" class="btn-hero-primary">JOIN IEEE →</a>
-      <a href="about.html" class="btn-hero-outline">LEARN MORE</a>
+    <h1 class="hero-main-title">IEEE <span class="sb-highlight">SB</span> NCERC</h1>
+    <p class="hero-tagline">Advancing Technology for Humanity</p>
+    <div class="hero-cta">
+      <a href="https://bit.ly/IEEEMEMBERSHIP2026" target="_blank" class="btn-hero-box primary">JOIN IEEE →</a>
+      <a href="about.html" class="btn-hero-box">LEARN MORE</a>
     </div>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div>SCROLL</div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item">IEEE SB NCERC</span>
-    <span class="ticker-item">Advancing Technology for Humanity</span>
-    <span class="ticker-item">PES Chapter</span>
-    <span class="ticker-item">CASS Chapter</span>
-    <span class="ticker-item">IAS Chapter</span>
-    <span class="ticker-item">PELS Chapter</span>
-    <span class="ticker-item">WIE Affinity Group</span>
-    <span class="ticker-item">Inaugurated Jan 2021</span>
-    <span class="ticker-item">NCERC Thrissur Kerala</span>
-    <span class="ticker-item">IEEE SB NCERC</span>
-    <span class="ticker-item">Advancing Technology for Humanity</span>
-    <span class="ticker-item">PES Chapter</span>
-    <span class="ticker-item">CASS Chapter</span>
-    <span class="ticker-item">IAS Chapter</span>
-    <span class="ticker-item">PELS Chapter</span>
-    <span class="ticker-item">WIE Affinity Group</span>
-    <span class="ticker-item">Inaugurated Jan 2021</span>
-    <span class="ticker-item">NCERC Thrissur Kerala</span>
+<!-- NEWS TICKER -->
+<div class="news-ticker-wrap">
+  <div class="news-ticker-inner">
+    <div class="news-label"><div class="news-label-dot"></div>LIVE</div>
+    <div class="news-track-wrap">
+      <div class="news-track">
+        <span class="news-item"><span class="ni-dot" style="background:#60a5fa;"></span>Advancing Technology for Humanity</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#ef4444;"></span>PES · CASS · IAS · PELS Chapters</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#ec4899;"></span>WIE Affinity Group</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#a78bfa;"></span>IEEE SB NCERC — Kerala Section · Region 10</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#60a5fa;"></span>Advancing Technology for Humanity</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#ef4444;"></span>PES · CASS · IAS · PELS Chapters</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#ec4899;"></span>WIE Affinity Group</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#a78bfa;"></span>IEEE SB NCERC — Kerala Section · Region 10</span>
+        <span class="news-sep">//</span>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ABOUT SECTION -->
+<!-- ABOUT — stats only, no info box, NO 200+/50+/10+ big section -->
 <section class="section section-dark">
   <div class="home-wrap">
     <div class="section-label">About Us</div>
     <h2 class="section-title">Who We Are</h2>
     <p class="section-sub">IEEE SB NCERC was revamped on 7th January 2021 and inaugurated by Susan Kathy Land, IEEE President 2021. We connect students with global professionals and shape future engineers.</p>
-
-    <!-- FIXED: single column on mobile, two on desktop -->
-    <div class="about-cards-grid">
-
-      <!-- Stats card -->
-      <div class="about-card" style="text-align:left;">
-        <div class="about-card-glow"></div>
-        <div class="about-stat-grid">
-          <div class="about-stat">
-            <span class="num">200+</span>
-            <span class="lbl">Members</span>
-          </div>
-          <div class="about-stat">
-            <span class="num">50+</span>
-            <span class="lbl">Events</span>
-          </div>
-          <div class="about-stat">
-            <span class="num">5</span>
-            <span class="lbl">Societies</span>
-          </div>
-          <div class="about-stat">
-            <span class="num">2021</span>
-            <span class="lbl">Established</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Info card -->
-      <div class="about-card" style="text-align:left;">
-        <div class="about-card-glow"></div>
-        <div class="about-founded">
-          <span>Branch:</span> NCERC, Pampady, Thrissur<br>
-          <span>Affiliation:</span> IEEE Kerala Section<br>
-          <span>Inaugurated:</span> 7 January 2021<br>
-          <span>Inaugurated by:</span> Susan Kathy Land<br>
-          <span>Email:</span> ieeesbncerc@gmail.com
-        </div>
-      </div>
-
+    <div class="about-stat-grid">
+      <div class="about-stat"><span class="num">200+</span><span class="lbl">Active Members</span></div>
+      <div class="about-stat"><span class="num">50+</span><span class="lbl">Events Hosted</span></div>
+      <div class="about-stat"><span class="num">5</span><span class="lbl">Societies</span></div>
+      <div class="about-stat"><span class="num">2021</span><span class="lbl">Established</span></div>
     </div>
-    <div style="margin-top:2rem;">
-      <a href="about.html" class="btn btn-outline">Learn More →</a>
-    </div>
+    <div style="margin-top:2rem;"><a href="about.html" class="btn btn-outline">Learn More →</a></div>
   </div>
 </section>
 
-<!-- SOCIETY POSTERS -->
+<!-- SOCIETIES -->
 <section class="section section-mid">
   <div class="home-wrap">
     <div class="section-label">Our Chapters</div>
     <h2 class="section-title">Societies &amp; Affinity Groups</h2>
     <div class="societies-wrapper" style="margin-top:2.5rem;">
-      <div class="society-poster poster-pes">
-        <div class="society-poster-bg"></div><div class="society-poster-overlay"></div>
-        <div class="society-poster-content">
-          <div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#ef4444;background:#ef4444;"></span></div>
-          <div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">⚡</div><div class="society-abbr-big">PES</div><div class="society-full-name">Power &amp; Energy Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Advancing knowledge in electric power generation and energy systems.</div></div>
-        </div>
-      </div>
-      <div class="society-poster poster-cass">
-        <div class="society-poster-bg"></div><div class="society-poster-overlay"></div>
-        <div class="society-poster-content">
-          <div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#3b82f6;background:#3b82f6;"></span></div>
-          <div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">〰️</div><div class="society-abbr-big">CASS</div><div class="society-full-name">Circuits &amp; Systems Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Advancing circuit theory and signal processing engineering.</div></div>
-        </div>
-      </div>
-      <div class="society-poster poster-ias">
-        <div class="society-poster-bg"></div><div class="society-poster-overlay"></div>
-        <div class="society-poster-content">
-          <div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#8b5cf6;background:#8b5cf6;"></span></div>
-          <div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">🏭</div><div class="society-abbr-big">IAS</div><div class="society-full-name">Industry Applications Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Connecting industry professionals with electrical engineering.</div></div>
-        </div>
-      </div>
-      <div class="society-poster poster-pels">
-        <div class="society-poster-bg"></div><div class="society-poster-overlay"></div>
-        <div class="society-poster-content">
-          <div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#10b981;background:#10b981;"></span></div>
-          <div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">🔋</div><div class="society-abbr-big">PELS</div><div class="society-full-name">Power Electronics Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Advancing power electronics and energy conversion technologies.</div></div>
-        </div>
-      </div>
-      <div class="society-poster poster-wie">
-        <div class="society-poster-bg"></div><div class="society-poster-overlay"></div>
-        <div class="society-poster-content">
-          <div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#ec4899;background:#ec4899;"></span></div>
-          <div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">✦</div><div class="society-abbr-big">WIE</div><div class="society-full-name">Women in Engineering</div><span class="society-poster-tag">Affinity</span><div class="society-desc-hover">Inspiring and empowering women in technical disciplines worldwide.</div></div>
-        </div>
-      </div>
+      <div class="society-poster poster-pes"><div class="society-poster-bg"></div><div class="society-poster-overlay"></div><div class="society-poster-content"><div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#ef4444;background:#ef4444;"></span></div><div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">⚡</div><div class="society-abbr-big">PES</div><div class="society-full-name">Power &amp; Energy Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Advancing knowledge in electric power generation and energy systems.</div></div></div></div>
+      <div class="society-poster poster-cass"><div class="society-poster-bg"></div><div class="society-poster-overlay"></div><div class="society-poster-content"><div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#3b82f6;background:#3b82f6;"></span></div><div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">〰️</div><div class="society-abbr-big">CASS</div><div class="society-full-name">Circuits &amp; Systems Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Advancing circuit theory and signal processing engineering.</div></div></div></div>
+      <div class="society-poster poster-ias"><div class="society-poster-bg"></div><div class="society-poster-overlay"></div><div class="society-poster-content"><div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#8b5cf6;background:#8b5cf6;"></span></div><div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">🏭</div><div class="society-abbr-big">IAS</div><div class="society-full-name">Industry Applications Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Connecting industry professionals with electrical engineering.</div></div></div></div>
+      <div class="society-poster poster-pels"><div class="society-poster-bg"></div><div class="society-poster-overlay"></div><div class="society-poster-content"><div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#10b981;background:#10b981;"></span></div><div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">🔋</div><div class="society-abbr-big">PELS</div><div class="society-full-name">Power Electronics Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Advancing power electronics and energy conversion technologies.</div></div></div></div>
+      <div class="society-poster poster-wie"><div class="society-poster-bg"></div><div class="society-poster-overlay"></div><div class="society-poster-content"><div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#ec4899;background:#ec4899;"></span></div><div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">✦</div><div class="society-abbr-big">WIE</div><div class="society-full-name">Women in Engineering</div><span class="society-poster-tag">Affinity</span><div class="society-desc-hover">Inspiring and empowering women in technical disciplines worldwide.</div></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats-section">
-  <div class="stats-grid">
-    <div class="stat-item"><span class="stat-num" data-count="200" data-suffix="+">200+</span><span class="stat-label">Active Members</span></div>
-    <div class="stat-item"><span class="stat-num" data-count="50" data-suffix="+">50+</span><span class="stat-label">Events Hosted</span></div>
-    <div class="stat-item"><span class="stat-num" data-count="10" data-suffix="+">10+</span><span class="stat-label">Awards Won</span></div>
-  </div>
-</div>
+<!-- ✅ NO STATS SECTION (200+/50+/10+ removed) -->
 
-<!-- EXECOM FLIP CARDS -->
+<!-- EXECOM -->
 <div class="execom-home-section">
   <div class="home-wrap">
     <div class="section-label">Our Team</div>
     <h2 class="section-title">Meet the Execom</h2>
     <p class="section-sub" style="margin-bottom:0;">Hover each card to reveal profile.</p>
     <div class="execom-home-grid">
-
       <div class="epc-wrapper">
         <div class="epc-inner">
-          <div class="epc-front">
-            <div class="epc-photo"><div class="epc-initial">BC</div><div class="epc-scan"></div></div>
-            <div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#f59e0b;">Branch Counselor</span><span class="epc-name">Add Name</span><span class="epc-dept">Faculty, NCERC</span></div>
-          </div>
-          <div class="epc-back">
-            <div class="epc-particles"><div class="epc-dot" style="left:20%;top:80%;background:#f59e0b;"></div><div class="epc-dot" style="left:55%;top:85%;background:#fbbf24;animation-delay:1s;"></div></div>
-            <span class="epc-back-icon">🎓</span><span class="epc-back-role" style="color:#f59e0b;">Branch Counselor</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Faculty, NCERC</span><span class="epc-back-divider" style="background:#f59e0b;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
-          </div>
+          <div class="epc-front"><div class="epc-photo"><div class="epc-initial">BC</div><div class="epc-scan"></div></div><div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#f59e0b;">Branch Counselor</span><span class="epc-name">Add Name</span><span class="epc-dept">Faculty, NCERC</span></div></div>
+          <div class="epc-back"><div class="epc-particles"><div class="epc-dot" style="left:20%;top:80%;background:#f59e0b;"></div></div><span class="epc-back-icon">🎓</span><span class="epc-back-role" style="color:#f59e0b;">Branch Counselor</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Faculty, NCERC</span><span class="epc-back-divider" style="background:#f59e0b;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span></div>
         </div>
       </div>
-
       <div class="epc-wrapper" style="animation-delay:.7s;">
         <div class="epc-inner">
-          <div class="epc-front">
-            <div class="epc-photo"><div class="epc-initial">CH</div><div class="epc-scan"></div></div>
-            <div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#3b82f6;">Chairperson</span><span class="epc-name">Add Name</span><span class="epc-dept">Dept / Year</span></div>
-          </div>
-          <div class="epc-back">
-            <div class="epc-particles"><div class="epc-dot" style="left:15%;top:80%;background:#3b82f6;"></div><div class="epc-dot" style="left:50%;top:85%;background:#60a5fa;animation-delay:1.2s;"></div></div>
-            <span class="epc-back-icon">👑</span><span class="epc-back-role" style="color:#3b82f6;">Chairperson</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Dept / Year</span><span class="epc-back-divider" style="background:#3b82f6;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
-          </div>
+          <div class="epc-front"><div class="epc-photo"><div class="epc-initial">CH</div><div class="epc-scan"></div></div><div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#3b82f6;">Chairperson</span><span class="epc-name">Add Name</span><span class="epc-dept">Dept / Year</span></div></div>
+          <div class="epc-back"><div class="epc-particles"><div class="epc-dot" style="left:15%;top:80%;background:#3b82f6;"></div></div><span class="epc-back-icon">👑</span><span class="epc-back-role" style="color:#3b82f6;">Chairperson</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Dept / Year</span><span class="epc-back-divider" style="background:#3b82f6;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span></div>
         </div>
       </div>
-
       <div class="epc-wrapper" style="animation-delay:1.4s;">
         <div class="epc-inner">
-          <div class="epc-front">
-            <div class="epc-photo"><div class="epc-initial">VC</div><div class="epc-scan"></div></div>
-            <div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#06b6d4;">Vice Chairperson</span><span class="epc-name">Add Name</span><span class="epc-dept">Dept / Year</span></div>
-          </div>
-          <div class="epc-back">
-            <div class="epc-particles"><div class="epc-dot" style="left:25%;top:82%;background:#06b6d4;"></div><div class="epc-dot" style="left:55%;top:87%;background:#22d3ee;animation-delay:1.5s;"></div></div>
-            <span class="epc-back-icon">⚡</span><span class="epc-back-role" style="color:#06b6d4;">Vice Chairperson</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Dept / Year</span><span class="epc-back-divider" style="background:#06b6d4;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
-          </div>
+          <div class="epc-front"><div class="epc-photo"><div class="epc-initial">VC</div><div class="epc-scan"></div></div><div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#06b6d4;">Vice Chairperson</span><span class="epc-name">Add Name</span><span class="epc-dept">Dept / Year</span></div></div>
+          <div class="epc-back"><div class="epc-particles"><div class="epc-dot" style="left:25%;top:82%;background:#06b6d4;"></div></div><span class="epc-back-icon">⚡</span><span class="epc-back-role" style="color:#06b6d4;">Vice Chairperson</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Dept / Year</span><span class="epc-back-divider" style="background:#06b6d4;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span></div>
         </div>
       </div>
-
       <div class="epc-wrapper" style="animation-delay:2.1s;">
         <div class="epc-inner">
-          <div class="epc-front">
-            <div class="epc-photo"><div class="epc-initial">TR</div><div class="epc-scan"></div></div>
-            <div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#f59e0b;">Treasurer</span><span class="epc-name">Add Name</span><span class="epc-dept">Dept / Year</span></div>
-          </div>
-          <div class="epc-back">
-            <div class="epc-particles"><div class="epc-dot" style="left:18%;top:83%;background:#f59e0b;"></div><div class="epc-dot" style="left:48%;top:88%;background:#fbbf24;animation-delay:1.8s;"></div></div>
-            <span class="epc-back-icon">💰</span><span class="epc-back-role" style="color:#f59e0b;">Treasurer</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Dept / Year</span><span class="epc-back-divider" style="background:#f59e0b;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
-          </div>
+          <div class="epc-front"><div class="epc-photo"><div class="epc-initial">TR</div><div class="epc-scan"></div></div><div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#f59e0b;">Treasurer</span><span class="epc-name">Add Name</span><span class="epc-dept">Dept / Year</span></div></div>
+          <div class="epc-back"><div class="epc-particles"><div class="epc-dot" style="left:18%;top:83%;background:#f59e0b;"></div></div><span class="epc-back-icon">💰</span><span class="epc-back-role" style="color:#f59e0b;">Treasurer</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Dept / Year</span><span class="epc-back-divider" style="background:#f59e0b;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span></div>
         </div>
       </div>
-
     </div>
     <div class="execom-view-more">
       <a href="team.html" class="btn-view-execom">View Full Execom <span class="btn-arrow">→</span></a>
@@ -465,12 +305,16 @@
     <div class="footer-top">
       <div>
         <div class="footer-brand">IEEE <span>SB</span> NCERC</div>
-        <p class="footer-tagline">Nehru College of Engineering and Research Centre. Advancing technology for the benefit of humanity.</p>
+        <p class="footer-tagline">Nehru College of Engineering and Research Centre.<br>Advancing technology for the benefit of humanity.</p>
+        <a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank"
+           style="display:inline-flex;align-items:center;gap:0.6rem;margin:0.8rem 0 1rem;padding:0.5rem 1rem;background:linear-gradient(135deg,rgba(236,72,153,0.15),rgba(139,92,246,0.15));border:1px solid rgba(236,72,153,0.3);border-radius:50px;text-decoration:none;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;color:#f0abfc;transition:all 0.2s;">
+          📸 @ieee_sb_ncerc
+        </a>
         <div class="footer-social">
           <a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank" class="social-btn">IG</a>
-          <a href="#" class="social-btn">TW</a>
-          <a href="#" class="social-btn">FB</a>
           <a href="#" class="social-btn">LI</a>
+          <a href="#" class="social-btn">YT</a>
+          <a href="mailto:ieeesbncerc@gmail.com" class="social-btn">@</a>
         </div>
       </div>
       <div class="footer-col"><h4>Navigation</h4><ul>
@@ -486,10 +330,19 @@
         <li><a href="https://students.ieee.org" target="_blank">IEEE Students</a></li>
         <li><a href="https://ieeekerala.org" target="_blank">IEEE Kerala Section</a></li>
       </ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul>
-        <li><a href="mailto:ieeesbncerc@gmail.com">ieeesbncerc@gmail.com</a></li>
-        <li style="color:var(--muted);font-size:.72rem;line-height:1.8;">Pampady, Thrissur,<br>Kerala — 680588</li>
-      </ul></div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-row"><span class="footer-contact-icon">✉️</span><a href="mailto:ieeesbncerc@gmail.com">ieeesbncerc@gmail.com</a></div>
+        <div class="footer-contact-row"><span class="footer-contact-icon">📸</span><a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank">@ieee_sb_ncerc</a></div>
+        <div class="footer-contact-row" style="align-items:flex-start;">
+          <span class="footer-contact-icon">📍</span>
+          <span style="font-size:0.75rem;line-height:1.7;color:var(--muted);">NCERC, Pampady,<br>Thrissur, Kerala — 680588</span>
+        </div>
+        <a href="https://maps.google.com/?q=Nehru+College+of+Engineering+Thrissur" target="_blank"
+           style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.6rem;font-family:var(--mono);font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;">
+          View on Maps →
+        </a>
+      </div>
     </div>
     <div class="footer-bottom">
       <span>© 2025 IEEE SB NCERC. All Rights Reserved.</span>

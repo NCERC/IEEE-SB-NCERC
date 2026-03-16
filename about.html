@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="css/style.css"/>
 <style>
 #page-loader{display:none!important;}
-.mobile-menu{display:none!important;}.mobile-menu.open{display:flex!important;}
 .section{padding:5rem 4rem!important;}
 @media(max-width:900px){.section{padding:4rem 1.5rem!important;}}
 @media(max-width:600px){.section{padding:3rem 1.2rem!important;}}
@@ -47,20 +46,6 @@
 /* top bar shimmer */
 .about-card::before{background:linear-gradient(90deg,var(--accent),var(--cyan),var(--purple),var(--accent))!important;background-size:300%!important;animation:barShimmer 4s linear infinite!important;}
 @keyframes barShimmer{from{background-position:0% 50%}to{background-position:300% 50%}}
-
-/* ══ TIMELINE ══ */
-.timeline{margin:3rem auto 0;max-width:700px;position:relative;z-index:1;}
-.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(255,255,255,.5),rgba(255,255,255,.15),transparent);}
-.timeline-item{display:flex;gap:2rem;margin-bottom:2.5rem;transition:all .3s;animation:timelineIn .6s cubic-bezier(.34,1.4,.64,1) both;}
-.timeline-item:nth-child(1){animation-delay:.1s}.timeline-item:nth-child(2){animation-delay:.2s}.timeline-item:nth-child(3){animation-delay:.3s}.timeline-item:nth-child(4){animation-delay:.4s}.timeline-item:nth-child(5){animation-delay:.5s}
-@keyframes timelineIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
-.timeline-item:hover .timeline-content{border-color:rgba(255,255,255,.3);transform:translateX(8px);box-shadow:0 8px 30px rgba(0,0,0,.35);}
-.timeline-dot{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:var(--bg3);border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:1.1rem;position:relative;z-index:1;transition:all .3s;}
-.timeline-item:hover .timeline-dot{border-color:rgba(255,255,255,.8);transform:scale(1.18);box-shadow:0 0 20px rgba(255,255,255,0.15);}
-.timeline-content{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;flex:1;transition:all .3s;text-align:left;}
-.timeline-year{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;color:#94a3b8;text-transform:uppercase;margin-bottom:.4rem;}
-.timeline-title{font-family:var(--display);font-weight:700;font-size:1rem;color:var(--text);margin-bottom:.3rem;}
-.timeline-desc{font-size:.82rem;color:var(--text2);line-height:1.7;}
 
 /* ══ SOCIETY ROWS ══ */
 .society-row{display:flex;align-items:center;gap:1.5rem;padding:1.2rem 1.5rem;border-radius:12px;background:var(--surface);border:1px solid var(--border);margin-bottom:.8rem;cursor:pointer;transition:all .35s cubic-bezier(.34,1.4,.64,1);position:relative;overflow:hidden;animation:rowIn .5s cubic-bezier(.34,1.4,.64,1) both;}
@@ -113,6 +98,7 @@
   <a href="https://bit.ly/IEEEMEMBERSHIP2026" target="_blank" class="btn-join-nav">Join IEEE</a>
   <div class="hamburger"><span></span><span></span><span></span></div>
 </nav>
+
 <div class="mobile-menu">
   <a href="index.html">Home</a>
   <a href="about.html">About Us</a>
@@ -182,20 +168,6 @@
           <li>Empower through technology and innovation</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-dark">
-  <div class="about-center">
-    <div class="sl">History</div>
-    <h2 class="section-title">Our Journey</h2>
-    <div class="timeline">
-      <div class="timeline-item"><div class="timeline-dot">🎓</div><div class="timeline-content"><div class="timeline-year">January 2021</div><div class="timeline-title">IEEE SB NCERC Revamped &amp; Inaugurated</div><div class="timeline-desc">Inaugurated by Susan Kathy Land, IEEE President 2021, via IEEE Kerala Section.</div></div></div>
-      <div class="timeline-item"><div class="timeline-dot">⚡</div><div class="timeline-content"><div class="timeline-year">2021–2022</div><div class="timeline-title">Chapters &amp; Societies Activated</div><div class="timeline-desc">PES, CASS, IAS, PELS chapters and WIE Affinity Group established.</div></div></div>
-      <div class="timeline-item"><div class="timeline-dot">🏆</div><div class="timeline-content"><div class="timeline-year">2022–2023</div><div class="timeline-title">Landmark Events &amp; Growth</div><div class="timeline-desc">Hosted workshops, hackathons, seminars. Membership grew to 200+ active members.</div></div></div>
-      <div class="timeline-item"><div class="timeline-dot">🌟</div><div class="timeline-content"><div class="timeline-year">2023–2024</div><div class="timeline-title">AGM &amp; Major Events</div><div class="timeline-desc">Conducted AGM 2024, PES Day Quiz, CASS Workshop, WIE Ideathon and more.</div></div></div>
-      <div class="timeline-item"><div class="timeline-dot">🚀</div><div class="timeline-content"><div class="timeline-year">2025–Present</div><div class="timeline-title">Growing Stronger</div><div class="timeline-desc">New initiatives, expanded membership, stronger industry connections.</div></div></div>
     </div>
   </div>
 </section>
