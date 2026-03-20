@@ -14,7 +14,12 @@ function initHeroCanvas() {
   window.addEventListener('resize', resize);
 
   // Stars
-  const stars = Array.from({length:350}, () => ({
+  const isMobile = window.innerWidth < 768;
+  const starCount = isMobile ? 120 : 350;
+  const rayCount = isMobile ? 12 : 22;
+  const dustCount = isMobile ? 30 : 80;
+
+  const stars = Array.from({length:starCount}, () => ({
     x: Math.random(), y: Math.random(),
     r: Math.random()*1.8+0.2,
     twinkle: Math.random()*Math.PI*2,
@@ -23,8 +28,8 @@ function initHeroCanvas() {
   }));
 
   // Light rays
-  const rays = Array.from({length:22}, (_,i) => ({
-    angle: (i/22)*Math.PI*2+Math.random()*0.4,
+  const rays = Array.from({length:rayCount}, (_,i) => ({
+    angle: (i/rayCount)*Math.PI*2+Math.random()*0.4,
     len: 0.28+Math.random()*0.4,
     width: 0.8+Math.random()*2.5,
     speed: (Math.random()-0.5)*0.003,
@@ -33,7 +38,7 @@ function initHeroCanvas() {
   }));
 
   // Dust particles
-  const dust = Array.from({length:80}, () => ({
+  const dust = Array.from({length:dustCount}, () => ({
     x: Math.random(), y: Math.random(),
     vx: (Math.random()-0.5)*0.0003, vy: (Math.random()-0.5)*0.0003,
     r: Math.random()*3+0.5,

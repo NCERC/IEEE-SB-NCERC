@@ -6,7 +6,10 @@ function initPageAnimation() {
   canvas.width = W; canvas.height = H;
   window.addEventListener('resize', () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; });
 
-  const pts = Array.from({length: 90}, () => ({
+  const isMobile = window.innerWidth < 768;
+  const count = isMobile ? 35 : 90;
+
+  const pts = Array.from({length: count}, () => ({
     x: Math.random()*W, y: Math.random()*H,
     vx: (Math.random()-.5)*1.6, vy: (Math.random()-.5)*1.6,
     r: Math.random()*2.5+1,

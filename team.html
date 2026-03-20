@@ -7,6 +7,233 @@
   <link rel="stylesheet" href="css/style.css"/>
   <style>
     #page-loader { display: none !important; }
+
+    /* WIE BENTO POSTER STYLES */
+    .wie-bento-section {
+      max-width: 1200px;
+      margin: 4rem auto 8rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      grid-template-rows: repeat(2, 300px);
+      gap: 1.5rem;
+      padding: 0 1.5rem;
+    }
+    .bento-item {
+      position: relative;
+      border-radius: 36px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .bento-item:hover {
+      transform: scale(1.02) translateY(-5px);
+      border-color: #ec4899;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 50px rgba(236,72,153,0.15);
+      z-index: 10;
+    }
+    .bento-chair {
+      grid-row: span 2;
+    }
+    .bento-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease, filter 0.8s ease;
+      filter: grayscale(30%) brightness(0.8);
+    }
+    .bento-item:hover .bento-img {
+      transform: scale(1.08);
+      filter: grayscale(0%) brightness(1);
+    }
+    .bento-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12,16,26,0.9) 0%, rgba(12,16,26,0.2) 60%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2.5rem;
+      transition: all 0.5s;
+    }
+    .bento-role {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: #ec4899;
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      margin-bottom: 0.8rem;
+      transform: translateY(25px);
+      opacity: 0;
+      transition: all 0.6s 0.1s;
+    }
+    .bento-name {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 2.8rem;
+      color: #fff;
+      margin: 0;
+      line-height: 1;
+      transform: translateY(25px);
+      opacity: 0;
+      transition: all 0.6s 0.2s;
+    }
+    .bento-chair .bento-name { font-size: 4rem; }
+    
+    .bento-item:hover .bento-role,
+    .bento-item:hover .bento-name {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .bento-item:not(:hover) .bento-overlay {
+      background: linear-gradient(to top, rgba(12,16,26,0.7) 0%, transparent 50%);
+    }
+
+    /* Ambient Glow in Bento */
+    .bento-glow {
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background: rgba(236, 72, 153, 0.4);
+      filter: blur(100px);
+      opacity: 0;
+      transition: opacity 0.6s;
+      pointer-events: none;
+    }
+    .bento-item:hover .bento-glow { opacity: 1; }
+
+    @media (max-width: 900px) {
+      .wie-bento-section {
+        grid-template-columns: 1fr;
+        grid-template-rows: 550px 380px 380px;
+        gap: 1.2rem;
+      }
+      .bento-chair { grid-row: span 1; }
+      .bento-name { font-size: 2.2rem !important; opacity: 1; transform: none; }
+      .bento-role { font-size: 0.6rem; opacity: 1; transform: none; }
+      .bento-overlay { padding: 2rem; }
+    }
+
+    /* CASS BENTO POSTER STYLES (Overrides/Additions) */
+    .cass-glow {
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background: rgba(0, 102, 153, 0.4); /* IEEE CASS blue-ish */
+      filter: blur(100px);
+      opacity: 0;
+      transition: opacity 0.6s;
+      pointer-events: none;
+    }
+    .bento-item:hover .cass-glow { opacity: 1; }
+    .cass-role { color: #00b4d8 !important; }
+
+    /* IA/PELS BENTO POSTER STYLES */
+    .iapels-glow {
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(34, 197, 94, 0.4)); /* Purple + Green */
+      filter: blur(100px);
+      opacity: 0;
+      transition: opacity 0.6s;
+      pointer-events: none;
+    }
+    .bento-item:hover .iapels-glow { opacity: 1; }
+    .iapels-role { 
+      background: linear-gradient(135deg, #a855f7, #22c55e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700 !important;
+    }
+    /* PES BENTO POSTER STYLES */
+    .pes-glow {
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background: rgba(239, 68, 68, 0.4); /* PES Red */
+      filter: blur(100px);
+      opacity: 0;
+      transition: opacity 0.6s;
+      pointer-events: none;
+    }
+    .bento-item:hover .pes-glow { opacity: 1; }
+    .pes-role { color: #ef4444 !important; }
+
+    /* CONTENT BENTO POSTER STYLES */
+    .content-glow {
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background: rgba(56, 189, 248, 0.4); /* Content Blue */
+      filter: blur(100px);
+      opacity: 0;
+      transition: opacity 0.6s;
+      pointer-events: none;
+    }
+    .bento-item:hover .content-glow { opacity: 1; }
+    .content-role { color: #38bdf8 !important; }
+
+    /* ECC BENTO POSTER STYLES */
+    .ecc-glow {
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background: rgba(14, 165, 233, 0.4); /* Sky Blue */
+      filter: blur(100px);
+      opacity: 0;
+      transition: opacity 0.6s;
+      pointer-events: none;
+    }
+    .bento-item:hover .ecc-glow { opacity: 1; }
+    .ecc-role { color: #0ea5e9 !important; }
+
+    /* LINK REP BENTO POSTER STYLES */
+    .link-glow {
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background: rgba(99, 102, 241, 0.4); /* Indigo */
+      filter: blur(100px);
+      opacity: 0;
+      transition: opacity 0.6s;
+      pointer-events: none;
+    }
+    .bento-item:hover .link-glow { opacity: 1; }
+    .link-role { color: #6366f1 !important; }
+
+    /* DESIGN BENTO POSTER STYLES */
+    .design-glow {
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background: rgba(236, 72, 153, 0.4); /* Pink */
+      filter: blur(100px);
+      opacity: 0;
+      transition: opacity 0.6s;
+      pointer-events: none;
+    }
+    .bento-item:hover .design-glow { opacity: 1; }
+    .design-role { color: #ec4899 !important; }
+
   </style>
 </head>
 <body>
@@ -26,11 +253,10 @@
       <li class="dropdown">
         <a href="team.html" class="dropbtn active">Execom <i>▾</i></a>
         <ul class="dropdown-content">
-          <li><a href="team.html">Present Execom</a></li>
-          <li><a href="past-execom.html">Past Execom</a></li>
+          <li><a href="team.html">Present (2026)</a></li>
+          <li><a href="past-execom.html">Past (2025)</a></li>
         </ul>
       </li>
-      <li><a href="gallery.html">Gallery</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <a href="https://bit.ly/IEEEMEMBERSHIP2026" target="_blank" class="btn-join-nav">Join IEEE</a>
@@ -40,9 +266,8 @@
     <a href="index.html">Home</a>
     <a href="about.html">About Us</a>
     <a href="events.html">Events</a>
-    <a href="team.html" class="active">Present Execom</a>
-    <a href="past-execom.html">Past Execom</a>
-    <a href="gallery.html">Gallery</a>
+    <a href="team.html" class="active">Present (2026)</a>
+    <a href="past-execom.html">Past (2025)</a>
     <a href="contact.html">Contact</a>
   </div>
   <div class="mobile-backdrop"></div>
@@ -63,160 +288,449 @@
     <div class="team-center-wrap" style="padding:0 2rem;">
 
       <div class="section-label">Executive Committee</div>
-      <h2 class="section-title">2024–2025 Team</h2>
+      <h2 class="section-title">2026 Team</h2>
 
-      <!-- Faculty -->
-      <div class="team-section-label"><span>//</span> Faculty Advisor</div>
-      <div class="execom-grid">
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--gold);">FA</div></div>
-          <div class="execom-shine"></div>
+      <!-- Featured: Branch Counselor -->
+      <div class="featured-execom-section" style="margin-bottom: 5rem;">
+        <div class="featured-card">
+          <div class="featured-aurora"></div>
+          <div class="featured-photo">
+            <img src="images/past-2025/Shobha Mam.jpg" alt="Dr. Sobha Manakkal" style="width:100%; height:100%; object-fit:cover;">
+          </div>
           <div class="execom-info">
             <span class="execom-role" style="color:var(--gold);">Branch Counselor</span>
-            <span class="execom-name">Faculty Advisor</span>
-            <span class="execom-dept">NCERC</span>
+            <span class="execom-name">Dr. Sobha Manakkal</span>
+            <div class="counselor-badge">IEEE SB NCERC</div>
           </div>
         </div>
       </div>
 
-      <!-- Core -->
-      <div class="team-section-label"><span>//</span> Core Committee</div>
-      <div class="execom-grid">
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--accent);">CH</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--accent);">Chairperson</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Dept / Year</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">LEADING THE CHARGE ~ LEADING THE CHARGE ~ </div></div>
-          </div>
+      <!-- Faculty Advisors Grid -->
+      <div class="section-center" style="margin-top: 4rem; margin-bottom: 3rem;">
+        <div class="section-label reveal"><span>//</span> Guidance & Excellence</div>
+        <h3 class="section-title reveal" style="font-size: 2.2rem;">Faculty Advisors</h3>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="execom-grid" style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 6rem;">
+        <div class="execom-card reveal-up">
+          <div class="execom-photo"><img src="images/past-2025/Neethu mam.jpg" alt="Dr. Neethu M"></div>
+          <div class="execom-info"><span class="execom-role" style="color:var(--red);">PES Advisor</span><span class="execom-name">Dr. Neethu M</span></div>
         </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--cyan);">VC</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--cyan);">Vice Chairperson</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Dept / Year</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">VISION & STRATEGY ~ VISION & STRATEGY ~ </div></div>
-          </div>
+        <div class="execom-card reveal-up" style="animation-delay: 0.1s;">
+          <div class="execom-photo"><img src="images/past-2025/Mridula mam.jpg" alt="Dr. Mredhula L"></div>
+          <div class="execom-info"><span class="execom-role" style="color:var(--accent);">WIE Advisor</span><span class="execom-name">Dr. Mredhula L</span></div>
         </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--green);">SE</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--green);">Secretary</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Dept / Year</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">KEEPING IT TOGETHER ~ KEEPING IT TOGETHER ~ </div></div>
-          </div>
+        <div class="execom-card reveal-up" style="animation-delay: 0.2s;">
+          <div class="execom-photo"><img src="images/past-2025/sanooj sir.jpg" alt="Lt. Sanoj T"></div>
+          <div class="execom-info"><span class="execom-role" style="color:var(--green);">PELS/IAS Advisor</span><span class="execom-name">Lt. Sanoj T</span></div>
         </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--purple);">JS</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--purple);">Joint Secretary</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Dept / Year</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">BRIDGING THE GAP ~ BRIDGING THE GAP ~ </div></div>
-          </div>
+        <div class="execom-card reveal-up" style="animation-delay: 0.3s;">
+          <div class="execom-photo"><img src="images/past-2025/Anooja mam.jpeg" alt="Anooja B"></div>
+          <div class="execom-info"><span class="execom-role" style="color:var(--cyan);">CASS Advisor</span><span class="execom-name">Anooja B</span></div>
         </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--gold);">TR</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--gold);">Treasurer</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Dept / Year</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">NUMBERS & BEYOND ~ NUMBERS & BEYOND ~ </div></div>
-          </div>
+        <div class="execom-card reveal-up" style="animation-delay: 0.4s;">
+          <div class="execom-photo"><img src="images/past-2025/Silja mam.jpeg" alt="Silja Varghese"></div>
+          <div class="execom-info"><span class="execom-role">Faculty Member</span><span class="execom-name">Silja Varghese</span></div>
         </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--accent);">WM</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--accent);">Webmaster</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">ECE, S2 — NCERC</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">DIGITAL ARCHITECT ~ DIGITAL ARCHITECT ~ </div></div>
-          </div>
-        </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--cyan);">TC</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--cyan);">Technical Coordinator</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Dept / Year</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">TECH WIZARD ~ TECH WIZARD ~ TECH WIZARD ~ </div></div>
-          </div>
-        </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--green);">MD</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--green);">MDC</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Dept / Year</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">MEMBERSHIP DRIVE ~ MEMBERSHIP DRIVE ~ </div></div>
+      </div>
+
+      <!-- Featured Chairperson -->
+      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
+        <div class="section-label reveal"><span>//</span> Leading the Branch</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
+          <span style="background: linear-gradient(135deg, var(--gold), #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Chairperson</span>
+        </h2>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 5rem;">
+
+        <div class="bento-item">
+          <img src="images/AARDRA SIVADAS C.jpg" alt="Aardra" class="bento-img">
+          <div class="bento-glow" style="background: var(--gold);"></div>
+          <div class="bento-overlay">
+            <span class="bento-role">SB Chairperson</span>
+            <h3 class="bento-name">Aardra Sivadas</h3>
           </div>
         </div>
       </div>
 
-      <!-- Society Leads -->
-      <div class="team-section-label"><span>//</span> Society Leads</div>
-      <div class="execom-grid">
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:#ef4444;">PE</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:#ef4444;">PES Lead</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Power &amp; Energy Society</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">POWER THE FUTURE ~ POWER THE FUTURE ~ </div></div>
+      <!-- Featured Vice Chairperson -->
+      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
+        <div class="section-label reveal"><span>//</span> Strategic Leadership</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
+          <span style="background: linear-gradient(135deg, #38bdf8, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Vice Chairperson</span>
+        </h2>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #38bdf8, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 5rem;">
+        <div class="bento-item">
+          <img src="images/sidtharth.jpeg" alt="Sidharth" class="bento-img">
+          <div class="bento-glow" style="background: #38bdf8;"></div>
+          <div class="bento-overlay">
+            <span class="bento-role">SB Vice Chairperson</span>
+            <h3 class="bento-name">Sidharth S</h3>
           </div>
         </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--accent);">CA</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--accent);">CASS Lead</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Circuits &amp; Systems</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">CIRCUIT MASTER ~ CIRCUIT MASTER ~ </div></div>
+      </div>
+
+      <!-- Featured Secretary -->
+      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
+        <div class="section-label reveal"><span>//</span> Operational Excellence</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
+          <span style="background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Secretary</span>
+        </h2>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #10b981, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 5rem;">
+        <div class="bento-item">
+          <img src="images/UMESH S KRISHNAN.jpg" alt="Umesh" class="bento-img">
+          <div class="bento-glow" style="background: #10b981;"></div>
+          <div class="bento-overlay">
+            <span class="bento-role">SB Secretary</span>
+            <h3 class="bento-name">Umesh S Krishnan</h3>
           </div>
         </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--purple);">IA</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--purple);">IAS Lead</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Industry Applications</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">INDUSTRY CONNECT ~ INDUSTRY CONNECT ~ </div></div>
+      </div>
+
+      <!-- Featured Treasurer -->
+      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
+        <div class="section-label reveal"><span>//</span> Financial Stewardship</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
+          <span style="background: linear-gradient(135deg, var(--gold), #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Treasurer</span>
+        </h2>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 6rem;">
+        <div class="bento-item">
+          <img src="images/ARYANANDA S NAIR.jpg" alt="Aryanandana" class="bento-img">
+          <div class="bento-glow" style="background: var(--gold);"></div>
+          <div class="bento-overlay">
+            <span class="bento-role">SB Treasurer</span>
+            <h3 class="bento-name">Aryanandana Nair</h3>
           </div>
         </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:var(--green);">PL</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--green);">PELS Lead</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Power Electronics</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">ENERGY INNOVATOR ~ ENERGY INNOVATOR ~ </div></div>
+      </div>
+
+      <!-- Featured Webmaster -->
+      <div class="section-center" style="margin-top: 5rem; margin-bottom: 2.5rem;">
+        <div class="section-label reveal"><span>//</span> Engineering the Digital Experience</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
+          <span style="background: linear-gradient(135deg, var(--accent), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Webmaster</span>
+        </h2>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 6rem;">
+        <div class="bento-item">
+          <img src="images/webmaster-image.jpeg" alt="Webmaster" class="bento-img">
+          <div class="bento-glow" style="background: var(--accent);"></div>
+          <div class="bento-overlay">
+            <span class="bento-role">Lead Webmaster</span>
+            <h3 class="bento-name">Sreejith</h3>
           </div>
         </div>
-        <div class="execom-card">
-          <div class="execom-photo"><div class="execom-placeholder" style="color:#ec4899;">WI</div></div>
-          <div class="execom-shine"></div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:#ec4899;">WIE Lead</span>
-            <span class="execom-name">Add Name</span>
-            <span class="execom-dept">Women in Engineering</span>
-            <div class="execom-marquee"><div class="execom-marquee-inner">EMPOWERING WOMEN ~ EMPOWERING WOMEN ~ </div></div>
+      </div>
+
+      <!-- Featured Membership Development Coordinator (MDC) -->
+      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
+        <div class="section-label reveal"><span>//</span> Branch Growth</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
+          <span style="background: linear-gradient(135deg, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Membership Development</span>
+        </h2>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #22c55e, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr 1fr; grid-template-rows: 380px; max-width: 900px; margin-bottom: 6rem;">
+        <div class="bento-item">
+          <img src="images/ASHFAQ BIN ASHRAF.jpg" alt="Ashfaq" class="bento-img">
+          <div class="bento-glow" style="background: #22c55e;"></div>
+          <div class="bento-overlay">
+            <span class="bento-role">SB MDC</span>
+            <h3 class="bento-name">Ashfaq Bin Ashraf</h3>
           </div>
         </div>
+        <div class="bento-item">
+          <img src="images/ashwin.jpeg" alt="Aswin" class="bento-img">
+          <div class="bento-glow" style="background: #22c55e;"></div>
+          <div class="bento-overlay">
+            <span class="bento-role">SB MDC</span>
+            <h3 class="bento-name">Aswin</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Electronic Communications Coordinator (ECC) -->
+      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
+        <div class="section-label reveal"><span>//</span> Digital Communications</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
+          <span style="background: linear-gradient(135deg, #0ea5e9, #0284c7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">ECC</span>
+        </h2>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #0ea5e9, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 6rem;">
+        <div class="bento-item">
+          <img src="images/Jennifer John.jpg" alt="Jennifer" class="bento-img">
+          <div class="ecc-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role ecc-role">SB ECC</span>
+            <h3 class="bento-name">Jennifer</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Link Representative -->
+      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
+        <div class="section-label reveal"><span>//</span> Cross-Branch Connection</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
+          <span style="background: linear-gradient(135deg, #6366f1, #4f46e5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Link Representative</span>
+        </h2>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #6366f1, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 6rem;">
+        <div class="bento-item">
+          <img src="images/AYUSH.Y.jpg" alt="Ayush" class="bento-img">
+          <div class="link-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role link-role">SB Link Rep</span>
+            <h3 class="bento-name">Ayush</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Content Team -->
+      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
+        <div class="section-label reveal"><span>//</span> Creative Storytelling</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
+          <span style="background: linear-gradient(135deg, #38bdf8, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Content Team</span>
+        </h2>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #38bdf8, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr 1fr; grid-template-rows: 380px; max-width: 900px; margin-bottom: 6rem;">
+        <div class="bento-item">
+          <div class="execom-placeholder" style="color:#38bdf8; font-size: 3rem; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--bg2);">CT</div>
+          <div class="content-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role content-role">Content Lead</span>
+            <h3 class="bento-name">Rithika</h3>
+          </div>
+        </div>
+        <div class="bento-item">
+          <img src="images/ANJANA C.jpg" alt="Anjana" class="bento-img">
+          <div class="content-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role content-role">Content Lead</span>
+            <h3 class="bento-name">Anjana C</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Design Team -->
+      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
+        <div class="section-label reveal"><span>//</span> Visual Identity & Creativity</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
+          <span style="background: linear-gradient(135deg, #ec4899, #d946ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Design Team</span>
+        </h2>
+        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #ec4899, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      </div>
+
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 6rem;">
+        <div class="bento-item">
+          <img src="images/AMEER ALI OK .jpg" alt="Ameer" class="bento-img" style="object-position: center 15%;">
+          <div class="design-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role design-role">SB Design Lead</span>
+            <h3 class="bento-name">Ameer</h3>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+      <!-- PES Society -->
+      <div class="section-center" style="margin-top: 6rem; margin-bottom: 4rem;">
+        <div class="section-label reveal"><span>//</span> Technical Society</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem;">
+          Power & <span style="background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Energy Society</span>
+        </h2>
+        <div class="reveal" style="width: 80px; height: 4px; background: linear-gradient(90deg, #ef4444, transparent); margin: 0 auto 2rem; border-radius: 2px;"></div>
+        <p class="section-sub reveal" style="margin: 0 auto; max-width: 650px; font-size: 1.05rem; color: var(--text2); line-height: 1.8; opacity: 0.85;">
+          Empowering humanity through sustainable energy solutions and power systems innovation.
+        </p>
+      </div>
+
+      <!-- PES Bento Poster -->
+      <div class="wie-bento-section reveal-scale">
+        <!-- Anamika - Chair -->
+        <div class="bento-item bento-chair">
+          <img src="images/ANAMIKA K.jpg" alt="Anamika" class="bento-img">
+          <div class="pes-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role pes-role">PES Chair</span>
+            <h3 class="bento-name">Anamika</h3>
+          </div>
+        </div>
+
+        <!-- Ayisha - Secretary -->
+        <div class="bento-item">
+          <img src="images/Ayisha Anshida ks.jpeg" alt="Ayisha" class="bento-img">
+          <div class="pes-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role pes-role">PES Secretary</span>
+            <h3 class="bento-name">Ayisha</h3>
+          </div>
+        </div>
+
+        <!-- Varadha - WIP -->
+        <div class="bento-item">
+          <img src="images/Varada Elizabeth Kishore.jpg" alt="Varadha" class="bento-img">
+          <div class="pes-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role pes-role">WIP Lead</span>
+            <h3 class="bento-name">Varadha</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASS Society -->
+      <div class="section-center" style="margin-top: 6rem; margin-bottom: 4rem;">
+        <div class="section-label reveal"><span>//</span> Technical Society</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem;">
+          Circuits & <span style="background: linear-gradient(135deg, #00b4d8, #0077b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Systems Society</span>
+        </h2>
+        <div class="reveal" style="width: 80px; height: 4px; background: linear-gradient(90deg, #00b4d8, transparent); margin: 0 auto 2rem; border-radius: 2px;"></div>
+        <p class="section-sub reveal" style="margin: 0 auto; max-width: 650px; font-size: 1.05rem; color: var(--text2); line-height: 1.8; opacity: 0.85;">
+          Fostering technical innovation and excellence in the field of circuits and systems for the benefit of humanity.
+        </p>
+      </div>
+
+      <!-- CASS Bento Poster -->
+      <div class="wie-bento-section reveal-scale">
+        <!-- Abhiyuktha - Chair -->
+        <div class="bento-item bento-chair">
+          <img src="images/abhiyukha.jpeg" alt="Abhiyuktha" class="bento-img">
+          <div class="cass-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role cass-role">CASS Chair</span>
+            <h3 class="bento-name">Abhiyuktha</h3>
+          </div>
+        </div>
+
+        <!-- Akshay - Secretary -->
+        <div class="bento-item">
+          <img src="images/akshay.jpeg" alt="Akshay" class="bento-img">
+          <div class="cass-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role cass-role">CASS Secretary</span>
+            <h3 class="bento-name">Akshay</h3>
+          </div>
+        </div>
+
+        <!-- Riswana - WiCASS -->
+        <div class="bento-item">
+          <img src="images/Riswana Parwin S .jpg" alt="Riswana" class="bento-img">
+          <div class="cass-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role cass-role">WiCASS Lead</span>
+            <h3 class="bento-name">Riswana</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- IA/PELS Society -->
+      <div class="section-center" style="margin-top: 6rem; margin-bottom: 4rem;">
+        <div class="section-label reveal"><span>//</span> Technical Society</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem;">
+          IA / <span style="background: linear-gradient(135deg, #a855f7, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">PELS Society</span>
+        </h2>
+        <div class="reveal" style="width: 80px; height: 4px; background: linear-gradient(90deg, #a855f7, #22c55e); margin: 0 auto 2rem; border-radius: 2px;"></div>
+        <p class="section-sub reveal" style="margin: 0 auto; max-width: 650px; font-size: 1.05rem; color: var(--text2); line-height: 1.8; opacity: 0.85;">
+          Advancing industry applications and power electronics for a sustainable and efficient future.
+        </p>
+      </div>
+
+      <!-- IA/PELS Bento Poster -->
+      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr 1fr; grid-template-rows: 400px; max-width: 900px; margin-bottom: 6rem;">
+        <!-- Rasitha - Chair -->
+        <div class="bento-item">
+          <img src="images/rasika.jpeg" alt="Rasitha" class="bento-img">
+          <div class="iapels-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role iapels-role">IA/PELS Chair</span>
+            <h3 class="bento-name">Rasitha</h3>
+          </div>
+        </div>
+
+        <!-- Ashwadh - Secretary -->
+        <div class="bento-item">
+          <img src="images/aswadath.jpeg" alt="Ashwadh" class="bento-img">
+          <div class="iapels-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role iapels-role">IA/PELS Secretary</span>
+            <h3 class="bento-name">Ashwadh</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- WIE Affinity Group -->
+      <div class="section-center" style="margin-top: 6rem; margin-bottom: 4rem;">
+        <div class="section-label reveal"><span>//</span> Affinity Group</div>
+        <h2 class="section-title reveal" style="font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem;">
+          Women in <span style="background: linear-gradient(135deg, #ec4899, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Engineering</span>
+        </h2>
+        <div class="reveal" style="width: 80px; height: 4px; background: linear-gradient(90deg, #ec4899, transparent); margin: 0 auto 2rem; border-radius: 2px;"></div>
+        <p class="section-sub reveal" style="margin: 0 auto; max-width: 650px; font-size: 1.05rem; color: var(--text2); line-height: 1.8; opacity: 0.85;">
+          Advancing technology for humanity while fostering a diverse and inclusive environment that empowers women to lead and innovate.
+        </p>
+      </div>
+
+      <!-- WIE Bento Poster -->
+      <div class="wie-bento-section reveal-scale">
+        <!-- Hiba - Chair -->
+        <div class="bento-item bento-chair">
+          <img src="images/Hiba alan.jpg" alt="Hiba" class="bento-img">
+          <div class="bento-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role">WIE Chair</span>
+            <h3 class="bento-name">Hiba</h3>
+          </div>
+        </div>
+
+        <!-- Amrita - Secretary -->
+        <div class="bento-item">
+          <img src="images/Amrita Nair.jpeg" alt="Amrita" class="bento-img">
+          <div class="bento-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role">WIE Secretary</span>
+            <h3 class="bento-name">Amrita</h3>
+          </div>
+        </div>
+
+        <!-- Akhila - Representative -->
+        <div class="bento-item">
+          <img src="images/Akhila.jpg" alt="Akhila" class="bento-img">
+          <div class="bento-glow"></div>
+          <div class="bento-overlay">
+            <span class="bento-role">WIE Representative</span>
+            <h3 class="bento-name">Akhila</h3>
+          </div>
+        </div>
+      </div>
+
+
+
       </div>
 
     </div>
@@ -257,7 +771,7 @@
           <li style="color:var(--muted);font-size:0.72rem;line-height:1.8;">Pampady, Thrissur,<br>Kerala — 680588</li>
         </ul></div>
       </div>
-      <div class="footer-bottom"><span>© 2025 IEEE SB NCERC. All Rights Reserved.</span></div>
+      <div class="footer-bottom"><span>© 2026 IEEE SB NCERC. All Rights Reserved.</span></div>
     </div>
   </footer>
 

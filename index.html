@@ -120,15 +120,76 @@
       .why-section{padding:3rem 1rem !important;}
       .section{padding:3rem 1rem !important;}
       .societies-wrapper{grid-template-columns:repeat(2,1fr) !important;gap:0.8rem !important;}
-      .hero-main-title{font-size:clamp(2rem,8vw,3.5rem) !important;}
-      .hero-cta{flex-direction:column !important;align-items:center !important;}
-      .btn-hero-box{width:90% !important;max-width:260px !important;justify-content:center !important;}
+      .hero-inner{width:100% !important; padding-left:1rem !important; padding-right:1rem !important;}
+      .hero-main-title{font-size:clamp(3.2rem,14vw,4.5rem) !important;}
+      .hero-tagline{font-size:clamp(0.9rem,4vw,1.2rem) !important; letter-spacing:0.15em !important; margin-top:1.5rem !important; text-align:center !important;}
+      .hero-cta{flex-direction:row !important; flex-wrap:wrap !important; justify-content:center !important; width:100% !important; gap:1rem !important;}
+      .btn-hero-box{width:auto !important; max-width:none !important; flex:1 1 140px; justify-content:center !important;}
       .footer-top{grid-template-columns:1fr !important;gap:2rem !important;}
     }
     @media(max-width:480px){ .about-stat .num{font-size:1.8rem !important;} .section-title{font-size:1.6rem !important;} .society-abbr-big{font-size:1.6rem !important;} }
+
+    /* STUNNING NOTIFICATION ANIMATIONS */
+    @keyframes notification-glow {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+        border-color: rgba(59, 130, 246, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 35px rgba(59, 130, 246, 0.5), 0 0 50px rgba(6, 182, 212, 0.3);
+        border-color: rgba(59, 130, 246, 0.8);
+        transform: scale(1.03);
+      }
+    }
+    .stunning-notification-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.7rem 2rem;
+      background: rgba(59, 130, 246, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 50px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #fff;
+      animation: notification-glow 4s infinite ease-in-out;
+      margin-bottom: 2.5rem;
+      position: relative;
+      cursor: default;
+    }
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--accent);
+      position: relative;
+    }
+    .live-dot::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent);
+      animation: pulse-ring 2s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.5); opacity: 1; }
+      100% { transform: scale(3); opacity: 0; }
+    }
   </style>
 </head>
-<body>
+<body id="home-body">
+<div id="page-content" class="page-transition-fade">
+
+<div class="light-leak leak-1"></div>
+<div class="light-leak leak-2"></div>
 
 <nav id="navbar">
   <a href="index.html" class="nav-brand">
@@ -142,11 +203,10 @@
     <li class="dropdown">
       <a href="team.html" class="dropbtn">Execom <i>▾</i></a>
       <ul class="dropdown-content">
-        <li><a href="team.html">Present Execom</a></li>
-        <li><a href="past-execom.html">Past Execom</a></li>
+        <li><a href="team.html">Present (2026)</a></li>
+        <li><a href="past-execom.html">Past (2025)</a></li>
       </ul>
     </li>
-    <li><a href="gallery.html">Gallery</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <a href="https://bit.ly/IEEEMEMBERSHIP2026" target="_blank" class="btn-join-nav">Join IEEE</a>
@@ -156,9 +216,8 @@
   <a href="index.html" class="active">Home</a>
   <a href="about.html">About Us</a>
   <a href="events.html">Events</a>
-  <a href="team.html">Present Execom</a>
-  <a href="past-execom.html">Past Execom</a>
-  <a href="gallery.html">Gallery</a>
+  <a href="team.html">Present (2026)</a>
+  <a href="past-execom.html">Past (2025)</a>
   <a href="contact.html">Contact</a>
 </div>
 <div class="mobile-backdrop"></div>
@@ -166,13 +225,20 @@
 <!-- HERO -->
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
+  
+  <!-- Floating Wonderland Decorations -->
+  <div class="hero-decoration dot" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
+  <div class="hero-decoration ring" style="top: 60%; left: 10%; animation-delay: -2s;"></div>
+  <div class="hero-decoration dot" style="top: 30%; right: 15%; animation-delay: -4s; background: var(--purple);"></div>
+  <div class="hero-decoration ring" style="top: 70%; right: 20%; animation-delay: -1s; width: 60px; height: 60px;"></div>
+
   <div class="hero-inner">
-    <div class="hero-badge" style="opacity:1;transform:none;">
+    <div class="hero-badge reveal-stagger">
       <div class="hero-badge-dot"></div>IEEE Student Branch // NCERC Thrissur
     </div>
-    <h1 class="hero-main-title">IEEE <span class="sb-highlight">SB</span> NCERC</h1>
-    <p class="hero-tagline">Advancing Technology for Humanity</p>
-    <div class="hero-cta">
+    <h1 class="hero-main-title reveal-stagger" style="transition-delay: 0.1s;">IEEE <span class="sb-highlight">SB</span> NCERC</h1>
+    <p class="hero-tagline reveal-stagger" style="transition-delay: 0.2s;">Advancing Technology for Humanity</p>
+    <div class="hero-cta reveal-stagger" style="transition-delay: 0.3s;">
       <a href="https://bit.ly/IEEEMEMBERSHIP2026" target="_blank" class="btn-hero-box primary">JOIN IEEE →</a>
       <a href="about.html" class="btn-hero-box">LEARN MORE</a>
     </div>
@@ -180,60 +246,135 @@
   <div class="hero-scroll"><div class="scroll-line"></div>SCROLL</div>
 </section>
 
+
 <!-- NEWS TICKER -->
 <div class="news-ticker-wrap">
   <div class="news-ticker-inner">
     <div class="news-label"><div class="news-label-dot"></div>LIVE</div>
     <div class="news-track-wrap">
       <div class="news-track">
-        <span class="news-item"><span class="ni-dot" style="background:#60a5fa;"></span>Advancing Technology for Humanity</span>
+        <span class="news-item"><span class="ni-dot" style="background:#60a5fa;"></span>IEEE SB NCERC</span>
         <span class="news-sep">//</span>
-        <span class="news-item"><span class="ni-dot" style="background:#ef4444;"></span>PES · CASS · IAS · PELS Chapters</span>
+        <span class="news-item"><span class="ni-dot" style="background:#10b981;"></span>Advancing Technology for Humanity</span>
         <span class="news-sep">//</span>
-        <span class="news-item"><span class="ni-dot" style="background:#ec4899;"></span>WIE Affinity Group</span>
-        <span class="news-sep">//</span>
-        <span class="news-item"><span class="ni-dot" style="background:#a78bfa;"></span>IEEE SB NCERC — Kerala Section · Region 10</span>
-        <span class="news-sep">//</span>
-        <span class="news-item"><span class="ni-dot" style="background:#60a5fa;"></span>Advancing Technology for Humanity</span>
-        <span class="news-sep">//</span>
-        <span class="news-item"><span class="ni-dot" style="background:#ef4444;"></span>PES · CASS · IAS · PELS Chapters</span>
+        <span class="news-item"><span class="ni-dot" style="background:#ef4444;"></span>PES · CASS · IAS · PELS Societies</span>
         <span class="news-sep">//</span>
         <span class="news-item"><span class="ni-dot" style="background:#ec4899;"></span>WIE Affinity Group</span>
         <span class="news-sep">//</span>
-        <span class="news-item"><span class="ni-dot" style="background:#a78bfa;"></span>IEEE SB NCERC — Kerala Section · Region 10</span>
+        <span class="news-item"><span class="ni-dot" style="background:#a78bfa;"></span>Kerala Section · Region 10</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#60a5fa;"></span>IEEE SB NCERC</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#10b981;"></span>Advancing Technology for Humanity</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#ef4444;"></span>PES · CASS · IAS · PELS Societies</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#ec4899;"></span>WIE Affinity Group</span>
+        <span class="news-sep">//</span>
+        <span class="news-item"><span class="ni-dot" style="background:#a78bfa;"></span>Kerala Section · Region 10</span>
         <span class="news-sep">//</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ABOUT — stats only, no info box, NO 200+/50+/10+ big section -->
+<!-- EXECOM 2026 STUNNING NOTIFICATION BOX -->
+<section id="announcement-section" class="section section-dark">
+  <div class="intro-glow"></div>
+  <div class="home-wrap">
+    
+    <div style="display:flex; justify-content:center; width:100%;">
+      <div class="stunning-notification-badge reveal-scale">
+        <div class="live-dot"></div>
+        <span>Notification</span>
+      </div>
+    </div>
+    <div class="stunning-box glass-card-wonder reveal-scale">
+      <div class="box-grid">
+        <div class="box-posters reveal-stagger">
+          <div class="poster-stack">
+            <div class="poster-card p1">
+              <img src="images/execom1.jpeg" alt="Core EXECOM 2026">
+              <span class="p-tag">Core Execom</span>
+            </div>
+            <div class="poster-card p2">
+              <img src="images/execom2.jpeg" alt="Societies EXECOM 2026">
+              <span class="p-tag">Societies & Affinity Groups</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="box-content reveal-stagger">
+          <div class="quote-area">
+            <p class="quote-txt">“ ✨The future depends on what we do in the present.✨ ”</p>
+            <p class="quote-by">— Mahatma Gandhi</p>
+          </div>
+          <div class="text-area">
+            <h2 class="box-title">IEEE SB NCERC <br><span>EXECOM POSTER</span></h2>
+            <p class="box-p">Introducing a team driven by vision, passion, and purpose — innovators ready to challenge limits, spark ideas, and create meaningful impact.</p>
+            <p class="box-p" style="margin-top: 1rem;">With determination and excellence, they step forward to lead, inspire, and define the future🚀</p>
+          </div>
+          <div style="margin-top: 2rem;">
+            <a href="team.html" class="btn btn-primary">Meet the Team</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT — stats only -->
 <section class="section section-dark">
   <div class="home-wrap">
-    <div class="section-label">About Us</div>
-    <h2 class="section-title">Who We Are</h2>
-    <p class="section-sub">IEEE SB NCERC was revamped on 7th January 2021 and inaugurated by Susan Kathy Land, IEEE President 2021. We connect students with global professionals and shape future engineers.</p>
-    <div class="about-stat-grid">
-      <div class="about-stat"><span class="num">200+</span><span class="lbl">Active Members</span></div>
-      <div class="about-stat"><span class="num">50+</span><span class="lbl">Events Hosted</span></div>
-      <div class="about-stat"><span class="num">5</span><span class="lbl">Societies</span></div>
-      <div class="about-stat"><span class="num">2021</span><span class="lbl">Established</span></div>
+    <div class="section-label reveal-stagger">About Us</div>
+    <h2 class="section-title reveal-stagger">Who We Are</h2>
+    <p class="section-sub reveal-stagger">IEEE SB NCERC was revamped on 7th January 2021 and inaugurated by Susan Kathy Land, IEEE President 2021. We connect students with global professionals and shape future engineers.</p>
+    
+    <!-- Asymmetric Statistics Grid -->
+    <div class="about-stat-grid reveal-stagger" style="margin-top: 4rem;">
+      <div class="about-stat glass-card-wonder"><span class="num" data-count="200" data-suffix="+">0</span><span class="lbl">Active Members</span></div>
+      <div class="about-stat glass-card-wonder offset-y-md"><span class="num" data-count="50" data-suffix="+">0</span><span class="lbl">Events Hosted</span></div>
+      <div class="about-stat glass-card-wonder"><span class="num" data-count="5">0</span><span class="lbl">Societies</span></div>
+      <div class="about-stat glass-card-wonder offset-y-md"><span class="num">2021</span><span class="lbl">Established</span></div>
     </div>
-    <div style="margin-top:2rem;"><a href="about.html" class="btn btn-outline">Learn More →</a></div>
+    <div style="margin-top:5rem;" class="reveal-stagger"><a href="about.html" class="btn btn-outline">Learn More →</a></div>
   </div>
 </section>
 
 <!-- SOCIETIES -->
 <section class="section section-mid">
   <div class="home-wrap">
-    <div class="section-label">Our Chapters</div>
-    <h2 class="section-title">Societies &amp; Affinity Groups</h2>
-    <div class="societies-wrapper" style="margin-top:2.5rem;">
-      <div class="society-poster poster-pes"><div class="society-poster-bg"></div><div class="society-poster-overlay"></div><div class="society-poster-content"><div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#ef4444;background:#ef4444;"></span></div><div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">⚡</div><div class="society-abbr-big">PES</div><div class="society-full-name">Power &amp; Energy Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Advancing knowledge in electric power generation and energy systems.</div></div></div></div>
-      <div class="society-poster poster-cass"><div class="society-poster-bg"></div><div class="society-poster-overlay"></div><div class="society-poster-content"><div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#3b82f6;background:#3b82f6;"></span></div><div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">〰️</div><div class="society-abbr-big">CASS</div><div class="society-full-name">Circuits &amp; Systems Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Advancing circuit theory and signal processing engineering.</div></div></div></div>
-      <div class="society-poster poster-ias"><div class="society-poster-bg"></div><div class="society-poster-overlay"></div><div class="society-poster-content"><div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#8b5cf6;background:#8b5cf6;"></span></div><div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">🏭</div><div class="society-abbr-big">IAS</div><div class="society-full-name">Industry Applications Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Connecting industry professionals with electrical engineering.</div></div></div></div>
-      <div class="society-poster poster-pels"><div class="society-poster-bg"></div><div class="society-poster-overlay"></div><div class="society-poster-content"><div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#10b981;background:#10b981;"></span></div><div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">🔋</div><div class="society-abbr-big">PELS</div><div class="society-full-name">Power Electronics Society</div><span class="society-poster-tag">Chapter</span><div class="society-desc-hover">Advancing power electronics and energy conversion technologies.</div></div></div></div>
-      <div class="society-poster poster-wie"><div class="society-poster-bg"></div><div class="society-poster-overlay"></div><div class="society-poster-content"><div class="society-poster-top"><span class="society-ieee-badge">⊕ IEEE</span><span class="society-glow-dot" style="color:#ec4899;background:#ec4899;"></span></div><div class="society-poster-bottom"><div style="font-size:1.6rem;margin-bottom:.2rem;">✦</div><div class="society-abbr-big">WIE</div><div class="society-full-name">Women in Engineering</div><span class="society-poster-tag">Affinity</span><div class="society-desc-hover">Inspiring and empowering women in technical disciplines worldwide.</div></div></div></div>
+    <div class="section-label reveal-stagger">Our Chapters</div>
+    <h2 class="section-title reveal-stagger">Societies &amp; Affinity Groups</h2>
+    
+    <!-- Circular Society Showcase -->
+    <div class="societies-circle-grid reveal-stagger" style="margin-top:4rem;">
+      <div class="society-circle-item">
+        <div class="society-circle-card" onclick="transitToEvents(event, 'pes')">
+          <img src="./images/ieee-pes-logo.png" alt="PES Logo" class="society-circle-img">
+        </div>
+      </div>
+      <div class="society-circle-item">
+        <div class="society-circle-card" onclick="transitToEvents(event, 'cass')">
+          <img src="./images/CAS-Logo-Color.png" alt="CASS Logo" class="society-circle-img">
+        </div>
+      </div>
+      <div class="society-circle-item">
+        <div class="society-circle-card" onclick="transitToEvents(event, 'ias')">
+          <img src="./images/ieee-ias-logo-official.jpg" alt="IAS Logo" class="society-circle-img">
+        </div>
+      </div>
+      <div class="society-circle-item">
+        <div class="society-circle-card" onclick="transitToEvents(event, 'pels')">
+          <img src="./images/pels-logo.jpeg" alt="PELS Logo" class="society-circle-img">
+        </div>
+      </div>
+      <div class="society-circle-item">
+        <div class="society-circle-card" onclick="transitToEvents(event, 'wie')">
+          <img src="./images/WIE_K_logo_72.png" alt="WIE Logo" class="society-circle-img">
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -249,28 +390,108 @@
     <div class="execom-home-grid">
       <div class="epc-wrapper">
         <div class="epc-inner">
-          <div class="epc-front"><div class="epc-photo"><div class="epc-initial">BC</div><div class="epc-scan"></div></div><div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#f59e0b;">Branch Counselor</span><span class="epc-name">Add Name</span><span class="epc-dept">Faculty, NCERC</span></div></div>
-          <div class="epc-back"><div class="epc-particles"><div class="epc-dot" style="left:20%;top:80%;background:#f59e0b;"></div></div><span class="epc-back-icon">🎓</span><span class="epc-back-role" style="color:#f59e0b;">Branch Counselor</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Faculty, NCERC</span><span class="epc-back-divider" style="background:#f59e0b;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span></div>
+          <div class="epc-front">
+            <div class="epc-photo">
+              <img src="images/past-2025/Shobha Mam.jpg" alt="Dr. Sobha Manakkal" style="width:100%; height:100%; object-fit:cover;">
+              <div class="epc-scan"></div>
+            </div>
+            <div class="epc-front-info">
+              <span class="epc-badge">⊕ IEEE SB NCERC</span>
+              <span class="epc-role" style="color:#f59e0b;">Branch Counselor</span>
+              <span class="epc-name">Dr. Sobha Manakkal</span>
+              <span class="epc-dept">Faculty, NCERC</span>
+            </div>
+          </div>
+          <div class="epc-back">
+            <div class="epc-particles"><div class="epc-dot" style="left:20%;top:80%;background:#f59e0b;"></div></div>
+            <span class="epc-back-icon">🎓</span>
+            <span class="epc-back-role" style="color:#f59e0b;">Branch Counselor</span>
+            <span class="epc-back-name">Dr. Sobha Manakkal</span>
+            <span class="epc-back-dept">Faculty, NCERC</span>
+            <span class="epc-back-divider" style="background:#f59e0b;"></span>
+            <span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
+          </div>
         </div>
       </div>
       <div class="epc-wrapper" style="animation-delay:.7s;">
         <div class="epc-inner">
-          <div class="epc-front"><div class="epc-photo"><div class="epc-initial">CH</div><div class="epc-scan"></div></div><div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#3b82f6;">Chairperson</span><span class="epc-name">Add Name</span><span class="epc-dept">Dept / Year</span></div></div>
-          <div class="epc-back"><div class="epc-particles"><div class="epc-dot" style="left:15%;top:80%;background:#3b82f6;"></div></div><span class="epc-back-icon">👑</span><span class="epc-back-role" style="color:#3b82f6;">Chairperson</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Dept / Year</span><span class="epc-back-divider" style="background:#3b82f6;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span></div>
+          <div class="epc-front">
+            <div class="epc-photo">
+              <img src="images/AARDRA SIVADAS C.jpg" alt="Aardra" style="width:100%; height:100%; object-fit:cover;">
+              <div class="epc-scan"></div>
+            </div>
+            <div class="epc-front-info">
+              <span class="epc-badge">⊕ IEEE SB NCERC</span>
+              <span class="epc-role" style="color:#3b82f6;">Chairperson</span>
+              <span class="epc-name">Aardra Sivadas</span>
+              <span class="epc-dept">NCERC Thrissur</span>
+            </div>
+          </div>
+          <div class="epc-back">
+            <div class="epc-particles"><div class="epc-dot" style="left:15%;top:80%;background:#3b82f6;"></div></div>
+            <span class="epc-back-icon">👑</span>
+            <span class="epc-back-role" style="color:#3b82f6;">Chairperson</span>
+            <span class="epc-back-name">Aardra Sivadas</span>
+            <span class="epc-back-dept">NCERC Thrissur</span>
+            <span class="epc-back-divider" style="background:#3b82f6;"></span>
+            <span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
+          </div>
         </div>
       </div>
+
       <div class="epc-wrapper" style="animation-delay:1.4s;">
         <div class="epc-inner">
-          <div class="epc-front"><div class="epc-photo"><div class="epc-initial">VC</div><div class="epc-scan"></div></div><div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#06b6d4;">Vice Chairperson</span><span class="epc-name">Add Name</span><span class="epc-dept">Dept / Year</span></div></div>
-          <div class="epc-back"><div class="epc-particles"><div class="epc-dot" style="left:25%;top:82%;background:#06b6d4;"></div></div><span class="epc-back-icon">⚡</span><span class="epc-back-role" style="color:#06b6d4;">Vice Chairperson</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Dept / Year</span><span class="epc-back-divider" style="background:#06b6d4;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span></div>
+          <div class="epc-front">
+            <div class="epc-photo">
+              <img src="images/sidtharth.jpeg" alt="Sidharth" style="width:100%; height:100%; object-fit:cover;">
+              <div class="epc-scan"></div>
+            </div>
+            <div class="epc-front-info">
+              <span class="epc-badge">⊕ IEEE SB NCERC</span>
+              <span class="epc-role" style="color:#0ea5e9;">Vice Chairperson</span>
+              <span class="epc-name">Sidharth S</span>
+              <span class="epc-dept">NCERC Thrissur</span>
+            </div>
+          </div>
+          <div class="epc-back">
+            <div class="epc-particles"><div class="epc-dot" style="left:25%;top:82%;background:#0ea5e9;"></div></div>
+            <span class="epc-back-icon">⚡</span>
+            <span class="epc-back-role" style="color:#0ea5e9;">Vice Chairperson</span>
+            <span class="epc-back-name">Sidharth S</span>
+            <span class="epc-back-dept">NCERC Thrissur</span>
+            <span class="epc-back-divider" style="background:#0ea5e9;"></span>
+            <span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
+          </div>
         </div>
       </div>
+
       <div class="epc-wrapper" style="animation-delay:2.1s;">
         <div class="epc-inner">
-          <div class="epc-front"><div class="epc-photo"><div class="epc-initial">TR</div><div class="epc-scan"></div></div><div class="epc-front-info"><span class="epc-badge">⊕ IEEE SB NCERC</span><span class="epc-role" style="color:#f59e0b;">Treasurer</span><span class="epc-name">Add Name</span><span class="epc-dept">Dept / Year</span></div></div>
-          <div class="epc-back"><div class="epc-particles"><div class="epc-dot" style="left:18%;top:83%;background:#f59e0b;"></div></div><span class="epc-back-icon">💰</span><span class="epc-back-role" style="color:#f59e0b;">Treasurer</span><span class="epc-back-name">Add Name</span><span class="epc-back-dept">Dept / Year</span><span class="epc-back-divider" style="background:#f59e0b;"></span><span class="epc-back-ieee">⊕ IEEE SB NCERC</span></div>
+          <div class="epc-front">
+            <div class="epc-photo">
+              <img src="images/UMESH S KRISHNAN.jpg" alt="Umesh" style="width:100%; height:100%; object-fit:cover;">
+              <div class="epc-scan"></div>
+            </div>
+            <div class="epc-front-info">
+              <span class="epc-badge">⊕ IEEE SB NCERC</span>
+              <span class="epc-role" style="color:#10b981;">Secretary</span>
+              <span class="epc-name">Umesh S Krishnan</span>
+              <span class="epc-dept">NCERC Thrissur</span>
+            </div>
+          </div>
+          <div class="epc-back">
+            <div class="epc-particles"><div class="epc-dot" style="left:18%;top:83%;background:#10b981;"></div></div>
+            <span class="epc-back-icon">🍏</span>
+            <span class="epc-back-role" style="color:#10b981;">Secretary</span>
+            <span class="epc-back-name">Umesh S Krishnan</span>
+            <span class="epc-back-dept">NCERC Thrissur</span>
+            <span class="epc-back-divider" style="background:#10b981;"></span>
+            <span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
+          </div>
         </div>
       </div>
+
+
     </div>
     <div class="execom-view-more">
       <a href="team.html" class="btn-view-execom">View Full Execom <span class="btn-arrow">→</span></a>
@@ -281,13 +502,14 @@
 <!-- WHY JOIN -->
 <div class="why-section">
   <div class="home-wrap">
-    <div class="section-label">Membership</div>
-    <h2 class="section-title">Why Join IEEE?</h2>
-    <p class="section-sub">Click any card to learn more.</p>
-    <div class="why-grid">
-      <a href="about.html#why" class="why-card"><span class="why-icon">❓</span><div class="why-title">What is IEEE?</div><div class="why-desc">World's largest technical professional organization — 400,000+ members in 160+ countries.</div><div class="why-arrow">Learn More <span>→</span></div></a>
-      <a href="about.html#mission" class="why-card"><span class="why-icon">🚀</span><div class="why-title">Our Mission</div><div class="why-desc">Foster technological innovation and excellence for humanity through networking and development.</div><div class="why-arrow">Learn More <span>→</span></div></a>
-      <a href="about.html#vision" class="why-card"><span class="why-icon">👁️</span><div class="why-title">Our Vision</div><div class="why-desc">Building global community of engineers who create meaningful impact in society.</div><div class="why-arrow">Learn More <span>→</span></div></a>
+    <div class="section-label reveal-stagger">Membership</div>
+    <h2 class="section-title reveal-stagger">Why Join IEEE?</h2>
+    <p class="section-sub reveal-stagger">Connect with a global community of innovators.</p>
+    
+    <div class="why-grid reveal-stagger" style="margin-top:4rem; grid-template-columns: repeat(3, 1fr);">
+      <a href="about.html#why" class="why-card glass-card-wonder"><span class="why-icon">❓</span><div class="why-title">Global Network</div><div class="why-desc">World's largest technical professional organization — 400,000+ members in 160+ countries.</div><div class="why-arrow">Learn More <span>→</span></div></a>
+      <a href="about.html#mission" class="why-card glass-card-wonder offset-y-md"><span class="why-icon">🚀</span><div class="why-title">Career Growth</div><div class="why-desc">Access to research, journals, and a global network of professionals to shape your future.</div><div class="why-arrow">Learn More <span>→</span></div></a>
+      <a href="about.html#vision" class="why-card glass-card-wonder"><span class="why-icon">👁️</span><div class="why-title">Meaningful Impact</div><div class="why-desc">Building global community of engineers who create meaningful impact in society.</div><div class="why-arrow">Learn More <span>→</span></div></a>
     </div>
   </div>
 </div>
@@ -351,13 +573,28 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 IEEE SB NCERC. All Rights Reserved.</span>
+      <span>© 2026 IEEE SB NCERC. All Rights Reserved.</span>
       <span>IEEE KERALA SECTION // REGION 10</span>
     </div>
   </div>
 </footer>
 
+</div> <!-- end page-content -->
 <script src="js/hero-animation.js"></script>
 <script src="js/script.js"></script>
+<script>
+  function transitToEvents(event, society) {
+    const card = event.currentTarget;
+    const content = document.getElementById('page-content');
+    
+    // Performant Lift and Glow
+    card.classList.add('society-card-active', society);
+    content.classList.add('active');
+    
+    setTimeout(() => {
+      window.location.href = 'events.html?tab=' + society;
+    }, 350);
+  }
+</script>
 </body>
 </html>

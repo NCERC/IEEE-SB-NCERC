@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── PAGE LOADER ──
   const loader = document.getElementById('page-loader');
-  if (loader) setTimeout(() => loader.classList.add('hidden'), 1400);
+  if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
 
   // ── NAV SCROLL ──
   const navbar = document.getElementById('navbar');
@@ -44,13 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
         obs.unobserve(e.target);
       }
     });
   }, { threshold: 0.01, rootMargin: '0px 0px -20px 0px' });
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => obs.observe(el));
-  setTimeout(() => document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => el.classList.add('visible')), 2000);
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger').forEach(el => obs.observe(el));
+  setTimeout(() => document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger').forEach(el => el.classList.add('visible')), 2000);
 
   // ── COUNTER ──
   const cObs = new IntersectionObserver(entries => {
@@ -112,4 +112,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── INIT HERO CANVAS ──
   if (typeof initHeroCanvas === 'function') initHeroCanvas();
+
+  // ── HUMAN TOUCH: MAGNETIC LOGO ──
+  const logo = document.querySelector('.nav-logo-img');
+  if (logo) {
+    window.addEventListener('mousemove', (e) => {
+      const rect = logo.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+      const dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      if (dist < 150) {
+        logo.style.transform = `translate(${deltaX / 10}px, ${deltaY / 10}px)`;
+      } else {
+        logo.style.transform = 'translate(0, 0)';
+      }
+    });
+    logo.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+  }
+
+  // ── HUMAN TOUCH: HERO PARALLAX ──
+  const heroDecos = document.querySelectorAll('.hero-decoration');
+  window.addEventListener('scroll', () => {
+    const scroll = window.scrollY;
+    heroDecos.forEach((d, i) => {
+      const speed = 0.05 + (i * 0.02);
+      d.style.transform = `translateY(${scroll * speed}px)`;
+    });
+  });
 });
+
+/**
+ * Hand-crafted with care by the NCERC Web Team.
+ * Technology is a tool, but the human connection is the goal.
+ */

@@ -10,130 +10,87 @@
 .section{padding:5rem 4rem!important;}
 @media(max-width:900px){.section{padding:4rem 1.5rem!important;}}
 
-/* ══ HERO AURORA ══ */
-.page-hero{position:relative;overflow:hidden;}
-.page-hero::before{
-  content:'';position:absolute;inset:-50%;
-  background:conic-gradient(from 0deg at 60% 40%,
-    rgba(16,185,129,0.12) 0deg, rgba(59,130,246,0.10) 90deg,
-    rgba(139,92,246,0.10) 180deg, transparent 270deg,
-    rgba(16,185,129,0.12) 360deg);
-  animation:auroraRot 18s linear infinite;pointer-events:none;z-index:0;
+/* ══ HERO SECTION ══ */
+.contact-header {
+  padding: 8rem 2rem 4rem;
+  text-align: center;
+  background: radial-gradient(circle at 50% -20%, rgba(16,185,129,0.1), transparent);
 }
-@keyframes auroraRot{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.page-hero::after{
-  content:'';position:absolute;width:450px;height:450px;
-  background:radial-gradient(circle,rgba(16,185,129,0.15) 0%,transparent 65%);
-  bottom:-80px;right:-60px;animation:orbPulse 7s ease-in-out infinite;
-  pointer-events:none;z-index:0;
+.contact-header h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  margin-bottom: 0.5rem;
 }
-@keyframes orbPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.15);opacity:1}}
-.page-hero-content{position:relative;z-index:2;}
-.page-hero h1{animation:heroIn .9s cubic-bezier(.34,1.56,.64,1) forwards;}
-@keyframes heroIn{from{opacity:0;transform:translateY(28px) scale(0.95)}to{opacity:1;transform:translateY(0) scale(1)}}
 
-/* ══ SECTION BG ══ */
-.section-dark{position:relative;overflow:hidden;}
-.section-dark::before{
-  content:'';position:absolute;width:500px;height:500px;
-  background:radial-gradient(circle,rgba(16,185,129,0.06) 0%,transparent 65%);
-  top:-150px;left:-100px;animation:secOrb 13s ease-in-out infinite;pointer-events:none;
-}
-.section-dark::after{
-  content:'';position:absolute;width:350px;height:350px;
-  background:radial-gradient(circle,rgba(59,130,246,0.05) 0%,transparent 65%);
-  bottom:-100px;right:-80px;animation:secOrb 10s ease-in-out infinite reverse;pointer-events:none;
-}
-@keyframes secOrb{0%,100%{transform:translate(0,0) scale(1);opacity:.5}50%{transform:translate(25px,20px) scale(1.1);opacity:1}}
-
-/* ══ SECTION TITLE SHIMMER ══ */
-.section-title,.connect-title{
-  background:linear-gradient(135deg,#f1f5f9 0%,#34d399 35%,#60a5fa 55%,#f1f5f9 100%);
-  background-size:250% auto;
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  animation:titleShimmer 5s linear infinite;
-}
-@keyframes titleShimmer{from{background-position:0% center}to{background-position:250% center}}
-
-/* ══ CONNECT WRAP ══ */
-.connect-wrap{max-width:780px;margin:0 auto;text-align:center;position:relative;z-index:1;}
-.connect-sub{font-size:.95rem;color:var(--text2);line-height:1.85;max-width:560px;margin:0 auto 3rem;}
-
-/* ══ CONNECT CARDS ══ */
-.connect-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2.5rem;}
-@media(max-width:700px){.connect-cards{grid-template-columns:1fr;}}
-.connect-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:16px;
-  padding:2rem 1.5rem;text-align:center;
-  transition:all .4s cubic-bezier(.34,1.56,.64,1);
-  text-decoration:none;display:block;position:relative;overflow:hidden;
-  animation:cardIn .5s cubic-bezier(.34,1.4,.64,1) both;
-}
-.connect-card:nth-child(1){animation-delay:.1s}
-.connect-card:nth-child(2){animation-delay:.2s}
-.connect-card:nth-child(3){animation-delay:.3s}
-@keyframes cardIn{from{opacity:0;transform:translateY(18px) scale(0.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-/* animated top bar */
-.connect-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent);
-  background-size:200%;
-  animation:cardBar 3s linear infinite;
-}
-@keyframes cardBar{from{background-position:0% 50%}to{background-position:200% 50%}}
-/* shimmer sweep */
-.connect-card::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.04) 50%,transparent 60%);
-  transform:translateX(-120%);transition:transform .6s ease;pointer-events:none;
-}
-.connect-card:hover::after{transform:translateX(120%);}
-.connect-card:hover{
-  transform:translateY(-10px) scale(1.02);
-  border-color:rgba(255,255,255,.35);
-  box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 40px rgba(255,255,255,0.04);
-}
-.connect-card-icon{
-  font-size:2.8rem;margin-bottom:1rem;display:block;
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1);
-}
-.connect-card:hover .connect-card-icon{transform:scale(1.3) rotate(8deg);}
-.connect-card-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.4rem;}
-.connect-card-value{font-family:var(--display);font-weight:700;font-size:.92rem;color:#fff;word-break:break-all;transition:color .2s;}
-.connect-card:hover .connect-card-value{color:#e2e8f0;}
-.connect-card-action{margin-top:.8rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);transition:all .2s;}
-.connect-card:hover .connect-card-action{color:rgba(255,255,255,.85);letter-spacing:.15em;}
-
-/* ══ SOCIAL LINKS ══ */
-.connect-socials{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
-.social-link{
-  display:flex;align-items:center;gap:.7rem;padding:.75rem 1.5rem;
-  background:var(--surface);border:1px solid var(--border);border-radius:50px;
-  text-decoration:none;transition:all .35s cubic-bezier(.34,1.56,.64,1);color:var(--text2);
-  animation:socialIn .5s cubic-bezier(.34,1.4,.64,1) both;
-  position:relative;overflow:hidden;
-}
-.social-link:nth-child(1){animation-delay:.1s}
-.social-link:nth-child(2){animation-delay:.18s}
-.social-link:nth-child(3){animation-delay:.26s}
-.social-link:nth-child(4){animation-delay:.34s}
-@keyframes socialIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.social-link:hover{
-  border-color:rgba(255,255,255,.4);background:var(--bg3);color:#fff;
-  transform:translateY(-5px) scale(1.05);
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-.social-link-icon{font-size:1.2rem;transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
-.social-link:hover .social-link-icon{transform:scale(1.3) rotate(-5deg);}
-.social-link-name{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;}
-
-/* ══ MAP ══ */
-.connect-map{border-radius:16px;overflow:hidden;border:1px solid var(--border);max-width:680px;margin:0 auto;transition:box-shadow .3s;}
-.connect-map:hover{box-shadow:0 16px 50px rgba(0,0,0,.4),0 0 30px rgba(16,185,129,0.08);}
-.connect-map iframe{width:100%;height:260px;filter:invert(90%) hue-rotate(180deg);display:block;}
-.connect-address{background:var(--surface);border-top:1px solid var(--border);padding:1.1rem 1.5rem;font-family:var(--mono);font-size:.7rem;color:var(--text2);line-height:2;}
-.connect-address span{color:rgba(255,255,255,.5);}
 .sl{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem;justify-content:center;}
+
+/* ══ CUSTOM FORM ══ */
+.contact-form-wrap {
+  margin-top: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: left;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+}
+.form-group { margin-bottom: 1.5rem; }
+.form-group label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.1em;
+}
+.form-control {
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 20px rgba(59,130,246,0.15);
+}
+textarea.form-control { min-height: 150px; resize: vertical; }
+
+.btn-submit {
+  width: 100%;
+  padding: 1.1rem;
+  background: linear-gradient(93deg, #3b82f6, #8b5cf6);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.btn-submit:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(59,130,246,0.4);
+  filter: brightness(1.1);
+}
+.btn-submit:active { transform: translateY(-2px); }
+
+@media(max-width:600px) {
+  .contact-form-wrap { padding: 2rem 1.5rem; }
+}
 </style>
 </head>
 <body>
@@ -150,11 +107,10 @@
       <li class="dropdown">
         <a href="team.html" class="dropbtn">Execom <i>▾</i></a>
         <ul class="dropdown-content">
-          <li><a href="team.html">Present Execom</a></li>
-          <li><a href="past-execom.html">Past Execom</a></li>
+          <li><a href="team.html">Present (2026)</a></li>
+          <li><a href="past-execom.html">Past (2025)</a></li>
         </ul>
       </li>
-      <li><a href="gallery.html">Gallery</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
     <a href="https://bit.ly/IEEEMEMBERSHIP2026" target="_blank" class="btn-join-nav">Join IEEE</a>
@@ -164,62 +120,39 @@
     <a href="index.html">Home</a>
     <a href="about.html">About Us</a>
     <a href="events.html">Events</a>
-    <a href="team.html">Present Execom</a>
-    <a href="past-execom.html">Past Execom</a>
-    <a href="gallery.html">Gallery</a>
+    <a href="team.html">Present (2026)</a>
+    <a href="past-execom.html">Past (2025)</a>
     <a href="contact.html" class="active">Contact</a>
   </div>
 <div class="mobile-backdrop"></div>
 
-<div class="page-hero">
-  <div class="page-hero-bg"></div><div class="page-hero-grid"></div>
-  <div class="page-hero-content" style="text-align:center;">
-    <div class="breadcrumb" style="display:flex;gap:.4rem;justify-content:center;"><a href="index.html">Home</a><span>/</span>Contact</div>
-    <h1>Let Us <span style="color:#fff">Connect</span></h1>
-    <p style="margin:0 auto;">Reach out to IEEE SB NCERC — we'd love to hear from you.</p>
-  </div>
+<div class="contact-header">
+  <div class="sl">Get In Touch</div>
+  <h1 class="connect-title">We're Here for You</h1>
 </div>
 
-<section class="section section-dark">
+<section class="section section-dark" style="padding-top:0 !important;">
   <div class="connect-wrap">
-    <div class="sl">Get In Touch</div>
-    <div class="connect-title" style="font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.5rem);margin-bottom:1rem;">We're Here for You</div>
-    <p class="connect-sub">Whether you want to join IEEE, collaborate on an event, or just say hello — we're always open to connect!</p>
-
-    <div class="connect-cards">
-      <a href="mailto:ieeesbncerc@gmail.com" class="connect-card">
-        <span class="connect-card-icon">✉️</span>
-        <div class="connect-card-label">Email Us</div>
-        <div class="connect-card-value">ieeesbncerc@gmail.com</div>
-        <div class="connect-card-action">Send Email →</div>
-      </a>
-      <a href="https://bit.ly/IEEEMEMBERSHIP2026" target="_blank" class="connect-card">
-        <span class="connect-card-icon">🌐</span>
-        <div class="connect-card-label">Join IEEE</div>
-        <div class="connect-card-value">IEEE Membership 2026</div>
-        <div class="connect-card-action">Register Now →</div>
-      </a>
-      <div class="connect-card">
-        <span class="connect-card-icon">📍</span>
-        <div class="connect-card-label">Find Us</div>
-        <div class="connect-card-value">NCERC, Pampady<br>Thrissur, Kerala</div>
-        <div class="connect-card-action">680588</div>
-      </div>
-    </div>
-
-    <div class="connect-socials">
-      <a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank" class="social-link"><span class="social-link-icon">📸</span><span class="social-link-name">Instagram</span></a>
-      <a href="#" class="social-link"><span class="social-link-icon">💼</span><span class="social-link-name">LinkedIn</span></a>
-      <a href="#" class="social-link"><span class="social-link-icon">▶️</span><span class="social-link-name">YouTube</span></a>
-      <a href="#" class="social-link"><span class="social-link-icon">📘</span><span class="social-link-name">Facebook</span></a>
-    </div>
-
-    <div class="connect-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.5!2d76.332!3d10.517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDMxJzAxLjIiTiA3NsKwMTknNTUuMiJF!5e0!3m2!1sen!2sin!4v1" allowfullscreen="" loading="lazy"></iframe>
-      <div class="connect-address">
-        <span>Address:</span> Nehru College of Engineering and Research Centre, Pampady, Thiruvilwamala, Thrissur, Kerala — 680588<br>
-        <span>Email:</span> ieeesbncerc@gmail.com
-      </div>
+    <div class="contact-form-wrap">
+      <form action="https://formspree.io/f/ieeesbncerc@gmail.com" method="POST">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="_replyto" class="form-control" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" name="subject" class="form-control" placeholder="What is this about?">
+        </div>
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea name="message" class="form-control" placeholder="Write your message here..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
     </div>
   </div>
 </section>
@@ -232,7 +165,7 @@
       <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="https://ieee.org" target="_blank">IEEE.org</a></li><li><a href="https://ieeexplore.ieee.org" target="_blank">IEEE Xplore</a></li><li><a href="https://ieeekerala.org" target="_blank">IEEE Kerala Section</a></li></ul></div>
       <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:ieeesbncerc@gmail.com">ieeesbncerc@gmail.com</a></li><li style="color:var(--muted);font-size:.72rem;line-height:1.8;">Pampady, Thrissur,<br>Kerala — 680588</li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2025 IEEE SB NCERC. All Rights Reserved.</span></div>
+    <div class="footer-bottom"><span>© 2026 IEEE SB NCERC. All Rights Reserved.</span></div>
   </div>
 </footer>
 <script src="js/page-animation.js"></script>
