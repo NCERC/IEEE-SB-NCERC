@@ -30,6 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   mobileBackdrop?.addEventListener('click', closeMobileMenu);
 
+  // ── MOBILE EXECOM ACCORDION ──
+  const execomToggle = document.getElementById('mobileExecomToggle');
+  const execomSub    = document.getElementById('mobileExecomSub');
+  execomToggle?.addEventListener('click', () => {
+    execomToggle.classList.toggle('open');
+    execomSub?.classList.toggle('open');
+  });
+
   // ── ACTIVE NAV ──
   const current = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {

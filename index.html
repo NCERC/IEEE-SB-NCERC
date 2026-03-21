@@ -53,41 +53,73 @@
     .about-stat .lbl { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:0.4rem; display:block; }
     .about-stat:hover .num { color:#4facfe; }
 
-    /* EXECOM */
-    .execom-home-section { padding:5rem 2rem; background:var(--bg2); }
-    .execom-home-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:3rem; }
-    .epc-wrapper { animation:floatUp 3.5s ease-in-out infinite; }
-    .epc-wrapper:nth-child(2){animation-delay:.7s} .epc-wrapper:nth-child(3){animation-delay:1.4s} .epc-wrapper:nth-child(4){animation-delay:2.1s}
-    @keyframes floatUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    .epc-inner{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;cursor:pointer;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.34,1.2,.64,1),box-shadow .4s;border:1px solid var(--border);}
-    .epc-wrapper:hover .epc-inner, .epc-wrapper.active .epc-inner {transform:rotateY(180deg);box-shadow:0 30px 80px rgba(59,130,246,.3);}
-    .epc-wrapper:hover {animation:none;}
-    .epc-wrapper.active {animation:none;}
-    .epc-front{position:absolute;inset:0;backface-visibility:hidden;background:linear-gradient(145deg,#0d1525,#1a2540);display:flex;flex-direction:column;}
-    .epc-photo{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-    .epc-initial{font-family:var(--display);font-weight:800;font-size:4.5rem;color:rgba(255,255,255,.08);position:absolute;z-index:0;}
-    .epc-scan{position:absolute;top:-40%;left:0;right:0;height:40%;background:linear-gradient(to bottom,transparent,rgba(59,130,246,.06),transparent);animation:scanDown 3s ease-in-out infinite;z-index:2;}
-    @keyframes scanDown{0%{top:-40%}100%{top:130%}}
-    .epc-front-info{padding:.9rem 1.1rem;background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.15));position:relative;z-index:2;}
-    .epc-badge{font-family:var(--mono);font-size:.44rem;letter-spacing:.15em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:.2rem;display:block;}
-    .epc-role{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.18rem;display:block;}
-    .epc-name{font-family:var(--display);font-weight:700;font-size:.9rem;color:#fff;display:block;}
-    .epc-dept{font-family:var(--mono);font-size:.48rem;color:rgba(255,255,255,.3);margin-top:.1rem;display:block;}
-    .epc-back{position:absolute;inset:0;backface-visibility:hidden;transform:rotateY(180deg);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center;}
-    .epc-wrapper:nth-child(1) .epc-back{background:linear-gradient(145deg,#1a1200,#3d2800)}
-    .epc-wrapper:nth-child(2) .epc-back{background:linear-gradient(145deg,#001233,#002060)}
-    .epc-wrapper:nth-child(3) .epc-back{background:linear-gradient(145deg,#001818,#003030)}
-    .epc-wrapper:nth-child(4) .epc-back{background:linear-gradient(145deg,#1a0800,#3d1400)}
-    .epc-back-icon{font-size:2.8rem;margin-bottom:.8rem;display:block;}
-    .epc-back-role{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem;display:block;}
-    .epc-back-name{font-family:var(--display);font-weight:800;font-size:1.1rem;color:#fff;margin-bottom:.35rem;display:block;}
-    .epc-back-dept{font-size:.72rem;color:rgba(255,255,255,.45);margin-bottom:1rem;display:block;}
-    .epc-back-divider{width:36px;height:2px;margin:0 auto .8rem;border-radius:2px;display:block;}
-    .epc-back-ieee{font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;color:rgba(255,255,255,.25);text-transform:uppercase;display:block;}
-    .epc-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
-    .epc-dot{position:absolute;width:4px;height:4px;border-radius:50%;animation:pFloat 4s ease-in-out infinite;}
-    @keyframes pFloat{0%{transform:translateY(0) scale(1);opacity:.6}50%{transform:translateY(-30px) scale(1.5);opacity:1}100%{transform:translateY(-60px) scale(0);opacity:0}}
-    .execom-view-more{text-align:center;margin-top:2.5rem;}
+    /* ── MEMBER CARD GRID (From team.html) ── */
+    .member-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 3rem auto 2rem;
+      padding: 0 1rem;
+    }
+    .member-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .member-card:hover { transform: translateY(-6px); }
+    .member-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .member-card:hover .member-photo {
+      border-color: rgba(59,130,246,0.5);
+      box-shadow: 0 8px 30px rgba(59,130,246,0.12);
+    }
+    .member-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.5s ease, filter 0.4s;
+      filter: grayscale(10%);
+    }
+    .member-card:hover .member-photo img {
+      transform: scale(1.06);
+      filter: grayscale(0%);
+    }
+    .member-info {
+      padding: 0.7rem 0.2rem 0.3rem;
+      width: 100%;
+    }
+    .member-role {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .member-name {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #e2e8f0;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    /* EXECOM VIEW MORE */
     .btn-view-execom{display:inline-flex;align-items:center;gap:.8rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 2.2rem;background:transparent;color:var(--text2);border:1.5px solid var(--border2);border-radius:50px;transition:all .3s;text-decoration:none;}
     .btn-view-execom:hover{border-color:var(--accent);color:var(--text);background:rgba(59,130,246,.05);}
     .btn-arrow{width:26px;height:26px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:transform .3s;}
@@ -111,18 +143,18 @@
     .footer-contact-icon { font-size:0.9rem; flex-shrink:0; }
 
     /* MOBILE */
-    @media(max-width:1100px){ .execom-home-grid{grid-template-columns:repeat(2,1fr);} .why-grid{grid-template-columns:1fr 1fr;} .about-stat-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:1100px){ .member-grid-4{grid-template-columns:repeat(4,1fr);} .why-grid{grid-template-columns:1fr 1fr;} .about-stat-grid{grid-template-columns:repeat(2,1fr);} }
     @media(max-width:768px){
       .about-stat-grid{grid-template-columns:1fr 1fr !important;gap:0.8rem !important;}
       .about-stat .num{font-size:2rem !important;}
-      .execom-home-grid{grid-template-columns:1fr 1fr !important;gap:.8rem !important;}
+      .member-grid-4{grid-template-columns:repeat(2,1fr) !important;gap:.8rem !important;}
       .execom-home-section{padding:3rem 1rem !important;}
       .why-grid{grid-template-columns:1fr !important;}
       .why-section{padding:3rem 1rem !important;}
       .section{padding:3rem 1rem !important;}
       .societies-wrapper{grid-template-columns:repeat(2,1fr) !important;gap:0.8rem !important;}
       .hero-inner{width:100% !important; padding-left:1rem !important; padding-right:1rem !important;}
-      .hero-main-title{font-size:clamp(3.2rem,14vw,4.5rem) !important;}
+      .hero-main-title{font-size:clamp(4.5rem,19vw,6rem) !important;}
       .hero-tagline{font-size:clamp(0.9rem,4vw,1.2rem) !important; letter-spacing:0.15em !important; margin-top:1.5rem !important; text-align:center !important;}
       .hero-cta{flex-direction:row !important; flex-wrap:wrap !important; justify-content:center !important; width:100% !important; gap:1rem !important;}
       .btn-hero-box{width:auto !important; max-width:none !important; flex:1 1 140px; justify-content:center !important;}
@@ -159,7 +191,6 @@
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: #fff;
-      animation: notification-glow 4s infinite ease-in-out;
       margin-bottom: 2.5rem;
       position: relative;
       cursor: default;
@@ -178,7 +209,6 @@
       inset: -5px;
       border-radius: 50%;
       border: 1.5px solid var(--accent);
-      animation: pulse-ring 2s infinite;
     }
     @keyframes pulse-ring {
       0% { transform: scale(0.5); opacity: 1; }
@@ -217,8 +247,14 @@
   <a href="index.html" class="active">Home</a>
   <a href="about.html">About Us</a>
   <a href="events.html">Events</a>
-  <a href="team.html">Present (2026)</a>
-  <a href="past-execom.html">Past (2025)</a>
+  <div class="mobile-execom-toggle" id="mobileExecomToggle">
+    <span>Execom</span>
+    <span class="mobile-execom-arrow">▾</span>
+  </div>
+  <div class="mobile-execom-sub" id="mobileExecomSub">
+    <a href="team.html">Present (2026)</a>
+    <a href="past-execom.html">Past (2025)</a>
+  </div>
   <a href="contact.html">Contact</a>
 </div>
 <div class="mobile-backdrop"></div>
@@ -248,36 +284,6 @@
 </section>
 
 
-<!-- NEWS TICKER -->
-<div class="news-ticker-wrap">
-  <div class="news-ticker-inner">
-    <div class="news-label"><div class="news-label-dot"></div>LIVE</div>
-    <div class="news-track-wrap">
-      <div class="news-track">
-        <span class="news-item"><span class="ni-dot" style="background:#4facfe;"></span>IEEE SB NCERC</span>
-        <span class="news-sep">✦</span>
-        <span class="news-item"><span class="ni-dot" style="background:#10b981;"></span>Advancing Technology for Humanity</span>
-        <span class="news-sep">✦</span>
-        <span class="news-item"><span class="ni-dot" style="background:#ef4444;"></span>PES · CASS · IAS · PELS Societies</span>
-        <span class="news-sep">✦</span>
-        <span class="news-item"><span class="ni-dot" style="background:#00f2fe;"></span>WIE Affinity Group</span>
-        <span class="news-sep">✦</span>
-        <span class="news-item"><span class="ni-dot" style="background:#a78bfa;"></span>Kerala Section · Region 10</span>
-        <span class="news-sep">✦</span>
-        <span class="news-item"><span class="ni-dot" style="background:#4facfe;"></span>IEEE SB NCERC</span>
-        <span class="news-sep">✦</span>
-        <span class="news-item"><span class="ni-dot" style="background:#10b981;"></span>Advancing Technology for Humanity</span>
-        <span class="news-sep">✦</span>
-        <span class="news-item"><span class="ni-dot" style="background:#ef4444;"></span>PES · CASS · IAS · PELS Societies</span>
-        <span class="news-sep">✦</span>
-        <span class="news-item"><span class="ni-dot" style="background:#00f2fe;"></span>WIE Affinity Group</span>
-        <span class="news-sep">✦</span>
-        <span class="news-item"><span class="ni-dot" style="background:#a78bfa;"></span>Kerala Section · Region 10</span>
-        <span class="news-sep">✦</span>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- EXECOM 2026 STUNNING NOTIFICATION BOX -->
 <section id="announcement-section" class="section section-dark">
@@ -286,7 +292,6 @@
     
     <div style="display:flex; justify-content:center; width:100%;">
       <div class="stunning-notification-badge reveal-scale">
-        <div class="live-dot"></div>
         <span>Notification</span>
       </div>
     </div>
@@ -388,111 +393,23 @@
     <div class="section-label">Our Team</div>
     <h2 class="section-title">Meet the Execom</h2>
     <p class="section-sub" style="margin-bottom:0;">Hover each card to reveal profile.</p>
-    <div class="execom-home-grid">
-      <div class="epc-wrapper">
-        <div class="epc-inner">
-          <div class="epc-front">
-            <div class="epc-photo">
-              <img src="images/past-2025/Shobha Mam.jpg" alt="Dr. Sobha Manakkal" style="width:100%; height:100%; object-fit:cover;">
-              <div class="epc-scan"></div>
-            </div>
-            <div class="epc-front-info">
-              <span class="epc-badge">⊕ IEEE SB NCERC</span>
-              <span class="epc-role" style="color:#f59e0b;">Branch Counselor</span>
-              <span class="epc-name">Dr. Sobha Manakkal</span>
-              <span class="epc-dept">Faculty, NCERC</span>
-            </div>
-          </div>
-          <div class="epc-back">
-            <div class="epc-particles"><div class="epc-dot" style="left:20%;top:80%;background:#f59e0b;"></div></div>
-            <span class="epc-back-icon">🎓</span>
-            <span class="epc-back-role" style="color:#f59e0b;">Branch Counselor</span>
-            <span class="epc-back-name">Dr. Sobha Manakkal</span>
-            <span class="epc-back-dept">Faculty, NCERC</span>
-            <span class="epc-back-divider" style="background:#f59e0b;"></span>
-            <span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
-          </div>
-        </div>
+    <div class="member-grid-4 reveal-scale">
+      <div class="member-card">
+        <div class="member-photo"><img src="images/past-2025/Shobha Mam.jpg" alt="Dr. Sobha Manakkal"></div>
+        <div class="member-info"><span class="member-role" style="color:var(--gold);">Branch Counselor</span><p class="member-name">Dr. Sobha Manakkal</p></div>
       </div>
-      <div class="epc-wrapper" style="animation-delay:.7s;">
-        <div class="epc-inner">
-          <div class="epc-front">
-            <div class="epc-photo">
-              <img src="images/AARDRA SIVADAS C.jpg" alt="Aardra" style="width:100%; height:100%; object-fit:cover;">
-              <div class="epc-scan"></div>
-            </div>
-            <div class="epc-front-info">
-              <span class="epc-badge">⊕ IEEE SB NCERC</span>
-              <span class="epc-role" style="color:#00f2fe;">Chairperson</span>
-              <span class="epc-name">Aardra Sivadas C</span>
-              <span class="epc-dept">NCERC Thrissur</span>
-            </div>
-          </div>
-          <div class="epc-back">
-            <div class="epc-particles"><div class="epc-dot" style="left:15%;top:80%;background:#00f2fe;"></div></div>
-            <span class="epc-back-icon">👑</span>
-            <span class="epc-back-role" style="color:#00f2fe;">Chairperson</span>
-            <span class="epc-back-name">Aardra Sivadas C</span>
-            <span class="epc-back-dept">NCERC Thrissur</span>
-            <span class="epc-back-divider" style="background:#00f2fe;"></span>
-            <span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
-          </div>
-        </div>
+      <div class="member-card">
+        <div class="member-photo"><img src="images/AARDRA SIVADAS C.jpg" alt="Aardra Sivadas C"></div>
+        <div class="member-info"><span class="member-role" style="color:#00f2fe;">Chairperson</span><p class="member-name">Aardra Sivadas C</p></div>
       </div>
-
-      <div class="epc-wrapper" style="animation-delay:1.4s;">
-        <div class="epc-inner">
-          <div class="epc-front">
-            <div class="epc-photo">
-              <img src="images/sidtharth.jpeg" alt="Sidharth" style="width:100%; height:100%; object-fit:cover;">
-              <div class="epc-scan"></div>
-            </div>
-            <div class="epc-front-info">
-              <span class="epc-badge">⊕ IEEE SB NCERC</span>
-              <span class="epc-role" style="color:#0ea5e9;">Vice Chairperson</span>
-              <span class="epc-name">Sidharth S</span>
-              <span class="epc-dept">NCERC Thrissur</span>
-            </div>
-          </div>
-          <div class="epc-back">
-            <div class="epc-particles"><div class="epc-dot" style="left:25%;top:82%;background:#0ea5e9;"></div></div>
-            <span class="epc-back-icon">⚡</span>
-            <span class="epc-back-role" style="color:#0ea5e9;">Vice Chairperson</span>
-            <span class="epc-back-name">Sidharth S</span>
-            <span class="epc-back-dept">NCERC Thrissur</span>
-            <span class="epc-back-divider" style="background:#0ea5e9;"></span>
-            <span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
-          </div>
-        </div>
+      <div class="member-card">
+        <div class="member-photo"><img src="images/sidtharth.jpeg" alt="Sidharth S"></div>
+        <div class="member-info"><span class="member-role" style="color:#0ea5e9;">Vice Chairperson</span><p class="member-name">Sidharth S</p></div>
       </div>
-
-      <div class="epc-wrapper" style="animation-delay:2.1s;">
-        <div class="epc-inner">
-          <div class="epc-front">
-            <div class="epc-photo">
-              <img src="images/UMESH S KRISHNAN.jpg" alt="Umesh" style="width:100%; height:100%; object-fit:cover;">
-              <div class="epc-scan"></div>
-            </div>
-            <div class="epc-front-info">
-              <span class="epc-badge">⊕ IEEE SB NCERC</span>
-              <span class="epc-role" style="color:#10b981;">Secretary</span>
-              <span class="epc-name">Umesh S Krishnan</span>
-              <span class="epc-dept">NCERC Thrissur</span>
-            </div>
-          </div>
-          <div class="epc-back">
-            <div class="epc-particles"><div class="epc-dot" style="left:18%;top:83%;background:#10b981;"></div></div>
-            <span class="epc-back-icon">🍏</span>
-            <span class="epc-back-role" style="color:#10b981;">Secretary</span>
-            <span class="epc-back-name">Umesh S Krishnan</span>
-            <span class="epc-back-dept">NCERC Thrissur</span>
-            <span class="epc-back-divider" style="background:#10b981;"></span>
-            <span class="epc-back-ieee">⊕ IEEE SB NCERC</span>
-          </div>
-        </div>
+      <div class="member-card">
+        <div class="member-photo"><img src="images/UMESH S KRISHNAN.jpg" alt="Umesh S Krishnan"></div>
+        <div class="member-info"><span class="member-role" style="color:#10b981;">Secretary</span><p class="member-name">Umesh S Krishnan</p></div>
       </div>
-
-
     </div>
     <div class="execom-view-more">
       <a href="team.html" class="btn-view-execom">View Full Execom <span class="btn-arrow">→</span></a>
@@ -540,10 +457,15 @@
           📸 @ieee_sb_ncerc
         </a>
         <div class="footer-social">
-          <a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank" class="social-btn">IG</a>
-          <a href="#" class="social-btn">LI</a>
-          <a href="#" class="social-btn">YT</a>
-          <a href="mailto:ieeesbncerc@gmail.com" class="social-btn">@</a>
+          <a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank" class="social-btn" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/ieee-student-branch-ncerc-702a60202?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" class="social-btn" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="mailto:ieeesbncerc@gmail.com" class="social-btn" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
         </div>
       </div>
       <div class="footer-col"><h4>Navigation</h4><ul>
@@ -567,10 +489,9 @@
           <span class="footer-contact-icon">📍</span>
           <span style="font-size:0.75rem;line-height:1.7;color:var(--muted);">NCERC, Pampady,<br>Thrissur, Kerala — 680588</span>
         </div>
-        <a href="https://maps.google.com/?q=Nehru+College+of+Engineering+Thrissur" target="_blank"
-           style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.6rem;font-family:var(--mono);font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;">
-          View on Maps →
-        </a>
+        <div style="margin-top: 1.2rem; width: 100%; height: 160px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15682.482025143896!2d76.3862217!3d10.7424683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7c64bb7291a13%3A0xeab49dc0b6910636!2sNehru%20College%20of%20Engineering%20and%20Research%20Centre%20(NCERC)!5e0!3m2!1sen!2sin!4v1700688380000!5m2!1sen!2sin" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(85%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
     </div>
     <div class="footer-bottom">

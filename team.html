@@ -8,227 +8,109 @@
   <style>
     #page-loader { display: none !important; }
 
-    /* WIE BENTO POSTER STYLES */
-    .wie-bento-section {
-      max-width: 1200px;
-      margin: 4rem auto 8rem;
+    /* ── MEMBER CARD GRID ── */
+    .member-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      grid-template-rows: repeat(2, 300px);
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1.5rem;
-      padding: 0 1.5rem;
+      max-width: 1200px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
     }
-    .bento-item {
-      position: relative;
-      border-radius: 0;
-      overflow: visible;
-      background: transparent;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-    }
-    .bento-item:hover {
-      transform: translateY(-8px);
-      z-index: 10;
-    }
-    .bento-chair {
-      grid-row: span 2;
-    }
-    .bento-img {
-      width: 100%;
-      flex: 1;
-      min-height: 0;
-      object-fit: cover;
-      border-radius: 28px;
-      border: 1px solid var(--border);
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease, box-shadow 0.6s ease;
-      transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
-      filter: grayscale(20%) brightness(0.9);
-    }
-    .bento-item:hover .bento-img {
-      transform: perspective(1000px) rotateX(3deg) rotateY(-3deg) scale3d(1.04, 1.04, 1.04);
-      filter: grayscale(0%) brightness(1.05);
-      border-color: #00f2fe;
-      box-shadow: -15px 25px 50px rgba(0,0,0,0.5), 0 0 40px rgba(0, 242, 254, 0.2);
-    }
-    .bento-overlay {
-      position: relative;
-      background: transparent !important;
+    .member-card {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 1.2rem 0.5rem 0.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    .bento-role {
+    .member-card:hover { transform: translateY(-6px); }
+    .member-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .member-card:hover .member-photo {
+      border-color: rgba(0,242,254,0.5);
+      box-shadow: 0 8px 30px rgba(0,242,254,0.12);
+    }
+    .member-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.5s ease, filter 0.4s;
+      filter: grayscale(10%);
+    }
+    .member-card:hover .member-photo img {
+      transform: scale(1.06);
+      filter: grayscale(0%);
+    }
+    .member-info {
+      padding: 0.7rem 0.2rem 0.3rem;
+      width: 100%;
+    }
+    .member-role {
       font-family: var(--mono);
-      font-size: 0.65rem;
-      color: #00f2fe;
+      font-size: 0.58rem;
       text-transform: uppercase;
-      letter-spacing: 0.25em;
-      margin-bottom: 0.5rem;
-      transition: all 0.5s;
-    }
-    .bento-name {
-      font-family: var(--display);
-      font-weight: 800;
-      font-size: 1.3rem;
-      color: #fff;
-      margin: 0;
-      line-height: 1.2;
-      transition: all 0.5s;
-    }
-    .bento-chair .bento-name { font-size: 1.7rem; }
-    
-    .bento-item:hover .bento-name {
+      letter-spacing: 0.15em;
       color: #00f2fe;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .member-name {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #e2e8f0;
+      margin: 0;
+      line-height: 1.3;
     }
 
-    /* Ambient Glow in Bento */
-    .bento-glow {
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 200px;
-      height: 200px;
-      background: rgba(0, 242, 254, 0.4);
-      filter: blur(100px);
-      opacity: 0;
-      transition: opacity 0.6s;
-      pointer-events: none;
+    /* ── SOCIETY SECTION HEADER ── */
+    .society-header {
+      text-align: center;
+      margin: 4rem 0 1.5rem;
+      padding: 0 1rem;
     }
-    .bento-item:hover .bento-glow { opacity: 1; }
-
-    @media (max-width: 900px) {
-      .wie-bento-section {
-        grid-template-columns: 1fr;
-        grid-template-rows: 550px 380px 380px;
-        gap: 1.2rem;
-      }
-      .bento-chair { grid-row: span 1; }
-      .bento-name { font-size: 2.2rem !important; }
-      .bento-role { font-size: 0.6rem; }
-      .bento-overlay { padding: 2rem; }
+    .society-header .section-label { justify-content: center; }
+    .society-header h2.section-title {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      margin-bottom: 0.5rem;
+    }
+    .society-divider {
+      width: 60px; height: 3px;
+      margin: 0.6rem auto 0;
+      border-radius: 2px;
     }
 
-    /* CASS BENTO POSTER STYLES (Overrides/Additions) */
-    .cass-glow {
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 200px;
-      height: 200px;
-      background: rgba(0, 102, 153, 0.4); /* IEEE CASS blue-ish */
-      filter: blur(100px);
-      opacity: 0;
-      transition: opacity 0.6s;
-      pointer-events: none;
+    /* ── RESPONSIVE ── */
+    /* ── 4-COLUMN LEADERSHIP ROW ── */
+    .member-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 2rem auto 2rem;
+      padding: 0 1rem;
     }
-    .bento-item:hover .cass-glow { opacity: 1; }
-    .cass-role { color: #00b4d8 !important; }
+    .member-grid-4 .member-card { align-items: center; }
 
-    /* IA/PELS BENTO POSTER STYLES */
-    .iapels-glow {
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 200px;
-      height: 200px;
-      background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(34, 197, 94, 0.4)); /* Purple + Green */
-      filter: blur(100px);
-      opacity: 0;
-      transition: opacity 0.6s;
-      pointer-events: none;
+    @media (max-width: 700px) {
+      .member-grid-4 { grid-template-columns: repeat(2, 1fr); }
     }
-    .bento-item:hover .iapels-glow { opacity: 1; }
-    .iapels-role { 
-      background: linear-gradient(135deg, #a855f7, #22c55e);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700 !important;
+    @media (max-width: 600px) {
+      .member-grid { grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+      .member-name { font-size: 0.78rem; }
+      .member-role { font-size: 0.5rem; }
     }
-    /* PES BENTO POSTER STYLES */
-    .pes-glow {
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 200px;
-      height: 200px;
-      background: rgba(239, 68, 68, 0.4); /* PES Red */
-      filter: blur(100px);
-      opacity: 0;
-      transition: opacity 0.6s;
-      pointer-events: none;
-    }
-    .bento-item:hover .pes-glow { opacity: 1; }
-    .pes-role { color: #ef4444 !important; }
-
-    /* CONTENT BENTO POSTER STYLES */
-    .content-glow {
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 200px;
-      height: 200px;
-      background: rgba(56, 189, 248, 0.4); /* Content Blue */
-      filter: blur(100px);
-      opacity: 0;
-      transition: opacity 0.6s;
-      pointer-events: none;
-    }
-    .bento-item:hover .content-glow { opacity: 1; }
-    .content-role { color: #38bdf8 !important; }
-
-    /* ECC BENTO POSTER STYLES */
-    .ecc-glow {
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 200px;
-      height: 200px;
-      background: rgba(14, 165, 233, 0.4); /* Sky Blue */
-      filter: blur(100px);
-      opacity: 0;
-      transition: opacity 0.6s;
-      pointer-events: none;
-    }
-    .bento-item:hover .ecc-glow { opacity: 1; }
-    .ecc-role { color: #0ea5e9 !important; }
-
-    /* LINK REP BENTO POSTER STYLES */
-    .link-glow {
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 200px;
-      height: 200px;
-      background: rgba(99, 102, 241, 0.4); /* Indigo */
-      filter: blur(100px);
-      opacity: 0;
-      transition: opacity 0.6s;
-      pointer-events: none;
-    }
-    .bento-item:hover .link-glow { opacity: 1; }
-    .link-role { color: #6366f1 !important; }
-
-    /* DESIGN BENTO POSTER STYLES */
-    .design-glow {
-      position: absolute;
-      top: 20%;
-      left: 20%;
-      width: 200px;
-      height: 200px;
-      background: rgba(0, 242, 254, 0.4); /* Pink */
-      filter: blur(100px);
-      opacity: 0;
-      transition: opacity 0.6s;
-      pointer-events: none;
-    }
-    .bento-item:hover .design-glow { opacity: 1; }
-    .design-role { color: #00f2fe !important; }
 
   </style>
 </head>
@@ -262,8 +144,14 @@
     <a href="index.html">Home</a>
     <a href="about.html">About Us</a>
     <a href="events.html">Events</a>
-    <a href="team.html" class="active">Present (2026)</a>
-    <a href="past-execom.html">Past (2025)</a>
+    <div class="mobile-execom-toggle" id="mobileExecomToggle">
+      <span>Execom</span>
+      <span class="mobile-execom-arrow">▾</span>
+    </div>
+    <div class="mobile-execom-sub" id="mobileExecomSub">
+      <a href="team.html" class="active">Present (2026)</a>
+      <a href="past-execom.html">Past (2025)</a>
+    </div>
     <a href="contact.html">Contact</a>
   </div>
   <div class="mobile-backdrop"></div>
@@ -308,7 +196,7 @@
         <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
       </div>
 
-      <div class="execom-grid" style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 6rem;">
+      <div class="execom-grid" style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
         <div class="execom-card reveal-up">
           <div class="execom-photo"><img src="images/past-2025/Neethu mam.jpg" alt="Dr. Neethu M"></div>
           <div class="execom-info"><span class="execom-role" style="color:var(--red);">PES Advisor</span><span class="execom-name">Dr. Neethu M</span></div>
@@ -330,400 +218,143 @@
           <div class="execom-info"><span class="execom-role">Faculty Member</span><span class="execom-name">Silja Varghese</span></div>
         </div>
       </div>
-
-      <!-- Featured Chairperson -->
-      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
-        <div class="section-label reveal">Leading the Branch</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
-          <span style="background: linear-gradient(135deg, var(--gold), #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Chairperson</span>
-        </h2>
-        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      <!-- Execom Members Header -->
+      <div class="section-center reveal" style="margin-top: 5rem; margin-bottom: 3rem; text-align: center;">
+        <div class="section-label">Student Leadership</div>
+        <h3 class="section-title" style="font-size: 2.2rem;">Execom Members</h3>
+        <div style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
       </div>
 
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 5rem;">
-
-        <div class="bento-item">
-          <img src="images/AARDRA SIVADAS C.jpg" alt="Aardra" class="bento-img">
-          <div class="bento-glow" style="background: var(--gold);"></div>
-          <div class="bento-overlay">
-            <span class="bento-role">SB Chairperson</span>
-            <h3 class="bento-name">Aardra Sivadas C</h3>
-          </div>
+      <!-- LEADERSHIP ROW: Chair / Vice / Treasurer / Webmaster -->
+      <div class="member-grid-4 reveal-scale" style="margin-top:1rem;">
+        <div class="member-card">
+          <div class="member-photo"><img src="images/AARDRA SIVADAS C.jpg" alt="Aardra Sivadas C"></div>
+          <div class="member-info"><span class="member-role" style="color:var(--gold);">SB Chairperson</span><p class="member-name">Aardra Sivadas C</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/sidtharth.jpeg" alt="Sidharth S"></div>
+          <div class="member-info"><span class="member-role" style="color:#38bdf8;">SB Vice Chairperson</span><p class="member-name">Sidharth S</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/ARYANANDA S NAIR.jpg" alt="Aryananda S Nair"></div>
+          <div class="member-info"><span class="member-role" style="color:var(--gold);">SB Treasurer</span><p class="member-name">Aryananda S Nair</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/webmaster-image.jpeg" alt="Sreejith"></div>
+          <div class="member-info"><span class="member-role">Lead Webmaster</span><p class="member-name">Sreejith</p></div>
         </div>
       </div>
 
-      <!-- Featured Vice Chairperson -->
-      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
-        <div class="section-label reveal">Strategic Leadership</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
-          <span style="background: linear-gradient(135deg, #38bdf8, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Vice Chairperson</span>
-        </h2>
-        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #38bdf8, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
-      </div>
-
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 5rem;">
-        <div class="bento-item">
-          <img src="images/sidtharth.jpeg" alt="Sidharth" class="bento-img">
-          <div class="bento-glow" style="background: #38bdf8;"></div>
-          <div class="bento-overlay">
-            <span class="bento-role">SB Vice Chairperson</span>
-            <h3 class="bento-name">Sidharth S</h3>
-          </div>
+      <!-- OTHER MEMBERS: Secretary, MDC, ECC, Link Rep, Content, Design -->
+      <div class="member-grid reveal-scale" style="margin-bottom:5rem;">
+        <div class="member-card">
+          <div class="member-photo"><img src="images/UMESH S KRISHNAN.jpg" alt="Umesh S Krishnan"></div>
+          <div class="member-info"><span class="member-role" style="color:#10b981;">SB Secretary</span><p class="member-name">Umesh S Krishnan</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/ASHFAQ BIN ASHRAF.jpg" alt="Ashfaq Bin Ashraf"></div>
+          <div class="member-info"><span class="member-role" style="color:#22c55e;">SB MDC</span><p class="member-name">Ashfaq Bin Ashraf</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/ashwin.jpeg" alt="Aswin"></div>
+          <div class="member-info"><span class="member-role" style="color:#22c55e;">SB MDC</span><p class="member-name">Aswin</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/Jennifer John.jpg" alt="Jennifer John"></div>
+          <div class="member-info"><span class="member-role" style="color:#0ea5e9;">SB ECC</span><p class="member-name">Jennifer John</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/AYUSH.Y.jpg" alt="Ayush Y"></div>
+          <div class="member-info"><span class="member-role" style="color:#6366f1;">SB Link Rep</span><p class="member-name">Ayush Y</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/past-2025/Rithika KR.jpg" alt="Rithika K R"></div>
+          <div class="member-info"><span class="member-role" style="color:#38bdf8;">Content Lead</span><p class="member-name">Rithika K R</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/ANJANA C.jpg" alt="Anjana C"></div>
+          <div class="member-info"><span class="member-role" style="color:#38bdf8;">Content Lead</span><p class="member-name">Anjana C</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/AMEER ALI OK .jpg" alt="Ameer Ali O K" style="object-position:center 15%;"></div>
+          <div class="member-info"><span class="member-role" style="color:#00f2fe;">Design Lead</span><p class="member-name">Ameer Ali O K</p></div>
         </div>
       </div>
 
-      <!-- Featured Secretary -->
-      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
-        <div class="section-label reveal">Operational Excellence</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
-          <span style="background: linear-gradient(135deg, #10b981, #059669); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Secretary</span>
-        </h2>
-        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #10b981, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      <!-- ─── WIE AFFINITY GROUP ─── -->
+      <div class="society-header reveal" style="margin-top:3rem; margin-bottom:2rem;">
+        <h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem);">Women in <span style="background:linear-gradient(135deg,#00f2fe,#4facfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Engineering</span></h2>
+        <div class="society-divider" style="background:linear-gradient(90deg,#00f2fe,transparent);"></div>
       </div>
-
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 5rem;">
-        <div class="bento-item">
-          <img src="images/UMESH S KRISHNAN.jpg" alt="Umesh" class="bento-img">
-          <div class="bento-glow" style="background: #10b981;"></div>
-          <div class="bento-overlay">
-            <span class="bento-role">SB Secretary</span>
-            <h3 class="bento-name">Umesh S Krishnan</h3>
-          </div>
+      <div class="member-grid reveal-scale" style="margin-bottom:2rem; max-width:700px;">
+        <div class="member-card">
+          <div class="member-photo"><img src="images/Hiba alan.jpg" alt="Hiba Alan"></div>
+          <div class="member-info"><span class="member-role" style="color:#00f2fe;">WIE Chair</span><p class="member-name">Hiba Alan</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/Amrita Nair.jpeg" alt="Amrita Nair"></div>
+          <div class="member-info"><span class="member-role" style="color:#00f2fe;">WIE Secretary</span><p class="member-name">Amrita Nair</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/Akhila.jpg" alt="Akhila"></div>
+          <div class="member-info"><span class="member-role" style="color:#00f2fe;">WIE Representative</span><p class="member-name">Akhila</p></div>
         </div>
       </div>
 
-      <!-- Featured Treasurer -->
-      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
-        <div class="section-label reveal">Financial Stewardship</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
-          <span style="background: linear-gradient(135deg, var(--gold), #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Treasurer</span>
-        </h2>
-        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      <!-- ─── PES SOCIETY ─── -->
+      <div class="society-header reveal" style="margin-top:3rem; margin-bottom:2rem;">
+        <h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem);">Power &amp; <span style="background:linear-gradient(135deg,#ef4444,#dc2626);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Energy Society</span></h2>
+        <div class="society-divider" style="background:linear-gradient(90deg,#ef4444,transparent);"></div>
       </div>
-
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 6rem;">
-        <div class="bento-item">
-          <img src="images/ARYANANDA S NAIR.jpg" alt="Aryanandana" class="bento-img">
-          <div class="bento-glow" style="background: var(--gold);"></div>
-          <div class="bento-overlay">
-            <span class="bento-role">SB Treasurer</span>
-            <h3 class="bento-name">Aryananda S Nair</h3>
-          </div>
+      <div class="member-grid reveal-scale" style="margin-bottom:2rem; max-width:700px;">
+        <div class="member-card">
+          <div class="member-photo"><img src="images/ANAMIKA K.jpg" alt="Anamika K"></div>
+          <div class="member-info"><span class="member-role" style="color:#ef4444;">PES Chair</span><p class="member-name">Anamika K</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/Ayisha Anshida ks.jpeg" alt="Ayisha Anshida K S"></div>
+          <div class="member-info"><span class="member-role" style="color:#ef4444;">PES Secretary</span><p class="member-name">Ayisha Anshida K S</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/Varada Elizabeth Kishore.jpg" alt="Varada Elizabeth Kishore"></div>
+          <div class="member-info"><span class="member-role" style="color:#ef4444;">WIP Lead</span><p class="member-name">Varada Elizabeth Kishore</p></div>
         </div>
       </div>
 
-      <!-- Featured Webmaster -->
-      <div class="section-center" style="margin-top: 5rem; margin-bottom: 2.5rem;">
-        <div class="section-label reveal">Engineering the Digital Experience</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
-          <span style="background: linear-gradient(135deg, var(--accent), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Webmaster</span>
-        </h2>
-        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      <!-- ─── CASS SOCIETY ─── -->
+      <div class="society-header reveal" style="margin-top:3rem; margin-bottom:2rem;">
+        <h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem);">Circuits &amp; <span style="background:linear-gradient(135deg,#00b4d8,#0077b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Systems Society</span></h2>
+        <div class="society-divider" style="background:linear-gradient(90deg,#00b4d8,transparent);"></div>
       </div>
-
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 6rem;">
-        <div class="bento-item">
-          <img src="images/webmaster-image.jpeg" alt="Webmaster" class="bento-img">
-          <div class="bento-glow" style="background: var(--accent);"></div>
-          <div class="bento-overlay">
-            <span class="bento-role">Lead Webmaster</span>
-            <h3 class="bento-name">Sreejith</h3>
-          </div>
+      <div class="member-grid reveal-scale" style="margin-bottom:2rem; max-width:700px;">
+        <div class="member-card">
+          <div class="member-photo"><img src="images/abhiyukha.jpeg" alt="Abhiyuktha A H"></div>
+          <div class="member-info"><span class="member-role" style="color:#00b4d8;">CASS Chair</span><p class="member-name">Abhiyuktha A H</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/akshay.jpeg" alt="Akshay"></div>
+          <div class="member-info"><span class="member-role" style="color:#00b4d8;">CASS Secretary</span><p class="member-name">Akshay</p></div>
+        </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/Riswana Parwin S .jpg" alt="Riswana Parwin S"></div>
+          <div class="member-info"><span class="member-role" style="color:#00b4d8;">WiCASS Lead</span><p class="member-name">Riswana Parwin S</p></div>
         </div>
       </div>
 
-      <!-- Featured Membership Development Coordinator (MDC) -->
-      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
-        <div class="section-label reveal">Branch Growth</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
-          <span style="background: linear-gradient(135deg, #22c55e, #16a34a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Membership Development</span>
-        </h2>
-        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #22c55e, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
+      <!-- ─── IA/PELS SOCIETY ─── -->
+      <div class="society-header reveal" style="margin-top:3rem; margin-bottom:2rem;">
+        <h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem);">IA / <span style="background:linear-gradient(135deg,#a855f7,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">PELS Society</span></h2>
+        <div class="society-divider" style="background:linear-gradient(90deg,#a855f7,#22c55e);"></div>
       </div>
-
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: auto; gap: 1.5rem; max-width: 600px; margin-bottom: 6rem;">
-        <div class="bento-item" style="height: 380px;">
-          <img src="images/ASHFAQ BIN ASHRAF.jpg" alt="Ashfaq" class="bento-img">
-          <div class="bento-glow" style="background: #22c55e;"></div>
-          <div class="bento-overlay">
-            <span class="bento-role">SB MDC</span>
-            <h3 class="bento-name">Ashfaq Bin Ashraf</h3>
-          </div>
+      <div class="member-grid reveal-scale" style="margin-bottom:2rem; max-width:500px;">
+        <div class="member-card">
+          <div class="member-photo"><img src="images/rasika.jpeg" alt="Rasitha"></div>
+          <div class="member-info"><span class="member-role" style="color:#a855f7;">IA/PELS Chair</span><p class="member-name">Rasitha</p></div>
         </div>
-        <div class="bento-item" style="height: 380px;">
-          <img src="images/ashwin.jpeg" alt="Aswin" class="bento-img">
-          <div class="bento-glow" style="background: #22c55e;"></div>
-          <div class="bento-overlay">
-            <span class="bento-role">SB MDC</span>
-            <h3 class="bento-name">Aswin</h3>
-          </div>
+        <div class="member-card">
+          <div class="member-photo"><img src="images/aswadath.jpeg" alt="Aswadath"></div>
+          <div class="member-info"><span class="member-role" style="color:#22c55e;">IA/PELS Secretary</span><p class="member-name">Aswadath</p></div>
         </div>
-      </div>
-
-      <!-- Featured Electronic Communications Coordinator (ECC) -->
-      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
-        <div class="section-label reveal">Digital Communications</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
-          <span style="background: linear-gradient(135deg, #0ea5e9, #0284c7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">ECC</span>
-        </h2>
-        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #0ea5e9, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
-      </div>
-
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 6rem;">
-        <div class="bento-item">
-          <img src="images/Jennifer John.jpg" alt="Jennifer" class="bento-img">
-          <div class="ecc-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role ecc-role">SB ECC</span>
-            <h3 class="bento-name">Jennifer John</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- Featured Link Representative -->
-      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
-        <div class="section-label reveal">Cross-Branch Connection</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
-          <span style="background: linear-gradient(135deg, #6366f1, #4f46e5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Link Representative</span>
-        </h2>
-        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #6366f1, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
-      </div>
-
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 6rem;">
-        <div class="bento-item">
-          <img src="images/AYUSH.Y.jpg" alt="Ayush" class="bento-img">
-          <div class="link-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role link-role">SB Link Rep</span>
-            <h3 class="bento-name">Ayush Y</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- Featured Content Team -->
-      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
-        <div class="section-label reveal">Creative Storytelling</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
-          <span style="background: linear-gradient(135deg, #38bdf8, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Content Team</span>
-        </h2>
-        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #38bdf8, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
-      </div>
-
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: auto; gap: 1.5rem; max-width: 600px; margin-bottom: 6rem;">
-        <div class="bento-item" style="height: 380px;">
-          <img src="images/past-2025/Rithika KR.jpg" alt="Rithika" class="bento-img">
-          <div class="content-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role content-role">Content Lead</span>
-            <h3 class="bento-name">Rithika K R</h3>
-          </div>
-        </div>
-        <div class="bento-item" style="height: 380px;">
-          <img src="images/ANJANA C.jpg" alt="Anjana" class="bento-img">
-          <div class="content-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role content-role">Content Lead</span>
-            <h3 class="bento-name">Anjana C</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- Featured Design Team -->
-      <div class="section-center" style="margin-top: 4rem; margin-bottom: 2.5rem;">
-        <div class="section-label reveal">Visual Identity & Creativity</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 1.2rem;">
-          <span style="background: linear-gradient(135deg, #00f2fe, #d946ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Design Team</span>
-        </h2>
-        <div class="reveal" style="width: 60px; height: 3px; background: linear-gradient(90deg, #00f2fe, transparent); margin: 0 auto 1.5rem; border-radius: 2px;"></div>
-      </div>
-
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: 380px; max-width: 600px; margin-bottom: 6rem;">
-        <div class="bento-item">
-          <img src="images/AMEER ALI OK .jpg" alt="Ameer" class="bento-img" style="object-position: center 15%;">
-          <div class="design-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role design-role">SB Design Lead</span>
-            <h3 class="bento-name">Ameer Ali O K</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- WIE Affinity Group -->
-      <div class="section-center" style="margin-top: 6rem; margin-bottom: 4rem;">
-        <div class="section-label reveal">Affinity Group</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem;">
-          Women in <span style="background: linear-gradient(135deg, #00f2fe, #4facfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Engineering</span>
-        </h2>
-        <div class="reveal" style="width: 80px; height: 4px; background: linear-gradient(90deg, #00f2fe, transparent); margin: 0 auto 2rem; border-radius: 2px;"></div>
-        <p class="section-sub reveal" style="margin: 0 auto; max-width: 650px; font-size: 1.05rem; color: var(--text2); line-height: 1.8; opacity: 0.85;">
-          Advancing technology for humanity while fostering a diverse and inclusive environment that empowers women to lead and innovate.
-        </p>
-      </div>
-
-      <!-- WIE Bento Poster -->
-      <div class="wie-bento-section reveal-scale">
-        <!-- Hiba - Chair -->
-        <div class="bento-item bento-chair">
-          <img src="images/Hiba alan.jpg" alt="Hiba" class="bento-img">
-          <div class="bento-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role">WIE Chair</span>
-            <h3 class="bento-name">Hiba Alan</h3>
-          </div>
-        </div>
-
-        <!-- Amrita - Secretary -->
-        <div class="bento-item">
-          <img src="images/Amrita Nair.jpeg" alt="Amrita" class="bento-img">
-          <div class="bento-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role">WIE Secretary</span>
-            <h3 class="bento-name">Amrita Nair</h3>
-          </div>
-        </div>
-
-        <!-- Akhila - Representative -->
-        <div class="bento-item">
-          <img src="images/Akhila.jpg" alt="Akhila" class="bento-img">
-          <div class="bento-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role">WIE Representative</span>
-            <h3 class="bento-name">Akhila</h3>
-          </div>
-        </div>
-      </div>
-
-
-
-
-
-
-
-
-      <!-- PES Society -->
-      <div class="section-center" style="margin-top: 6rem; margin-bottom: 4rem;">
-        <div class="section-label reveal">Technical Society</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem;">
-          Power & <span style="background: linear-gradient(135deg, #ef4444, #dc2626); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Energy Society</span>
-        </h2>
-        <div class="reveal" style="width: 80px; height: 4px; background: linear-gradient(90deg, #ef4444, transparent); margin: 0 auto 2rem; border-radius: 2px;"></div>
-        <p class="section-sub reveal" style="margin: 0 auto; max-width: 650px; font-size: 1.05rem; color: var(--text2); line-height: 1.8; opacity: 0.85;">
-          Empowering humanity through sustainable energy solutions and power systems innovation.
-        </p>
-      </div>
-
-      <!-- PES Bento Poster -->
-      <div class="wie-bento-section reveal-scale">
-        <!-- Anamika - Chair -->
-        <div class="bento-item bento-chair">
-          <img src="images/ANAMIKA K.jpg" alt="Anamika" class="bento-img">
-          <div class="pes-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role pes-role">PES Chair</span>
-            <h3 class="bento-name">Anamika K</h3>
-          </div>
-        </div>
-
-        <!-- Ayisha - Secretary -->
-        <div class="bento-item">
-          <img src="images/Ayisha Anshida ks.jpeg" alt="Ayisha" class="bento-img">
-          <div class="pes-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role pes-role">PES Secretary</span>
-            <h3 class="bento-name">Ayisha Anshida K S</h3>
-          </div>
-        </div>
-
-        <!-- Varadha - WIP -->
-        <div class="bento-item">
-          <img src="images/Varada Elizabeth Kishore.jpg" alt="Varadha" class="bento-img">
-          <div class="pes-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role pes-role">WIP Lead</span>
-            <h3 class="bento-name">Varada Elizabeth Kishore</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- CASS Society -->
-      <div class="section-center" style="margin-top: 6rem; margin-bottom: 4rem;">
-        <div class="section-label reveal">Technical Society</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem;">
-          Circuits & <span style="background: linear-gradient(135deg, #00b4d8, #0077b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Systems Society</span>
-        </h2>
-        <div class="reveal" style="width: 80px; height: 4px; background: linear-gradient(90deg, #00b4d8, transparent); margin: 0 auto 2rem; border-radius: 2px;"></div>
-        <p class="section-sub reveal" style="margin: 0 auto; max-width: 650px; font-size: 1.05rem; color: var(--text2); line-height: 1.8; opacity: 0.85;">
-          Fostering technical innovation and excellence in the field of circuits and systems for the benefit of humanity.
-        </p>
-      </div>
-
-      <!-- CASS Bento Poster -->
-      <div class="wie-bento-section reveal-scale">
-        <!-- Abhiyuktha - Chair -->
-        <div class="bento-item bento-chair">
-          <img src="images/abhiyukha.jpeg" alt="Abhiyuktha" class="bento-img">
-          <div class="cass-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role cass-role">CASS Chair</span>
-            <h3 class="bento-name">Abhiyuktha A H</h3>
-          </div>
-        </div>
-
-        <!-- Akshay - Secretary -->
-        <div class="bento-item">
-          <img src="images/akshay.jpeg" alt="Akshay" class="bento-img">
-          <div class="cass-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role cass-role">CASS Secretary</span>
-            <h3 class="bento-name">Akshay</h3>
-          </div>
-        </div>
-
-        <!-- Riswana - WiCASS -->
-        <div class="bento-item">
-          <img src="images/Riswana Parwin S .jpg" alt="Riswana" class="bento-img">
-          <div class="cass-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role cass-role">WiCASS Lead</span>
-            <h3 class="bento-name">Riswana Parwin S</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- IA/PELS Society -->
-      <div class="section-center" style="margin-top: 6rem; margin-bottom: 4rem;">
-        <div class="section-label reveal">Technical Society</div>
-        <h2 class="section-title reveal" style="font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem;">
-          IA / <span style="background: linear-gradient(135deg, #a855f7, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">PELS Society</span>
-        </h2>
-        <div class="reveal" style="width: 80px; height: 4px; background: linear-gradient(90deg, #a855f7, #22c55e); margin: 0 auto 2rem; border-radius: 2px;"></div>
-        <p class="section-sub reveal" style="margin: 0 auto; max-width: 650px; font-size: 1.05rem; color: var(--text2); line-height: 1.8; opacity: 0.85;">
-          Advancing industry applications and power electronics for a sustainable and efficient future.
-        </p>
-      </div>
-
-      <!-- IA/PELS Bento Poster -->
-      <div class="wie-bento-section reveal-scale" style="grid-template-columns: 1fr; grid-template-rows: auto; gap: 1.5rem; max-width: 600px; margin-bottom: 6rem;">
-        <!-- Rasitha - Chair -->
-        <div class="bento-item" style="height: 400px;">
-          <img src="images/rasika.jpeg" alt="Rasitha" class="bento-img">
-          <div class="iapels-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role iapels-role">IA/PELS Chair</span>
-            <h3 class="bento-name">Rasitha</h3>
-          </div>
-        </div>
-
-        <!-- Ashwadh - Secretary -->
-        <div class="bento-item" style="height: 400px;">
-          <img src="images/aswadath.jpeg" alt="Ashwadh" class="bento-img">
-          <div class="iapels-glow"></div>
-          <div class="bento-overlay">
-            <span class="bento-role iapels-role">IA/PELS Secretary</span>
-            <h3 class="bento-name">Aswadath</h3>
-          </div>
-        </div>
-      </div>
       </div>
     </div>
   </section>
@@ -743,11 +374,16 @@
           <div class="footer-brand">IEEE <span>SB</span> NCERC</div>
           <p class="footer-tagline">Nehru College of Engineering and Research Centre.</p>
           <div class="footer-social">
-            <a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank" class="social-btn">IG</a>
-            <a href="#" class="social-btn">LI</a>
-            <a href="#" class="social-btn">YT</a>
-            <a href="mailto:ieeesbncerc@gmail.com" class="social-btn">@</a>
-          </div>
+          <a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank" class="social-btn" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/ieee-student-branch-ncerc-702a60202?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" class="social-btn" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="mailto:ieeesbncerc@gmail.com" class="social-btn" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+        </div>
         </div>
         <div class="footer-col"><h4>Navigation</h4><ul>
           <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>

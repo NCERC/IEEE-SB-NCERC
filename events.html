@@ -1,3 +1,7 @@
+Do you mean making all the photos in
+
+past_execom.html
+exactly the same dimensions (like square images, e.g. height: 327px for all of them)?
 <!DOCTYPE html>
 <html lang="en">
 
@@ -536,8 +540,12 @@
   <canvas id="page-bg-canvas" class="page-bg-canvas"></canvas>
   <nav id="navbar">
     <a href="index.html" class="nav-brand">
-      <img src="./images/ieee-logo.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" class="nav-logo-img" alt="IEEE SB NCERC"/>
-      <span style="display:none;align-items:center;gap:0.6rem;"><div class="nav-brand-dot"></div>IEEE SB NCERC</span>
+      <img src="./images/ieee-logo.png"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" class="nav-logo-img"
+        alt="IEEE SB NCERC" />
+      <span style="display:none;align-items:center;gap:0.6rem;">
+        <div class="nav-brand-dot"></div>IEEE SB NCERC
+      </span>
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -559,8 +567,14 @@
     <a href="index.html">Home</a>
     <a href="about.html">About Us</a>
     <a href="events.html" class="active">Events</a>
-    <a href="team.html">Present (2026)</a>
-    <a href="past-execom.html">Past (2025)</a>
+    <div class="mobile-execom-toggle" id="mobileExecomToggle">
+      <span>Execom</span>
+      <span class="mobile-execom-arrow">▾</span>
+    </div>
+    <div class="mobile-execom-sub" id="mobileExecomSub">
+      <a href="team.html">Present (2026)</a>
+      <a href="past-execom.html">Past (2025)</a>
+    </div>
     <a href="contact.html">Contact</a>
   </div>
   <div class="mobile-backdrop"></div>
@@ -586,7 +600,8 @@
       <div id="tab-latest">
         <div class="ev-grid">
           <!-- IDEATHON (NEWEST) -->
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;" onclick="openEventSidebar('ideathon')">
+          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
+            onclick="openEventSidebar('ideathon')">
             <div class="ev-img tall">
               <img src="./images/ideathon-image.jpeg" alt="WIE Ideathon 2025" />
               <div class="ev-img-glow"></div>
@@ -598,16 +613,19 @@
               </div>
               <div class="ev-tags">
                 <span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE Affinity</span>
-                <span class="ev-tag" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">Ideathon</span>
+                <span class="ev-tag"
+                  style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">Ideathon</span>
               </div>
               <div class="ev-title big">WIE Ideathon — Women's Day 2025</div>
-              <div class="ev-desc">Ideas don’t ask who you are only how far you’re willing to think. Have a bold idea? Join the WIE Ideathon.</div>
+              <div class="ev-desc">Ideas don’t ask who you are only how far you’re willing to think. Have a bold idea?
+                Join the WIE Ideathon.</div>
               <div class="ev-meta"><span>📅 March 16</span><span>📍 Seminar Hall</span><span>💰 ₹100 / Team</span></div>
             </div>
           </div>
 
           <!-- DEBATE -->
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;" onclick="openEventSidebar('debate')">
+          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
+            onclick="openEventSidebar('debate')">
             <div class="ev-img tall">
               <img src="./images/debate-competition1.jpeg" alt="WIE Debate Competition 2025"
                 onerror="this.onerror=null;this.src='./images/debate-competition.jpeg'" />
@@ -620,7 +638,8 @@
                 <span class="ev-tag" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">Debate</span>
               </div>
               <div class="ev-title">Debate Competition — Women's Day 2025</div>
-              <div class="ev-desc">Empowering voices, exchanging ideas and celebrating perspectives! Organized as part of Women's Day celebrations.</div>
+              <div class="ev-desc">Empowering voices, exchanging ideas and celebrating perspectives! Organized as part
+                of Women's Day celebrations.</div>
               <div class="ev-meta"><span>📅 March 12</span><span>📍 Seminar Hall</span></div>
             </div>
           </div>
@@ -631,7 +650,8 @@
       <div id="tab-all" style="display:none;">
         <div class="ev-grid">
           <!-- IDEATHON -->
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.25); cursor: pointer;" onclick="openEventSidebar('ideathon')">
+          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.25); cursor: pointer;"
+            onclick="openEventSidebar('ideathon')">
             <div class="ev-img tall">
               <img src="./images/ideathon-image.jpeg" alt="Ideathon" />
               <div class="ev-img-glow"></div>
@@ -641,13 +661,16 @@
               <div class="ev-latest-badge">
                 <div class="ev-latest-dot"></div>Latest
               </div>
-              <div class="ev-tags"><span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE Affinity</span></div>
+              <div class="ev-tags"><span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE Affinity</span>
+              </div>
               <div class="ev-title">WIE Ideathon — Women's Day 2025</div>
-              <div class="ev-desc">Have a bold idea? Start here. Ideas don’t ask who you are only how far you’re willing to think.</div>
+              <div class="ev-desc">Have a bold idea? Start here. Ideas don’t ask who you are only how far you’re willing
+                to think.</div>
               <div class="ev-meta"><span>📅 Mar 16, 2025</span><span>📍 NCERC</span></div>
             </div>
           </div>
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.25); cursor: pointer;" onclick="openEventSidebar('debate')">
+          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.25); cursor: pointer;"
+            onclick="openEventSidebar('debate')">
             <div class="ev-img tall">
               <img src="./images/debate-competition1.jpeg" alt="Debate"
                 onerror="this.onerror=null;this.src='./images/debate-competition.jpeg'" />
@@ -661,7 +684,8 @@
               <div class="ev-tags"><span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE Affinity</span>
               </div>
               <div class="ev-title">Debate Competition — Women's Day 2025</div>
-              <div class="ev-desc">Empowering voices, exchanging ideas and celebrating perspectives! Organized as part of Women's Day celebrations.</div>
+              <div class="ev-desc">Empowering voices, exchanging ideas and celebrating perspectives! Organized as part
+                of Women's Day celebrations.</div>
               <div class="ev-meta"><span>📅 March 12</span><span>📍 NCERC</span></div>
             </div>
           </div>
@@ -781,7 +805,8 @@
               <div class="ev-img-glow"></div>
             </div>
             <div class="ev-body">
-              <div class="ev-tags"><span class="ev-tag" style="border-color:#f59e0b;color:#f59e0b;">IAS Chapter</span></div>
+              <div class="ev-tags"><span class="ev-tag" style="border-color:#f59e0b;color:#f59e0b;">IAS Chapter</span>
+              </div>
               <div class="ev-title">IAS Industrial Visit</div>
               <div class="ev-desc">Exploring industrial automation and power distribution systems.</div>
               <div class="ev-meta"><span>📅 Oct 2024</span><span>📍 Industrial Area</span></div>
@@ -799,7 +824,8 @@
               <div class="ev-img-glow"></div>
             </div>
             <div class="ev-body">
-              <div class="ev-tags"><span class="ev-tag" style="border-color:#ef4444;color:#ef4444;">PELS Chapter</span></div>
+              <div class="ev-tags"><span class="ev-tag" style="border-color:#ef4444;color:#ef4444;">PELS Chapter</span>
+              </div>
               <div class="ev-title">PELS Tech Talk</div>
               <div class="ev-desc">Deep dive into power conversion and semiconductor technologies.</div>
               <div class="ev-meta"><span>📅 Nov 2024</span><span>📍 NCERC</span></div>
@@ -812,7 +838,8 @@
       <div id="tab-wie" style="display:none;">
         <div class="ev-grid">
           <!-- IDEATHON -->
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;" onclick="openEventSidebar('ideathon')">
+          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
+            onclick="openEventSidebar('ideathon')">
             <div class="ev-img tall">
               <img src="./images/ideathon-image.jpeg" alt="WIE Ideathon" />
               <div class="ev-img-glow"></div>
@@ -822,13 +849,16 @@
               <div class="ev-latest-badge">
                 <div class="ev-latest-dot"></div>Latest
               </div>
-              <div class="ev-tags"><span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE Affinity</span><span class="ev-tag" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">Ideathon</span></div>
+              <div class="ev-tags"><span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE
+                  Affinity</span><span class="ev-tag"
+                  style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">Ideathon</span></div>
               <div class="ev-title">WIE Ideathon — Women's Day 2025</div>
               <div class="ev-desc">From ideas to innovations. From questions to breakthroughs. Empowering voices.</div>
               <div class="ev-meta"><span>📅 Mar 16, 2025</span><span>📍 Seminar Hall</span></div>
             </div>
           </div>
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;" onclick="openEventSidebar('debate')">
+          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
+            onclick="openEventSidebar('debate')">
             <div class="ev-img tall">
               <img src="./images/debate-competition1.jpeg" alt="WIE Debate"
                 onerror="this.onerror=null;this.src='./images/debate-competition.jpeg'" />
@@ -843,7 +873,8 @@
                   Affinity</span><span class="ev-tag"
                   style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">Debate</span></div>
               <div class="ev-title">Debate Competition — Women's Day 2025</div>
-              <div class="ev-desc">Empowering voices, exchanging ideas and celebrating perspectives! Organized as part of Women's Day celebrations.</div>
+              <div class="ev-desc">Empowering voices, exchanging ideas and celebrating perspectives! Organized as part
+                of Women's Day celebrations.</div>
               <div class="ev-meta"><span>📅 March 12</span><span>📍 NCERC</span></div>
             </div>
           </div>
@@ -903,9 +934,17 @@
         <div>
           <div class="footer-brand">IEEE <span>SB</span> NCERC</div>
           <p class="footer-tagline">Nehru College of Engineering and Research Centre.</p>
-          <div class="footer-social"><a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs"
-              target="_blank" class="social-btn">IG</a><a href="#" class="social-btn">LI</a><a
-              href="mailto:ieeesbncerc@gmail.com" class="social-btn">@</a></div>
+          <div class="footer-social">
+          <a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank" class="social-btn" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/ieee-student-branch-ncerc-702a60202?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" class="social-btn" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="mailto:ieeesbncerc@gmail.com" class="social-btn" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+        </div>
         </div>
         <div class="footer-col">
           <h4>Navigation</h4>
@@ -966,7 +1005,7 @@
     }
 
     // Handle URL parameters
-    window.onload = function() {
+    window.onload = function () {
       const urlParams = new URLSearchParams(window.location.search);
       const tab = urlParams.get('tab');
       if (tab) {
