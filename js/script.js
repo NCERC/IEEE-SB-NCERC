@@ -50,15 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── SCROLL REVEAL ──
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
+    entries.forEach((e) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        e.target.classList.add('visible');
         obs.unobserve(e.target);
       }
     });
   }, { threshold: 0.01, rootMargin: '0px 0px -20px 0px' });
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger').forEach(el => obs.observe(el));
-  setTimeout(() => document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger').forEach(el => el.classList.add('visible')), 2000);
+  setTimeout(() => document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger').forEach(el => el.classList.add('visible')), 500);
 
   // ── COUNTER ──
   const cObs = new IntersectionObserver(entries => {
@@ -113,8 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', e => {
       e.preventDefault();
       const loader = document.getElementById('page-loader');
-      if (loader) { loader.classList.remove('hidden'); setTimeout(() => { window.location.href = href; }, 350); }
-      else window.location.href = href;
+      if (loader) {
+        loader.classList.remove('hidden');
+        setTimeout(() => window.location.href = href, 50);
+      } else {
+        window.location.href = href;
+      }
     });
   });
 

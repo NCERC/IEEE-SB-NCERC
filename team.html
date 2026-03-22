@@ -10,8 +10,8 @@
 
     /* ── MEMBER CARD GRID ── */
     .member-grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       justify-content: center;
       gap: 1.5rem;
       max-width: 1200px;
@@ -19,8 +19,9 @@
       padding: 0 1rem;
     }
     .member-grid .member-card {
-      flex: 1 1 180px;
+      width: 100%;
       max-width: 220px;
+      margin: 0 auto;
     }
     .member-card {
       display: flex;
@@ -98,8 +99,8 @@
 
     /* ── 4-COLUMN LEADERSHIP ROW ── */
     .member-grid-4 {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       justify-content: center;
       gap: 1.5rem;
       max-width: 1000px;
@@ -108,8 +109,9 @@
     }
     .member-grid-4 .member-card { 
       align-items: center; 
-      flex: 1 1 200px;
+      width: 100%;
       max-width: 240px;
+      margin: 0 auto;
     }
 
     @media (max-width: 700px) {
@@ -117,13 +119,10 @@
     }
     @media (max-width: 600px) {
       .member-grid { 
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        grid-template-columns: repeat(2, 1fr);
         gap: 0.9rem; 
       }
       .member-grid .member-card {
-        flex: 0 0 calc(50% - 0.45rem);
         max-width: 180px;
       }
       .member-name { font-size: 0.78rem; }
@@ -192,20 +191,6 @@
       <div class="section-label">Executive Committee</div>
       <h2 class="section-title">2026 Team</h2>
 
-      <!-- Featured: Branch Counselor -->
-      <div class="featured-execom-section" style="margin-bottom: 5rem;">
-        <div class="featured-card">
-          <div class="featured-aurora"></div>
-          <div class="featured-photo">
-            <img src="images/past-2025/Shobha Mam.jpg" alt="Dr. Sobha Manakkal" style="width:100%; height:100%; object-fit:cover;">
-          </div>
-          <div class="execom-info">
-            <span class="execom-role" style="color:var(--gold);">Branch Counselor</span>
-            <span class="execom-name">Dr. Sobha Manakkal</span>
-            <div class="counselor-badge">IEEE SB NCERC</div>
-          </div>
-        </div>
-      </div>
 
       <!-- Faculty Advisors Grid -->
       <div class="section-center" style="margin-top: 4rem; margin-bottom: 3rem;">
@@ -216,6 +201,10 @@
 
       <div class="execom-grid" style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
         <div class="execom-card reveal-up">
+          <div class="execom-photo"><img src="images/past-2025/Shobha Mam.jpg" alt="Dr. Sobha Manakkal"></div>
+          <div class="execom-info"><span class="execom-role" style="color:var(--gold);">Faculty Advisor</span><span class="execom-name">Dr. Sobha Manakkal</span></div>
+        </div>
+        <div class="execom-card reveal-up" style="animation-delay: 0.1s;">
           <div class="execom-photo"><img src="images/past-2025/Neethu mam.jpg" alt="Dr. Neethu M"></div>
           <div class="execom-info"><span class="execom-role" style="color:var(--red);">PES Advisor</span><span class="execom-name">Dr. Neethu M</span></div>
         </div>
@@ -246,23 +235,23 @@
       <!-- LEADERSHIP ROW: Chair / Vice / Secretary / Treasurer / Webmaster -->
       <div class="member-grid reveal-scale" style="margin-top:1rem;">
         <div class="member-card">
-          <div class="member-photo"><img src="images/AARDRA SIVADAS C.jpg" alt="Aardra Sivadas C"></div>
+          <div class="member-photo"><img src="images/AARDRA SIVADAS C.jpg" alt="Aardra Sivadas C" loading="lazy"></div>
           <div class="member-info"><span class="member-role" style="color:var(--gold);">SB Chairperson</span><p class="member-name">Aardra Sivadas C</p></div>
         </div>
         <div class="member-card">
-          <div class="member-photo"><img src="images/sidtharth.jpeg" alt="Sidharth S"></div>
+          <div class="member-photo"><img src="images/sidtharth.jpeg" alt="Sidharth S" loading="lazy"></div>
           <div class="member-info"><span class="member-role" style="color:#38bdf8;">SB Vice Chairperson</span><p class="member-name">Sidharth S</p></div>
         </div>
         <div class="member-card">
-          <div class="member-photo"><img src="images/UMESH S KRISHNAN.jpg" alt="Umesh S Krishnan"></div>
+          <div class="member-photo"><img src="images/UMESH S KRISHNAN.jpg" alt="Umesh S Krishnan" loading="lazy"></div>
           <div class="member-info"><span class="member-role" style="color:#10b981;">SB Secretary</span><p class="member-name">Umesh S Krishnan</p></div>
         </div>
         <div class="member-card">
-          <div class="member-photo"><img src="images/ARYANANDA S NAIR.jpg" alt="Aryananda S Nair"></div>
+          <div class="member-photo"><img src="images/ARYANANDA S NAIR.jpg" alt="Aryananda S Nair" loading="lazy"></div>
           <div class="member-info"><span class="member-role" style="color:var(--gold);">SB Treasurer</span><p class="member-name">Aryananda S Nair</p></div>
         </div>
         <div class="member-card">
-          <div class="member-photo"><img src="images/webmaster-image.jpeg" alt="Sreejith"></div>
+          <div class="member-photo"><img src="images/webmaster-image.jpeg" alt="Sreejith" loading="lazy"></div>
           <div class="member-info"><span class="member-role">Lead Webmaster</span><p class="member-name">Sreejith</p></div>
         </div>
       </div>
@@ -381,7 +370,7 @@
   <div style="text-align:center;padding:3rem 2rem;background:var(--bg2);border-top:1px solid var(--border);">
     <p style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-bottom:1.2rem;letter-spacing:0.1em;text-transform:uppercase;">Looking for previous committees?</p>
     <a href="past-execom.html" style="display:inline-flex;align-items:center;gap:0.8rem;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.9rem 2.2rem;background:transparent;color:var(--text2);border:1.5px solid var(--border2);border-radius:50px;transition:all 0.3s;text-decoration:none;">
-      🕐 View Past Execom
+      View Past Execom
     </a>
   </div>
 

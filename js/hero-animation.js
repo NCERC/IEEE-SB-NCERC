@@ -13,19 +13,9 @@ function initHeroCanvas() {
   resize();
   window.addEventListener('resize', resize);
 
-  // Stars
+  // Setup
   const isMobile = window.innerWidth < 768;
-  const starCount = isMobile ? 120 : 350;
   const rayCount = isMobile ? 12 : 22;
-  const dustCount = isMobile ? 30 : 80;
-
-  const stars = Array.from({length:starCount}, () => ({
-    x: Math.random(), y: Math.random(),
-    r: Math.random()*1.8+0.2,
-    twinkle: Math.random()*Math.PI*2,
-    speed: Math.random()*0.02+0.004,
-    hue: Math.random()<0.2 ? 220 : 0,
-  }));
 
   // Light rays
   const rays = Array.from({length:rayCount}, (_,i) => ({
@@ -37,27 +27,7 @@ function initHeroCanvas() {
     hue: 215+Math.random()*55,
   }));
 
-  // Dust particles
-  const dust = Array.from({length:dustCount}, () => ({
-    x: Math.random(), y: Math.random(),
-    vx: (Math.random()-0.5)*0.0003, vy: (Math.random()-0.5)*0.0003,
-    r: Math.random()*3+0.5,
-    hue: 210+Math.random()*65,
-    alpha: Math.random()*0.5+0.1,
-    pulse: Math.random()*Math.PI*2,
-    pSpeed: Math.random()*0.022+0.007,
-  }));
 
-  // Shooting stars queue
-  let shooters = [];
-  function spawnShooter() {
-    shooters.push({
-      x: Math.random()*W*0.6, y: Math.random()*H*0.4,
-      vx: 5+Math.random()*5, vy: 1+Math.random()*3,
-      life: 1, decay: 0.03+Math.random()*0.02,
-      len: 60+Math.random()*80,
-    });
-  }
 
   function draw() {
     t += 0.006;
@@ -78,18 +48,7 @@ function initHeroCanvas() {
       ctx.fillStyle=gr; ctx.fillRect(0,0,W,H);
     });
 
-    // Stars
-    stars.forEach(s=>{
-      s.twinkle+=s.speed;
-      const a=Math.max(0.04,0.22+Math.sin(s.twinkle)*0.58);
-      ctx.beginPath(); ctx.arc(s.x*W,s.y*H,s.r,0,Math.PI*2);
-      ctx.fillStyle=`hsla(${s.hue},${s.hue?'60%':'0%'},95%,${a})`; ctx.fill();
-      if(s.r>1.3&&a>0.45){
-        const len=s.r*5; ctx.strokeStyle=`hsla(${s.hue},${s.hue?'60%':'0%'},95%,${a*0.22})`; ctx.lineWidth=0.5;
-        ctx.beginPath(); ctx.moveTo(s.x*W-len,s.y*H); ctx.lineTo(s.x*W+len,s.y*H);
-        ctx.moveTo(s.x*W,s.y*H-len); ctx.lineTo(s.x*W,s.y*H+len); ctx.stroke();
-      }
-    });
+
 
     // Globe
     const gx=W*0.52, gy=H*0.43, globeR=Math.min(W,H)*0.27;
@@ -141,28 +100,7 @@ function initHeroCanvas() {
     cg.addColorStop(0,`rgba(225,215,255,${0.22+Math.sin(t*0.6)*0.08})`); cg.addColorStop(1,'rgba(0,0,0,0)');
     ctx.fillStyle=cg; ctx.fillRect(0,0,W,H);
 
-    // Dust
-    dust.forEach(d=>{
-      d.x+=d.vx; d.y+=d.vy; d.pulse+=d.pSpeed;
-      if(d.x<0)d.x=1; if(d.x>1)d.x=0; if(d.y<0)d.y=1; if(d.y>1)d.y=0;
-      const a=d.alpha*(0.35+Math.sin(d.pulse)*0.65);
-      const gr=ctx.createRadialGradient(d.x*W,d.y*H,0,d.x*W,d.y*H,d.r*3.5);
-      gr.addColorStop(0,`hsla(${d.hue},82%,72%,${a})`); gr.addColorStop(1,'rgba(0,0,0,0)');
-      ctx.beginPath(); ctx.arc(d.x*W,d.y*H,d.r*3.5,0,Math.PI*2); ctx.fillStyle=gr; ctx.fill();
-    });
 
-    // Shooting stars
-    if(Math.random()<0.004) spawnShooter();
-    shooters=shooters.filter(s=>s.life>0);
-    shooters.forEach(s=>{
-      s.x+=s.vx; s.y+=s.vy; s.life-=s.decay;
-      const sg=ctx.createLinearGradient(s.x-s.vx*10,s.y-s.vy*10,s.x,s.y);
-      sg.addColorStop(0,'rgba(255,255,255,0)'); sg.addColorStop(1,`rgba(255,255,255,${s.life*0.85})`);
-      ctx.beginPath(); ctx.strokeStyle=sg; ctx.lineWidth=1.5;
-      ctx.moveTo(s.x-s.vx*10,s.y-s.vy*10); ctx.lineTo(s.x,s.y); ctx.stroke();
-      ctx.beginPath(); ctx.arc(s.x,s.y,2,0,Math.PI*2);
-      ctx.fillStyle=`rgba(255,255,255,${s.life})`; ctx.fill();
-    });
 
     requestAnimationFrame(draw);
   }

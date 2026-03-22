@@ -11,7 +11,7 @@
     .mobile-menu.open { display:flex !important; }
 
 
-    .hero-main-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(6rem,14vw,12rem); line-height:1; color:#fff; letter-spacing:-0.02em; margin:0; text-shadow:0 0 80px rgba(59,130,246,0.25); white-space: nowrap; }
+    .hero-main-title { font-family:var(--display); font-weight:800; font-size:clamp(6rem,14vw,12rem); line-height:1; color:#fff; letter-spacing:-0.02em; margin:0; text-shadow:0 0 80px rgba(59,130,246,0.25); white-space: nowrap; }
     .hero-main-title .sb-highlight { background:linear-gradient(135deg,#4facfe,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
     .hero-tagline { font-family:var(--mono); font-size:clamp(0.7rem,2vw,1rem); letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-top:1rem; }
     .hero-cta { display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; justify-content:center; }
@@ -264,9 +264,7 @@
   <canvas id="hero-canvas"></canvas>
   
   <!-- Floating Wonderland Decorations -->
-  <div class="hero-decoration dot" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
   <div class="hero-decoration ring" style="top: 60%; left: 10%; animation-delay: -2s;"></div>
-  <div class="hero-decoration dot" style="top: 30%; right: 15%; animation-delay: -4s; background: var(--purple);"></div>
   <div class="hero-decoration ring" style="top: 70%; right: 20%; animation-delay: -1s; width: 60px; height: 60px;"></div>
 
   <div class="hero-inner">
@@ -300,25 +298,23 @@
         <div class="box-posters reveal-stagger">
           <div class="poster-stack">
             <div class="poster-card p1">
-              <img src="images/execom1.jpeg" alt="Core EXECOM 2026">
-              <span class="p-tag">Core Execom</span>
+              <img src="images/execom1.jpeg" alt="Core EXECOM 2026" loading="lazy">
             </div>
             <div class="poster-card p2">
-              <img src="images/execom2.jpeg" alt="Societies EXECOM 2026">
-              <span class="p-tag">Societies & Affinity Groups</span>
+              <img src="images/execom2.jpeg" alt="Societies EXECOM 2026" loading="lazy">
             </div>
           </div>
         </div>
         
         <div class="box-content reveal-stagger">
           <div class="quote-area">
-            <p class="quote-txt">“ ✨The future depends on what we do in the present.✨ ”</p>
+            <p class="quote-txt">“ The future depends on what we do in the present. ”</p>
             <p class="quote-by">— Mahatma Gandhi</p>
           </div>
           <div class="text-area">
             <h2 class="box-title">IEEE SB NCERC <br><span>EXECOM POSTER</span></h2>
             <p class="box-p">Introducing a team driven by vision, passion, and purpose — innovators ready to challenge limits, spark ideas, and create meaningful impact.</p>
-            <p class="box-p" style="margin-top: 1rem;">With determination and excellence, they step forward to lead, inspire, and define the future🚀</p>
+            <p class="box-p" style="margin-top: 1rem;">With determination and excellence, they step forward to lead, inspire, and define the future</p>
           </div>
           <div style="margin-top: 2rem;">
             <a href="team.html" class="btn btn-primary">Meet the Team</a>
@@ -339,7 +335,7 @@
     
     <!-- Asymmetric Statistics Grid -->
     <div class="about-stat-grid reveal-stagger" style="margin-top: 4rem;">
-      <div class="about-stat glass-card-wonder"><span class="num" data-count="200" data-suffix="+">0</span><span class="lbl">Active Members</span></div>
+      <div class="about-stat glass-card-wonder"><span class="num" data-count="100" data-suffix="+">0</span><span class="lbl">Active Members</span></div>
       <div class="about-stat glass-card-wonder offset-y-md"><span class="num" data-count="50" data-suffix="+">0</span><span class="lbl">Events Hosted</span></div>
       <div class="about-stat glass-card-wonder"><span class="num" data-count="5">0</span><span class="lbl">Societies</span></div>
       <div class="about-stat glass-card-wonder offset-y-md"><span class="num">2021</span><span class="lbl">Established</span></div>
@@ -358,12 +354,12 @@
     <div class="societies-circle-grid reveal-stagger" style="margin-top:4rem;">
       <div class="society-circle-item">
         <div class="society-circle-card" onclick="transitToEvents(event, 'pes')">
-          <img src="./images/ieee-pes-logo.png" alt="PES Logo" class="society-circle-img">
+          <img src="./images/ieee-pes-logo.png" alt="PES Logo" class="society-circle-img" loading="lazy">
         </div>
       </div>
       <div class="society-circle-item">
         <div class="society-circle-card" onclick="transitToEvents(event, 'cass')">
-          <img src="./images/CAS-Logo-Color.png" alt="CASS Logo" class="society-circle-img">
+          <img src="./images/CAS-Logo-Color.png" alt="CASS Logo" class="society-circle-img" loading="lazy">
         </div>
       </div>
       <div class="society-circle-item">
@@ -395,19 +391,19 @@
     <p class="section-sub" style="margin-bottom:0;">Hover each card to reveal profile.</p>
     <div class="member-grid-4 reveal-scale">
       <div class="member-card">
-        <div class="member-photo"><img src="images/past-2025/Shobha Mam.jpg" alt="Dr. Sobha Manakkal"></div>
-        <div class="member-info"><span class="member-role" style="color:var(--gold);">Branch Counselor</span><p class="member-name">Dr. Sobha Manakkal</p></div>
+        <div class="member-photo"><img src="images/past-2025/Shobha Mam.jpg" alt="Dr. Sobha Manakkal" loading="lazy"></div>
+        <div class="member-info"><span class="member-role" style="color:var(--gold);">Faculty Advisor</span><p class="member-name">Dr. Sobha Manakkal</p></div>
       </div>
       <div class="member-card">
-        <div class="member-photo"><img src="images/AARDRA SIVADAS C.jpg" alt="Aardra Sivadas C"></div>
+        <div class="member-photo"><img src="images/AARDRA SIVADAS C.jpg" alt="Aardra Sivadas C" loading="lazy"></div>
         <div class="member-info"><span class="member-role" style="color:#00f2fe;">Chairperson</span><p class="member-name">Aardra Sivadas C</p></div>
       </div>
       <div class="member-card">
-        <div class="member-photo"><img src="images/sidtharth.jpeg" alt="Sidharth S"></div>
+        <div class="member-photo"><img src="images/sidtharth.jpeg" alt="Sidharth S" loading="lazy"></div>
         <div class="member-info"><span class="member-role" style="color:#0ea5e9;">Vice Chairperson</span><p class="member-name">Sidharth S</p></div>
       </div>
       <div class="member-card">
-        <div class="member-photo"><img src="images/UMESH S KRISHNAN.jpg" alt="Umesh S Krishnan"></div>
+        <div class="member-photo"><img src="images/UMESH S KRISHNAN.jpg" alt="Umesh S Krishnan" loading="lazy"></div>
         <div class="member-info"><span class="member-role" style="color:#10b981;">Secretary</span><p class="member-name">Umesh S Krishnan</p></div>
       </div>
     </div>
@@ -425,15 +421,15 @@
     <p class="section-sub reveal-stagger">Connect with a global community of innovators.</p>
     
     <div class="why-grid reveal-stagger" style="margin-top:4rem; grid-template-columns: repeat(3, 1fr);">
-      <a href="about.html#why" class="why-card glass-card-wonder"><span class="why-icon">❓</span><div class="why-title">Global Network</div><div class="why-desc">World's largest technical professional organization — 400,000+ members in 160+ countries.</div><div class="why-arrow">Learn More <span>→</span></div></a>
-      <a href="about.html#mission" class="why-card glass-card-wonder offset-y-md"><span class="why-icon">🚀</span><div class="why-title">Career Growth</div><div class="why-desc">Access to research, journals, and a global network of professionals to shape your future.</div><div class="why-arrow">Learn More <span>→</span></div></a>
-      <a href="about.html#vision" class="why-card glass-card-wonder"><span class="why-icon">👁️</span><div class="why-title">Meaningful Impact</div><div class="why-desc">Building global community of engineers who create meaningful impact in society.</div><div class="why-arrow">Learn More <span>→</span></div></a>
+      <a href="about.html#why" class="why-card glass-card-wonder"><div class="why-title">Global Network</div><div class="why-desc">World's largest technical professional organization — 400,000+ members in 160+ countries.</div><div class="why-arrow">Learn More <span>→</span></div></a>
+      <a href="about.html#mission" class="why-card glass-card-wonder offset-y-md"><div class="why-title">Career Growth</div><div class="why-desc">Access to research, journals, and a global network of professionals to shape your future.</div><div class="why-arrow">Learn More <span>→</span></div></a>
+      <a href="about.html#vision" class="why-card glass-card-wonder"><div class="why-title">Meaningful Impact</div><div class="why-desc">Building global community of engineers who create meaningful impact in society.</div><div class="why-arrow">Learn More <span>→</span></div></a>
     </div>
   </div>
 </div>
 
 <!-- CTA -->
-<section class="section" style="background:var(--accent);text-align:center;">
+<section class="section" style="background:linear-gradient(135deg, #06080f 0%, #0c101a 100%); border-top:1px solid var(--border); text-align:center;">
   <div class="home-wrap">
     <div class="section-label" style="color:rgba(255,255,255,.7);justify-content:center;">Join Today</div>
     <h2 class="section-title" style="color:#fff;">Be Part of Something Big</h2>
@@ -452,10 +448,6 @@
       <div>
         <div class="footer-brand">IEEE <span>SB</span> NCERC</div>
         <p class="footer-tagline">Nehru College of Engineering and Research Centre.<br>Advancing technology for the benefit of humanity.</p>
-        <a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank"
-           style="display:inline-flex;align-items:center;gap:0.6rem;margin:0.8rem 0 1rem;padding:0.5rem 1rem;background:linear-gradient(135deg,rgba(236,72,153,0.15),rgba(139,92,246,0.15));border:1px solid rgba(236,72,153,0.3);border-radius:50px;text-decoration:none;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;color:#f0abfc;transition:all 0.2s;">
-          📸 @ieee_sb_ncerc
-        </a>
         <div class="footer-social">
           <a href="https://www.instagram.com/ieee_sb_ncerc?igsh=YThnZ294OHE1N3Fs" target="_blank" class="social-btn" aria-label="Instagram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>

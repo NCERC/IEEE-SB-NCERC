@@ -10,8 +10,8 @@
 
     /* ── MEMBER CARD GRID ── */
     .member-grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       justify-content: center;
       gap: 1.5rem;
       max-width: 1200px;
@@ -19,8 +19,9 @@
       padding: 0 1rem;
     }
     .member-grid .member-card {
-      flex: 1 1 180px;
+      width: 100%;
       max-width: 220px;
+      margin: 0 auto;
     }
     .member-card {
       display: flex;
@@ -90,8 +91,8 @@
     }
     /* 4-col leadership row */
     .member-grid-4 {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       justify-content: center;
       gap: 1.5rem;
       max-width: 1000px;
@@ -100,21 +101,19 @@
     }
     .member-grid-4 .member-card { 
       align-items: center; 
-      flex: 1 1 200px;
+      width: 100%;
       max-width: 240px;
+      margin: 0 auto;
     }
     @media (max-width: 700px) {
       .member-grid-4 { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
       .member-grid { 
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        grid-template-columns: repeat(2, 1fr);
         gap: 0.9rem; 
       }
       .member-grid .member-card {
-        flex: 0 0 calc(50% - 0.45rem);
         max-width: 180px;
       }
       .member-name { font-size: 0.78rem; }
@@ -191,7 +190,7 @@
       <div class="execom-grid" style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
         <div class="execom-card reveal-up">
           <div class="execom-photo"><img src="images/past-2025/Shobha Mam.jpg" alt="Sobha Mam"></div>
-          <div class="execom-info"><span class="execom-role" style="color:var(--gold);">SB Counselor</span><span class="execom-name">Dr. Sobha Manakkal</span></div>
+          <div class="execom-info"><span class="execom-role" style="color:var(--gold);">Faculty Advisor</span><span class="execom-name">Dr. Sobha Manakkal</span></div>
         </div>
         <div class="execom-card reveal-up" style="animation-delay: 0.1s;">
           <div class="execom-photo"><img src="images/past-2025/Neethu mam.jpg" alt="Neethu Mam"></div>
