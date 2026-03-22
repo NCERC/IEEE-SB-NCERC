@@ -198,7 +198,7 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
       border: 1px solid var(--border);
       color: var(--text2);
       border-radius: 50px;
-      transition: all .3s cubic-bezier(.34, 1.56, .64, 1);
+      transition: all .3s ease;
       position: relative;
       overflow: hidden;
     }
@@ -218,7 +218,6 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
     }
 
     .ev-tab:hover {
-      transform: translateY(-3px);
       color: #fff;
       border-color: rgba(0, 242, 254, 0.5);
       box-shadow: 0 6px 20px rgba(0, 242, 254, 0.2);
@@ -229,7 +228,6 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
       color: #fff;
       border-color: rgba(0, 242, 254, 0.6);
       box-shadow: 0 0 24px rgba(0, 242, 254, 0.3);
-      transform: translateY(-3px);
     }
 
     /* ══ CARDS ══ */
@@ -600,7 +598,7 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
       <div id="tab-latest">
         <div class="ev-grid">
           <!-- IDEATHON (NEWEST) -->
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
+          <div class="ev-card magnetic reveal" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
             onclick="openEventSidebar('ideathon')">
             <div class="ev-img tall">
               <img src="./images/ideathon-image.jpeg" alt="WIE Ideathon 2025" />
@@ -624,10 +622,10 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
           </div>
 
           <!-- DEBATE -->
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
+          <div class="ev-card magnetic reveal" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
             onclick="openEventSidebar('debate')">
             <div class="ev-img tall">
-              <img src="images/debate.jpg" alt="Debate Competition" loading="lazy">
+              <img src="images/debate-competition1.jpeg" alt="Debate Competition" loading="lazy">
               <div class="ev-img-glow"></div>
               <div class="ev-img-label">WIE Affinity · March 12</div>
             </div>
@@ -652,7 +650,7 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
           <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.25); cursor: pointer;"
             onclick="openEventSidebar('ideathon')">
             <div class="ev-img tall">
-              <img src="images/ideathon.jpg" alt="WIE Ideathon" loading="lazy">
+              <img src="images/ideathon-image.jpeg" alt="WIE Ideathon" loading="lazy">
               <div class="ev-img-glow"></div>
               <div class="ev-img-label">WIE · Mar 16</div>
             </div>
@@ -671,8 +669,7 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
           <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.25); cursor: pointer;"
             onclick="openEventSidebar('debate')">
             <div class="ev-img tall">
-              <img src="./images/debate-competition1.jpeg" alt="Debate"
-                onerror="this.onerror=null;this.src='./images/debate-competition.jpeg'" loading="lazy" />
+              <img src="./images/debate-competition1.jpeg" alt="Debate" loading="lazy" />
               <div class="ev-img-glow"></div>
               <div class="ev-img-label">WIE · Mar 2025</div>
             </div>
@@ -686,32 +683,6 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
               <div class="ev-desc">Empowering voices, exchanging ideas and celebrating perspectives! Organized as part
                 of Women's Day celebrations.</div>
               <div class="ev-meta"><span>March 12</span><span>NCERC</span></div>
-            </div>
-          </div>
-          <div class="ev-card" style="--ev-col:rgba(255,255,255,.35);">
-            <div class="ev-img normal" style="background:linear-gradient(135deg,#030d2e,#0d2060);">
-              <div class="ev-img-placeholder">SB</div>
-              <div class="ev-img-glow"></div>
-            </div>
-            <div class="ev-body">
-              <div class="ev-tags"><span class="ev-tag"
-                  style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">Inauguration</span></div>
-              <div class="ev-title">IEEE SB NCERC Inauguration</div>
-              <div class="ev-desc">Official inauguration by IEEE President 2021 — Susan Kathy Land.</div>
-              <div class="ev-meta"><span>Jan 2021</span><span>NCERC</span></div>
-            </div>
-          </div>
-          <div class="ev-card" style="--ev-col:rgba(255,255,255,.35);">
-            <div class="ev-img normal" style="background:linear-gradient(135deg,#03181e,#0a3040);">
-              <div class="ev-img-placeholder">AGM</div>
-              <div class="ev-img-glow"></div>
-            </div>
-            <div class="ev-body">
-              <div class="ev-tags"><span class="ev-tag"
-                  style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">General Meeting</span></div>
-              <div class="ev-title">Annual General Meeting 2024</div>
-              <div class="ev-desc">Annual gathering to review achievements and plan activities.</div>
-              <div class="ev-meta"><span>Feb 2024</span><span>NCERC</span></div>
             </div>
           </div>
           <div class="ev-card" style="--ev-col:#ef4444;--ev-glow:rgba(239,68,68,.2);">
@@ -738,19 +709,6 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
               <div class="ev-title">CASS Workshop 2024</div>
               <div class="ev-desc">Hands-on workshop on circuit design and signal processing.</div>
               <div class="ev-meta"><span>Sep 2024</span><span>NCERC Lab</span></div>
-            </div>
-          </div>
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.2);">
-            <div class="ev-img normal" style="background:linear-gradient(135deg,#1a0010,#3d0028);">
-              <div class="ev-img-placeholder">WIE</div>
-              <div class="ev-img-glow"></div>
-            </div>
-            <div class="ev-body">
-              <div class="ev-tags"><span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE Affinity</span>
-              </div>
-              <div class="ev-title">WIE Ideathon 2024</div>
-              <div class="ev-desc">Women in Engineering ideathon empowering women in technical fields.</div>
-              <div class="ev-meta"><span>Mar 2024</span><span>NCERC</span></div>
             </div>
           </div>
         </div>
@@ -837,7 +795,7 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
       <div id="tab-wie" style="display:none;">
         <div class="ev-grid">
           <!-- IDEATHON -->
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
+          <div class="ev-card magnetic reveal" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
             onclick="openEventSidebar('ideathon')">
             <div class="ev-img tall">
               <img src="./images/ideathon-image.jpeg" alt="WIE Ideathon" loading="lazy" />
@@ -856,7 +814,7 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
               <div class="ev-meta"><span>📅 Mar 16, 2025</span><span>📍 Seminar Hall</span></div>
             </div>
           </div>
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
+          <div class="ev-card magnetic reveal" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
             onclick="openEventSidebar('debate')">
             <div class="ev-img tall">
               <img src="./images/debate-competition1.jpeg" alt="WIE Debate"
@@ -877,49 +835,23 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
               <div class="ev-meta"><span>March 12</span><span>NCERC</span></div>
             </div>
           </div>
-          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.2);">
-            <div class="ev-img normal" style="background:linear-gradient(135deg,#1a0010,#3d0028);">
-              <div class="ev-img-placeholder">WIE</div>
-              <div class="ev-img-glow"></div>
-            </div>
-            <div class="ev-body">
-              <div class="ev-tags"><span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE Affinity</span>
-              </div>
-              <div class="ev-title">WIE Ideathon 2024</div>
-              <div class="ev-desc">Women in Engineering ideathon empowering women in technical fields.</div>
-              <div class="ev-meta"><span>Mar 2024</span><span>NCERC</span></div>
-            </div>
-          </div>
         </div>
       </div>
 
       <!-- GENERAL -->
       <div id="tab-general" style="display:none;">
         <div class="ev-grid">
-          <div class="ev-card" style="--ev-col:rgba(255,255,255,.35);">
-            <div class="ev-img normal" style="background:linear-gradient(135deg,#030d2e,#0d2060);">
-              <div class="ev-img-placeholder">SB</div>
+          <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(0,242,254,.2);" onclick="openEventSidebar('agm')">
+            <div class="ev-img tall">
+              <img src="images/AGM25.jpg" alt="AGM 2025" loading="lazy">
               <div class="ev-img-glow"></div>
+              <div class="ev-img-label">SB · Feb 2025</div>
             </div>
             <div class="ev-body">
-              <div class="ev-tags"><span class="ev-tag"
-                  style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">Inauguration</span></div>
-              <div class="ev-title">IEEE SB NCERC Inauguration</div>
-              <div class="ev-desc">Official inauguration by IEEE President 2021 — Susan Kathy Land.</div>
-              <div class="ev-meta"><span>Jan 2021</span><span>NCERC</span></div>
-            </div>
-          </div>
-          <div class="ev-card" style="--ev-col:rgba(255,255,255,.35);">
-            <div class="ev-img normal" style="background:linear-gradient(135deg,#03181e,#0a3040);">
-              <div class="ev-img-placeholder">AGM</div>
-              <div class="ev-img-glow"></div>
-            </div>
-            <div class="ev-body">
-              <div class="ev-tags"><span class="ev-tag"
-                  style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">General Meeting</span></div>
-              <div class="ev-title">Annual General Meeting 2024</div>
-              <div class="ev-desc">Annual gathering to review achievements and plan activities.</div>
-              <div class="ev-meta"><span>Feb 2024</span><span>NCERC</span></div>
+              <div class="ev-tags"><span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">General Meeting</span></div>
+              <div class="ev-title">Annual General Meeting 2025</div>
+              <div class="ev-desc">Annual gathering to review 2024 achievements and elect the new 2025 Execom.</div>
+              <div class="ev-meta"><span>Feb 15</span><span>NCERC</span></div>
             </div>
           </div>
         </div>
@@ -997,10 +929,6 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
       const target = document.getElementById('tab-' + tab);
       if (target) target.style.display = 'block';
       if (btn) btn.classList.add('active');
-      target?.querySelectorAll('.ev-card').forEach(c => {
-        c.style.animation = 'none';
-        requestAnimationFrame(() => { c.style.animation = ''; });
-      });
     }
 
     // Handle URL parameters
@@ -1011,8 +939,6 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
         const btn = document.getElementById('tab-btn-' + tab);
         if (btn) {
           showTab(tab, btn);
-          // Smooth scroll to tabs section
-          document.querySelector('.ev-tabs').scrollIntoView({ behavior: 'smooth' });
         }
       }
     };
@@ -1082,6 +1008,32 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
                <h4>Event Poster</h4>
                <div class="s-photo-grid">
                  <img src="./images/debate-competition1.jpeg" alt="Poster">
+               </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (eventId === 'agm') {
+        title.innerText = "Annual General Meeting 2025";
+        body.innerHTML = `
+          <div class="sidebar-img-gallery">
+            <img src="./images/AGM25.jpg" alt="AGM 2025" class="sidebar-main-img">
+          </div>
+          <div class="sidebar-info-section">
+            <p class="sidebar-long-desc" style="font-style: italic; color: var(--gold); font-size: 0.95rem; margin-bottom: 1.5rem;">"Reflecting on a year of excellence, preparing for a future of innovation. 🚀"</p>
+            <p class="sidebar-long-desc">The Annual General Meeting (AGM) 2025 of IEEE SB NCERC was successfully conducted on February 15th. The event marked a transition of leadership, celebrating the milestones of the previous year and ushering in a new chapter for the Student Branch.<br><br>Memories were shared, achievements recognized, and the mission of IEEE to advance technology for humanity was reaffirmed by the entire team.</p>
+            
+            <div class="sidebar-meta-grid">
+              <div class="s-meta-item">📅 Date: February 15, 2025</div>
+              <div class="s-meta-item">📍 Venue: NCERC Campus</div>
+              <div class="s-meta-item">👥 Attendees: SB Members & Faculty</div>
+            </div>
+
+            <div class="sidebar-contact-section" style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+               <h4 style="color: var(--gold); margin-bottom: 1rem;">IEEE SB NCERC</h4>
+               <div style="font-size: 0.8rem; color: var(--text2); line-height: 1.8;">
+                 <p>Join us in shaping the future of technology.</p>
                </div>
             </div>
           </div>
