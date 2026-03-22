@@ -2,7 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── PAGE LOADER ──
   const loader = document.getElementById('page-loader');
-  if (loader) setTimeout(() => loader.classList.add('hidden'), 10);
+  if (loader) {
+    window.addEventListener('load', () => {
+      loader.classList.add('hidden');
+    });
+    // Fallback if load event takes too long
+    setTimeout(() => loader.classList.add('hidden'), 2500);
+  }
 
   // ── NAV SCROLL ──
   const navbar = document.getElementById('navbar');
@@ -74,14 +80,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── LIGHTBOX ──
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
-  document.querySelectorAll('.gallery-item').forEach(item => {
+  
+  document.querySelectorAll('.gallery-item, .execom-card').forEach(item => {
     item.addEventListener('click', () => {
       const img = item.querySelector('img');
-      if (img && lightbox && lightboxImg) { lightboxImg.src = img.src; lightbox.classList.add('open'); document.body.style.overflow = 'hidden'; }
+      if (img && lightbox && lightboxImg) {
+        lightboxImg.style.opacity = '0';
+        lightboxImg.src = img.src;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        
+        if (lightboxImg.complete) {
+          lightboxImg.style.opacity = '1';
+        } else {
+          lightboxImg.onload = () => { lightboxImg.style.opacity = '1'; };
+        }
+      }
     });
   });
+  
   lightbox?.addEventListener('click', e => {
-    if (e.target === lightbox || e.target.classList.contains('lightbox-close')) { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+    if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lightboxImg) lightboxImg.src = ''; // Clear src to stop loading if pending
+    }
   });
 
   // ── GALLERY FILTER ──
@@ -105,19 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { btn.textContent = 'SENT ✓'; setTimeout(() => { btn.textContent = orig; btn.disabled = false; contactForm.reset(); }, 3000); }, 1500);
   });
 
-  // ── PAGE TRANSITION ──
+  // ── PAGE TRANSITION (instant — no loader delay) ──
   document.querySelectorAll('a[href]').forEach(link => {
     const href = link.getAttribute('href');
     if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel')) return;
     link.addEventListener('click', e => {
       e.preventDefault();
-      const loader = document.getElementById('page-loader');
-      if (loader) {
-        loader.classList.remove('hidden');
-        window.location.href = href;
-      } else {
-        window.location.href = href;
-      }
+      window.location.href = href; // Navigate immediately, no loader
     });
   });
 
@@ -153,20 +170,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+
+
+  // ── SCROLL PROGRESS & BACK TO TOP ──
+  const progress = document.createElement('div');
+  progress.id = 'scroll-progress'; document.body.appendChild(progress);
+
+  const btt = document.createElement('div');
+  btt.id = 'back-to-top'; btt.innerHTML = '↑'; document.body.appendChild(btt);
+  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    progress.style.width = scrolled + '%';
+    
+    btt.classList.toggle('visible', window.scrollY > 500);
+  });
+
+  // ── MAGNETIC BUTTONS ──
+  const magnets = document.querySelectorAll('.btn, .social-btn, .nav-logo-img, .magnetic');
+  magnets.forEach(m => {
+    m.addEventListener('mousemove', e => {
+      const rect = m.getBoundingClientRect();
+      const x = e.clientX - (rect.left + rect.width / 2);
+      const y = e.clientY - (rect.top + rect.height / 2);
+      m.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    });
+    m.addEventListener('mouseleave', () => {
+      m.style.transform = 'translate(0, 0)';
+    });
+  });
+
+  // ── REVEAL STAGGER FIX ──
+  document.querySelectorAll('.reveal-stagger').forEach(parent => {
+    Array.from(parent.children).forEach((child, i) => {
+      child.style.transitionDelay = `${(i + 1) * 0.05}s`;
+      child.classList.add('reveal');
+    });
+  });
+
   // ── MOBILE REVEAL TABS ──
   const revealCards = document.querySelectorAll('.bento-item, .execom-card, .epc-wrapper, .event-card');
   revealCards.forEach(card => {
-    card.addEventListener('click', function(e) {
+    card.addEventListener('click', function() {
       if (window.innerWidth <= 900) {
-        // Toggle active class on the clicked card
         const isActive = this.classList.contains('active');
-        
-        // Optionally close other cards
         revealCards.forEach(c => c.classList.remove('active'));
-        
-        if (!isActive) {
-          this.classList.add('active');
-        }
+        if (!isActive) this.classList.add('active');
       }
     });
   });

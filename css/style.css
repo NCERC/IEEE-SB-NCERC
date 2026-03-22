@@ -39,16 +39,20 @@ img { display:block; max-width:100%; }
 ul { list-style:none; }
 
 /* Human touch: Subtle film grain texture & Atmospheric Light Leaks */
+/* Optimized: Reduced filter complexity and disabled on mobile for performance */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.012;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.01;
   pointer-events: none;
   z-index: 9999;
+}
+@media (max-width: 768px) {
+  body::after { display: none; }
 }
 
 /* Atmospheric Glows (Wonderland Light Leaks) */
@@ -105,7 +109,8 @@ body::after {
   display:flex; align-items:center; justify-content:space-between;
   padding:0 2.5rem;
   background:rgba(6,8,15,0.85);
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(12px); /* Reduced from 20px */
+  -webkit-backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
   transition:all 0.15s;
 }
@@ -318,7 +323,8 @@ body::after {
   font-family:var(--sans); font-size:0.85rem; font-weight:600;
   padding:0.85rem 2.2rem; background:rgba(255,255,255,0.05); color:#fff;
   border-radius:8px; border:1.5px solid rgba(255,255,255,0.2); cursor:pointer; transition:all 0.25s;
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(4px); /* Reduced from 8px */
+  -webkit-backdrop-filter:blur(4px);
 }
 .btn-hero-outline:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.5); }
 .hero-scroll {
@@ -442,6 +448,37 @@ body::after {
     height: 150px;
     padding: 1rem;
   }
+}
+
+/* CUSTOM CURSOR REMOVED */
+
+/* ── SCROLL PROGRESS ── */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  z-index: 10000; transition: width 0.1s;
+}
+
+/* ── BACK TO TOP ── */
+#back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem;
+  width: 50px; height: 50px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text); cursor: pointer; opacity: 0; visibility: hidden;
+  transition: all 0.3s var(--ease-human); z-index: 499;
+  transform: translateY(20px);
+}
+#back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+#back-to-top:hover { background: var(--accent); color: #fff; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3); }
+
+/* ── MAGNETIC UTILITY ── */
+.magnetic { display: inline-block; transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
+
+/* ── REFINED REVEAL ANIMATIONS ── */
+.reveal, .reveal-left, .reveal-right, .reveal-scale {
+  transition-duration: 0.4s !important;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* ── EXECOM CARDS ── */
@@ -2083,7 +2120,7 @@ body:has(#page-bg-canvas) footer         { background: rgba(2,4,8,0.92)    !impo
 .reveal, .reveal-left, .reveal-right, .reveal-scale {
   opacity: 1 !important;
   transform: none !important;
-  transition: opacity 0.6s ease, transform 0.6s ease !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
 }
 /* But keep hero animations working */
 #hero .hero-badge,
@@ -2103,7 +2140,7 @@ body:has(#page-bg-canvas) footer         { background: rgba(2,4,8,0.92)    !impo
   height: 100vh;
   background: var(--bg2);
   z-index: 2000;
-  transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: -10px 0 40px rgba(0,0,0,0.8);
   display: flex;
   flex-direction: column;

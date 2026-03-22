@@ -15,7 +15,7 @@ function initHeroCanvas() {
 
   // Setup
   const isMobile = window.innerWidth < 768;
-  const rayCount = isMobile ? 12 : 22;
+  const rayCount = isMobile ? 8 : 22; // Reduced from 12 on mobile
 
   // Light rays
   const rays = Array.from({length:rayCount}, (_,i) => ({
@@ -55,7 +55,8 @@ function initHeroCanvas() {
     const gp=1+Math.sin(t*0.5)*0.04;
 
     // Outer halos
-    for(let ring=5;ring>0;ring--){
+    const haloCount = isMobile ? 2 : 5; // Fewer halos on mobile
+    for(let ring=haloCount;ring>0;ring--){
       ctx.beginPath(); ctx.arc(gx,gy,globeR*(0.85+ring*0.32)*gp,0,Math.PI*2);
       ctx.strokeStyle=`rgba(160,140,255,${0.018/ring})`; ctx.lineWidth=ring*2.5; ctx.stroke();
     }
