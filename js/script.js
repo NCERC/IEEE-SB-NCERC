@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── PAGE LOADER ──
   const loader = document.getElementById('page-loader');
-  if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
+  if (loader) setTimeout(() => loader.classList.add('hidden'), 10);
 
   // ── NAV SCROLL ──
   const navbar = document.getElementById('navbar');
@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.01, rootMargin: '0px 0px -20px 0px' });
   document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger').forEach(el => obs.observe(el));
-  setTimeout(() => document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger').forEach(el => el.classList.add('visible')), 500);
 
   // ── COUNTER ──
   const cObs = new IntersectionObserver(entries => {
@@ -115,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const loader = document.getElementById('page-loader');
       if (loader) {
         loader.classList.remove('hidden');
-        setTimeout(() => window.location.href = href, 50);
+        window.location.href = href;
       } else {
         window.location.href = href;
       }
