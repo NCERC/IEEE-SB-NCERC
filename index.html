@@ -11,7 +11,7 @@
     .mobile-menu.open { display:flex !important; }
 
 
-    .hero-main-title { font-family:var(--display); font-weight:800; font-size:clamp(3rem,18vw,12rem); line-height:1.05; color:#fff; letter-spacing:-0.02em; margin:0; text-shadow:0 0 80px rgba(59,130,246,0.25); white-space:normal; word-break:break-word; max-width:100%; }
+    .hero-main-title { font-family:var(--display); font-weight:800; font-size:clamp(3rem,12vw,8rem); line-height:1.05; color:#fff; letter-spacing:-0.02em; margin:0; text-shadow:0 0 80px rgba(59,130,246,0.25); white-space:normal; word-break:break-word; max-width:100%; }
     .hero-main-title .sb-highlight { background:linear-gradient(135deg,#4facfe,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
     .hero-tagline { font-family:var(--mono); font-size:clamp(0.7rem,2vw,1rem); letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-top:1rem; }
     .hero-cta { display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; justify-content:center; }
@@ -67,10 +67,9 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s ease;
+      cursor: default;
+      transition: none;
     }
-    .member-card:hover { transform: translateY(-6px); }
     .member-photo {
       width: 100%;
       aspect-ratio: 1 / 1;
@@ -78,11 +77,6 @@
       border-radius: 18px;
       border: 1px solid var(--border);
       background: var(--surface);
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .member-card:hover .member-photo {
-      border-color: rgba(59,130,246,0.5);
-      box-shadow: 0 8px 30px rgba(59,130,246,0.12);
     }
     .member-photo img {
       width: 100%;
@@ -90,12 +84,6 @@
       object-fit: cover;
       object-position: center top;
       display: block;
-      transition: transform 0.5s ease, filter 0.4s;
-      filter: grayscale(10%);
-    }
-    .member-card:hover .member-photo img {
-      transform: scale(1.06);
-      filter: grayscale(0%);
     }
     .member-info {
       padding: 0.7rem 0.2rem 0.3rem;
@@ -268,9 +256,7 @@
   <div class="hero-decoration ring" style="top: 70%; right: 20%; animation-delay: -1s; width: 60px; height: 60px;"></div>
 
   <div class="hero-inner">
-    <div class="hero-badge reveal-stagger">
-      <div class="hero-badge-dot"></div>IEEE Student Branch | NCERC Thrissur
-    </div>
+    
     <h1 class="hero-main-title reveal-stagger" style="transition-delay: 0.1s;">IEEE <span class="sb-highlight">SB</span> NCERC</h1>
     <p class="hero-tagline reveal-stagger" style="transition-delay: 0.2s;">Advancing Technology for Humanity</p>
     <div class="hero-cta reveal-stagger" style="transition-delay: 0.3s;">
