@@ -13,8 +13,8 @@
 
     /* ── MEMBER CARD GRID ── */
     .member-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 1.5rem;
       max-width: 1200px;
@@ -24,8 +24,8 @@
 
     .member-grid .member-card {
       width: 100%;
-      max-width: 240px;
-      margin: 0 auto;
+      flex: 0 1 240px;
+      margin: 0;
       content-visibility: auto;
       contain-intrinsic-size: 1px 280px;
     }
@@ -113,8 +113,8 @@
 
     /* 4-col leadership row */
     .member-grid-4 {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 1.5rem;
       max-width: 1000px;
@@ -125,8 +125,8 @@
     .member-grid-4 .member-card {
       align-items: center;
       width: 100%;
-      max-width: 240px;
-      margin: 0 auto;
+      flex: 0 1 240px;
+      margin: 0;
       content-visibility: auto;
       contain-intrinsic-size: 1px 280px;
     }
@@ -231,7 +231,7 @@
       </div>
 
       <div class="execom-grid"
-        style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+        style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
         <div class="execom-card reveal-up">
           <div class="execom-photo"><img src="images/past-2025/Shobha Mam.jpg" alt="Sobha Mam" loading="eager" decoding="async" fetchpriority="high"></div>
           <div class="execom-info"><span class="execom-role" style="color:var(--gold);">Faculty Advisor</span><span
@@ -457,7 +457,7 @@
       </div>
 
       <div class="execom-grid"
-        style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+        style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
         <div class="execom-card reveal-up">
           <div class="execom-photo"><img src="images/past-2024/Shobha Mam.jpg" alt="Sobha Mam"></div>
           <div class="execom-info"><span class="execom-role" style="color:var(--gold);">SB Counselor</span><span
@@ -669,7 +669,7 @@
       </div>
 
       <div class="execom-grid"
-        style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+        style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
         <div class="execom-card reveal-up">
           <div class="execom-photo"><img src="IEEE_SB_NCERC-master/assets/img/Shobha Mam.jpg" alt="Sobha Mam"></div>
           <div class="execom-info"><span class="execom-role" style="color:var(--gold);">SB Counselor</span><span
