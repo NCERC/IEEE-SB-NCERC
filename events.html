@@ -187,6 +187,24 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
       flex-wrap: wrap;
     }
 
+    @media (max-width: 768px) {
+      .ev-tabs {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding: 1rem .5rem 1.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+      }
+      .ev-tabs::-webkit-scrollbar {
+        display: none; /* Safari/Chrome */
+      }
+      .ev-tab {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+    }
+
     .ev-tab {
       font-family: var(--mono);
       font-size: .65rem;
@@ -597,18 +615,37 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
       <!-- LATEST -->
       <div id="tab-latest">
         <div class="ev-grid">
-          <!-- IDEATHON (NEWEST) -->
-          <div class="ev-card magnetic reveal" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
-            onclick="openEventSidebar('ideathon')">
+          <!-- ANNUAL GENERAL MEETING 2026 (LATEST) -->
+          <div class="ev-card magnetic reveal" style="--ev-col:#f59e0b;--ev-glow:rgba(245,158,11,.3); cursor: pointer;"
+            onclick="openEventSidebar('agm26')">
             <div class="ev-img tall">
-              <img src="./images/ideathon-image.jpeg" alt="WIE Ideathon 2025" loading="eager" fetchpriority="high" />
+              <img src="./images/annual-general-metting-2026.jpeg" alt="AGM 2026" loading="eager" fetchpriority="high" />
               <div class="ev-img-glow"></div>
-              <div class="ev-img-label">WIE Affinity · March 16</div>
+              <div class="ev-img-label">SB · March 2026</div>
             </div>
             <div class="ev-body">
               <div class="ev-latest-badge">
                 <div class="ev-latest-dot"></div>Latest Event
               </div>
+              <div class="ev-tags">
+                <span class="ev-tag" style="border-color:#f59e0b;color:#f59e0b;">General</span>
+                <span class="ev-tag" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">AGM 2026</span>
+              </div>
+              <div class="ev-title big">Annual General Meeting 2026</div>
+              <div class="ev-desc">"The best way to predict the future is to create it." — Peter Drucker. Celebrating growth and welcoming new leaders.</div>
+              <div class="ev-meta"><span>March 2026</span><span>NCERC Campus</span></div>
+            </div>
+          </div>
+
+          <!-- IDEATHON -->
+          <div class="ev-card magnetic reveal" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.3); cursor: pointer;"
+            onclick="openEventSidebar('ideathon')">
+            <div class="ev-img tall">
+              <img src="./images/ideathon-image.jpeg" alt="WIE Ideathon 2025" loading="lazy" />
+              <div class="ev-img-glow"></div>
+              <div class="ev-img-label">WIE Affinity · March 16</div>
+            </div>
+            <div class="ev-body">
               <div class="ev-tags">
                 <span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE Affinity</span>
                 <span class="ev-tag"
@@ -640,12 +677,51 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
               <div class="ev-meta"><span>March 12</span><span>Seminar Hall</span></div>
             </div>
           </div>
+
+          <!-- CIRCUIT SHOWDOWN -->
+          <div class="ev-card magnetic reveal" style="--ev-col:#10b981;--ev-glow:rgba(16,185,129,.3); cursor: pointer;"
+            onclick="openEventSidebar('circuit-showdown')">
+            <div class="ev-img tall">
+              <img src="images/circuit shutdown1.jpeg" alt="Circuit Showdown" loading="lazy">
+              <div class="ev-img-glow"></div>
+              <div class="ev-img-label">CASS · Feb 26</div>
+            </div>
+            <div class="ev-body">
+              <div class="ev-tags">
+                <span class="ev-tag" style="border-color:#10b981;color:#10b981;">IEEE CASS</span>
+                <span class="ev-tag" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);">Circuit Design</span>
+              </div>
+              <div class="ev-title">Circuit Showdown — Technical Competition</div>
+              <div class="ev-desc">A dynamic, multi-stage competition where student teams design, build, and pitch innovative electronic circuits.</div>
+              <div class="ev-meta"><span>Feb 26, 2026</span><span>Aryabhatta Hall</span></div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- ALL EVENTS -->
       <div id="tab-all" style="display:none;">
         <div class="ev-grid">
+          <!-- AGM 2026 -->
+          <div class="ev-card" style="--ev-col:#f59e0b;--ev-glow:rgba(245,158,11,.25); cursor: pointer;"
+            onclick="openEventSidebar('agm26')">
+            <div class="ev-img tall">
+              <img src="./images/annual-general-metting-2026.jpeg" alt="AGM 2026" loading="lazy">
+              <div class="ev-img-glow"></div>
+              <div class="ev-img-label">SB · Mar 2026</div>
+            </div>
+            <div class="ev-body">
+              <div class="ev-latest-badge">
+                <div class="ev-latest-dot"></div>Latest
+              </div>
+              <div class="ev-tags"><span class="ev-tag" style="border-color:#f59e0b;color:#f59e0b;">General</span>
+              </div>
+              <div class="ev-title">Annual General Meeting 2026</div>
+              <div class="ev-desc">"The best way to predict the future is to create it." — Peter Drucker. Celebrating our journey.</div>
+              <div class="ev-meta"><span>Mar 2026</span><span>NCERC</span></div>
+            </div>
+          </div>
+
           <!-- IDEATHON -->
           <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(236,72,153,.25); cursor: pointer;"
             onclick="openEventSidebar('ideathon')">
@@ -655,9 +731,6 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
               <div class="ev-img-label">WIE · Mar 16</div>
             </div>
             <div class="ev-body">
-              <div class="ev-latest-badge">
-                <div class="ev-latest-dot"></div>Latest
-              </div>
               <div class="ev-tags"><span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE Affinity</span>
               </div>
               <div class="ev-title">WIE Ideathon — Women's Day 2025</div>
@@ -674,15 +747,29 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
               <div class="ev-img-label">WIE · Mar 2025</div>
             </div>
             <div class="ev-body">
-              <div class="ev-latest-badge">
-                <div class="ev-latest-dot"></div>Latest
-              </div>
               <div class="ev-tags"><span class="ev-tag" style="border-color:#00f2fe;color:#00f2fe;">WIE Affinity</span>
               </div>
               <div class="ev-title">Debate Competition — Women's Day 2025</div>
               <div class="ev-desc">Empowering voices, exchanging ideas and celebrating perspectives! Organized as part
                 of Women's Day celebrations.</div>
               <div class="ev-meta"><span>March 12</span><span>NCERC</span></div>
+            </div>
+          </div>
+
+          <!-- CIRCUIT SHOWDOWN -->
+          <div class="ev-card" style="--ev-col:#10b981;--ev-glow:rgba(16,185,129,.25); cursor: pointer;"
+            onclick="openEventSidebar('circuit-showdown')">
+            <div class="ev-img tall">
+              <img src="images/circuit shutdown1.jpeg" alt="Circuit Showdown" loading="lazy">
+              <div class="ev-img-glow"></div>
+              <div class="ev-img-label">CASS · Feb 26</div>
+            </div>
+            <div class="ev-body">
+              <div class="ev-tags"><span class="ev-tag" style="border-color:#10b981;color:#10b981;">IEEE CASS</span>
+              </div>
+              <div class="ev-title">Circuit Showdown — Feb 2026</div>
+              <div class="ev-desc">In collaboration with IEEE CASS SBC NCERC, a startup-style circuit design competition.</div>
+              <div class="ev-meta"><span>Feb 26, 2026</span><span>NCERC</span></div>
             </div>
           </div>
           
@@ -699,7 +786,26 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
       <!-- CASS -->
       <div id="tab-cass" style="display:none;">
         <div class="ev-grid">
-          <p style="text-align:center; color:var(--muted); padding:3rem 0; width:100%; grid-column: 1 / -1;">No events conducted yet.</p>
+          <!-- CIRCUIT SHOWDOWN -->
+          <div class="ev-card magnetic reveal" style="--ev-col:#10b981;--ev-glow:rgba(16,185,129,.3); cursor: pointer;"
+            onclick="openEventSidebar('circuit-showdown')">
+            <div class="ev-img tall">
+              <img src="images/circuit shutdown1.jpeg" alt="Circuit Showdown" loading="lazy">
+              <div class="ev-img-glow"></div>
+              <div class="ev-img-label">CASS · Feb 26</div>
+            </div>
+            <div class="ev-body">
+              <div class="ev-latest-badge">
+                <div class="ev-latest-dot"></div>Latest
+              </div>
+              <div class="ev-tags">
+                <span class="ev-tag" style="border-color:#10b981;color:#10b981;">IEEE CASS</span>
+              </div>
+              <div class="ev-title">Circuit Showdown — Technical Competition</div>
+              <div class="ev-desc">Dynamic, multi-stage competition where student teams design, build, and pitch innovative electronic circuits.</div>
+              <div class="ev-meta"><span>Feb 26, 2026</span><span>Aryabhatta Hall</span></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -767,6 +873,25 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
       <!-- GENERAL -->
       <div id="tab-general" style="display:none;">
         <div class="ev-grid">
+          <!-- AGM 2026 -->
+          <div class="ev-card magnetic reveal" style="--ev-col:#f59e0b;--ev-glow:rgba(245,158,11,.3); cursor: pointer;"
+            onclick="openEventSidebar('agm26')">
+            <div class="ev-img tall">
+              <img src="./images/annual-general-metting-2026.jpeg" alt="AGM 2026" loading="lazy">
+              <div class="ev-img-glow"></div>
+              <div class="ev-img-label">SB · Mar 2026</div>
+            </div>
+            <div class="ev-body">
+              <div class="ev-latest-badge">
+                <div class="ev-latest-dot"></div>Latest
+              </div>
+              <div class="ev-tags"><span class="ev-tag" style="border-color:#f59e0b;color:#f59e0b;">General</span></div>
+              <div class="ev-title">Annual General Meeting 2026</div>
+              <div class="ev-desc">Celebrating our journey and welcoming new leaders. Peter Drucker's vision in action.</div>
+              <div class="ev-meta"><span>March 2026</span><span>NCERC</span></div>
+            </div>
+          </div>
+
           <div class="ev-card" style="--ev-col:#00f2fe;--ev-glow:rgba(0,242,254,.2);" onclick="openEventSidebar('agm')">
             <div class="ev-img tall">
               <img src="images/AGM25.jpg" alt="AGM 2025" loading="lazy">
@@ -945,6 +1070,70 @@ exactly the same dimensions (like square images, e.g. height: 327px for all of t
                <h4 style="color: var(--gold); margin-bottom: 1rem;">IEEE SB NCERC</h4>
                <div style="font-size: 0.8rem; color: var(--text2); line-height: 1.8;">
                  <p>Join us in shaping the future of technology.</p>
+               </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (eventId === 'circuit-showdown') {
+        title.innerText = "Circuit Showdown";
+        body.innerHTML = `
+          <div class="sidebar-img-gallery">
+            <img src="./images/circuit shutdown1.jpeg" alt="Circuit Showdown 1" class="sidebar-main-img">
+          </div>
+          <div class="sidebar-info-section">
+            <p class="sidebar-long-desc" style="font-style: italic; color: var(--gold); font-size: 0.95rem; margin-bottom: 1.5rem;">"Innovation in every circuit, entrepreneurship in every step. ⚡"</p>
+            <p class="sidebar-long-desc">IEEE SB NCERC, in collaboration with IEEE CASS SBC NCERC, successfully organized “Circuit Showdown” on 26th February 2026 at Aryabhatta Seminar Hall, NCERC.<br><br>Circuit Showdown was a dynamic, multi-stage competition where student teams took on the role of a tech startup. Participants were challenged to design, build, and pitch innovative electronic circuits aimed at creating practical, market-ready solutions.<br><br>The event encouraged creativity, technical expertise, and entrepreneurial thinking among participants. Through different stages, students demonstrated their problem-solving abilities, circuit design skills, and presentation techniques, making the competition both intellectually stimulating and engaging.<br><br>The program witnessed enthusiastic participation from students across various departments and fostered a spirit of innovation and teamwork. The event concluded with the distribution of prizes to the winners and appreciation for all participants for their active involvement.</p>
+            
+            <div class="sidebar-meta-grid">
+              <div class="s-meta-item">📅 Date: Feb 26, 2026</div>
+              <div class="s-meta-item">📍 Venue: Aryabhatta Seminar Hall, NCERC</div>
+              <div class="s-meta-item">👥 Attendees: Student Teams & Faculty</div>
+              <div class="s-meta-item">🤝 Organized By: IEEE CASS SBC NCERC</div>
+            </div>
+
+            <div class="sidebar-additional-photos" style="margin-top: 3rem;">
+               <h4>Action Shots</h4>
+               <div class="s-photo-grid">
+                 <img src="./images/circuit shutdown1.jpeg" alt="Circuit Showdown Poster">
+                 <img src="./images/circuit shutdown2.png" alt="Circuit Showdown Highlights">
+               </div>
+            </div>
+
+            <div class="sidebar-contact-section" style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+               <h4 style="color: var(--gold); margin-bottom: 1rem;">IEEE SB NCERC</h4>
+               <div style="font-size: 0.8rem; color: var(--text2); line-height: 1.8;">
+                 <p>Fostering innovation and teamwork through technical excellence.</p>
+               </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (eventId === 'agm26') {
+        title.innerText = "Annual General Meeting 2026";
+        body.innerHTML = `
+          <div class="sidebar-img-gallery">
+            <img src="./images/annual-general-metting-2026.jpeg" alt="AGM 2026" class="sidebar-main-img">
+          </div>
+          <div class="sidebar-info-section">
+            <p class="sidebar-long-desc" style="font-style: italic; color: var(--gold); font-size: 1rem; margin-bottom: 1.5rem; font-weight: 500;">
+              "The best way to predict the future is to create it." ✨<br>
+              <span style="font-size: 0.85rem; opacity: 0.8;">— Peter Drucker</span>
+            </p>
+            <p class="sidebar-long-desc">The Annual General Meeting of IEEE SB NCERC was a celebration of growth, teamwork, and achievements over these past years. From reflecting on our journey to welcoming new leaders and fresh ideas. The AGM marked both an ending and a powerful new beginning.<br><br>A heartfelt appreciation to all members and volunteers whose dedication made this journey meaningful. Here we continuing the legacy with greater passion and purpose.</p>
+            
+            <div class="sidebar-meta-grid">
+              <div class="s-meta-item">📅 Date: March 2026</div>
+              <div class="s-meta-item">📍 Venue: NCERC Campus</div>
+              <div class="s-meta-item">👥 Attendees: All Professional & Student Members</div>
+            </div>
+
+            <div class="sidebar-contact-section" style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+               <h4 style="color: var(--gold); margin-bottom: 1rem;">IEEE SB NCERC</h4>
+               <div style="font-size: 0.8rem; color: var(--text2); line-height: 1.8;">
+                 <p>Continuing the legacy with greater passion and purpose.</p>
                </div>
             </div>
           </div>
